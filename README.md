@@ -5,7 +5,7 @@
 ![Mastan _page-0001](https://github.com/user-attachments/assets/8e2dc625-ca3b-4fb0-a73f-7aa7de5a5283)
 
 
-<h1 align="center"> Hi there, I'm <a href="https://www.linkedin.com/in/mastan-sayyad-126904223/">陈硕</a> <img height="40" alt="Kyubey" src="https://raw.githubusercontent.com/innng/innng/master/assets/kyubey.gif"/></h1>
+<h1 align="center"> Hi there, we are <a href="https://www.linkedin.com/in/mastan-sayyad-126904223/">拾光AI团队</a> <img height="40" alt="Kyubey" src="https://raw.githubusercontent.com/innng/innng/master/assets/kyubey.gif"/></h1>
 
 <img align="right" src="https://github.com/SankshipthShetty/SankshipthShetty/assets/99337968/2bd05422-3a3b-4d7c-94a1-7cdb584c09d7" alt="Profile Image" width="300"/>
 
