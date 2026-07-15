@@ -1,110 +1,103 @@
-<p align="left">
-  <img src="https://komarev.com/ghpvc/?username=mastansayyad&label=Profile%20views&color=0e75b6&style=flat" alt="Profile Views" />
-</p>
+<div align="center">
 
-![Mastan _page-0001](https://github.com/user-attachments/assets/8e2dc625-ca3b-4fb0-a73f-7aa7de5a5283)
+# 有温度团队 · Warmth Team
 
+**开源 AI 产品团队 / Open-source AI Product Team**
 
-<h1 align="center"> Hi there, we are <a href="https://www.linkedin.com/in/mastan-sayyad-126904223/">有温度工作室</a> <img height="40" alt="Kyubey" src="https://raw.githubusercontent.com/innng/innng/master/assets/kyubey.gif"/></h1>
+我们用 AI、自动化和产品工程，把想法更快做成可使用、可验证、可持续迭代的产品。
 
-<img align="right" src="https://github.com/SankshipthShetty/SankshipthShetty/assets/99337968/2bd05422-3a3b-4d7c-94a1-7cdb584c09d7" alt="Profile Image" width="300"/>
+We build AI products, automation workflows, and practical MVPs that turn ideas into usable products faster.
 
-- 🌱 **Currently building and developing Myself** <br>
-- 💬 Ask Me About: JAVA, SQL, Development, Anime, Designing, or anything. <br>
-- 📫 Reach Me At: [2516016679@qq.com](mailto:s2516016679@qq.com) <br>
-- ⚡ About Me: **bed person** <br>
-- 💎 Hard work + Quick Adaptation + Critical Thinking + Honesty <br>
-- 📍 **Location:** India <br>
+[中文](#中文) · [English](#english) · [知识库 Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [联系我们 Contact](#联系我们)
 
-<br>
-<br>
-
-## GSSOC(24) Badges 🪶
-<div style='display:flex; align-items:center; gap: 10px;' align='center'><a href="https://gssoc.girlscript.tech/leaderboard">
-<img src="https://raw.githubusercontent.com/GSSoC24/Postman-Challenge/main/docs/assets/Postman%20White.png" width="100px" height="100px" />
-  <img src="https://raw.githubusercontent.com/GSSoC24/Postman-Challenge/main/docs/assets/1.png" width="100px" height="100px" />
-  <img src="https://raw.githubusercontent.com/GSSoC24/Postman-Challenge/main/docs/assets/2.png" width="100px" height="100px" />
-  <img src="https://raw.githubusercontent.com/GSSoC24/Postman-Challenge/main/docs/assets/3.png" width="100px" height="100px" />
-  <img src="https://raw.githubusercontent.com/GSSoC24/Postman-Challenge/main/docs/assets/4.png" width="100px" height="100px" />
-  <img src="https://raw.githubusercontent.com/GSSoC24/Postman-Challenge/main/docs/assets/5.png" width="100px" height="100px" />
-  <img src="https://raw.githubusercontent.com/GSSoC24/Postman-Challenge/main/docs/assets/6.png" width="105px" height="105px" />
-  <img src="https://raw.githubusercontent.com/GSSoC24/Postman-Challenge/main/docs/assets/7.png" width="100px" height="100px" />
-  </a>
 </div>
-<br>
-<br>
 
-<details><summary>🎖️ Hacktoberfest Badges: </summary>
-  <br>
-<p align="center">
-<img width="800" height="426" alt="image" src="https://github.com/user-attachments/assets/84f37fe7-27c0-4cea-bc0d-414be000c746" />
+---
+
+<a id="中文"></a>
+
+## 中文
+
+### 我们是谁
+
+有温度团队是一个专注于 **AI 产品、开源工具和自动化系统** 的产品团队。
+
+我们相信：技术不应该只停留在代码里，真正有价值的是把一个想法快速做成产品，让用户能用、团队能验证、业务能增长。
+
+### 我们在做什么
+
+- **AI 产品**：围绕真实场景构建可用的 AI 工具
+- **开源项目**：把团队正在打磨的产品和能力开放出来
+- **自动化工作流**：用 AI 和工程能力减少重复劳动
+- **MVP 验证**：快速搭建、快速上线、快速迭代
+- **知识沉淀**：把产品、技术、AI 和商业经验整理成知识库
+
+### 开源产品
+
+| 产品 | 简介 | 入口 |
+| --- | --- | --- |
+| AI 掼蛋记牌 | 移动端优先的掼蛋记牌训练工具，通过自动牌局和即时记忆测试，帮助玩家训练关键牌观察与记忆能力。 | [GitHub](https://github.com/ChenShuo2004/01-guandan) |
+| 紫微斗数 / 紫薇算命 | 基于紫微斗数体系的排盘、知识库和 AI 解读产品，探索传统知识与 AI 产品体验的结合。 | [GitHub](https://github.com/ChenShuo2004/ziwei) · [线上体验](https://metisziwei.com) |
+
+### 技术栈
+
+<p>
+  <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,python,nodejs,postgres,supabase,vercel,cloudflare,git,github" alt="Tech Stack" />
 </p>
 
-</details>
+我们常用：Next.js、React、TypeScript、Tailwind CSS、Python、AI API、Vercel、Cloudflare。
 
+### 知识库
 
-<details><summary>🚀 Open Source Contributions:</summary>
-  <br>
-  <table width="100%" align="center">
-    <tr>
-    </tr>
-    <tr>
-      <td>GirlScript Summer of Code (GSSoC'24) </td>
-      <td>
-        <ul>
-          <li>Role: <strong>Open Source Contributor</strong></li>
-          <li>Contributed to multiple open-source projects.</li>
-          <li>Fixed UI/UX issues, added FAQs, and enhanced features.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>Vinyasa Summer of Code (VSoC) 24</td>
-      <td>
-        <ul>
-          <li>Role: <strong>Project Admin</strong></li>
-          <li>Managed GitHub repositories, assigned issues, guided contributors, and resolved code conflicts.</li>
-          <li>Successfully handled project administration and contributed to the project's growth and development.</li>
-        </ul>
-      </td>
-    </tr>
-  </table>
-</details>
+我们会持续把团队在 AI 产品、自动化、开源项目和商业验证中的经验沉淀到知识库：
 
-<details><summary>🏆 Notable Projects:</summary>
-  <br>
-  <table width="100%">
-    <tr>
-      <th>Project</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td><a href="https://visual-sort-pink.vercel.app/">Visual Sort</a></td>
-      <td>Visual Sort is a web-based sorting algorithm visualization tool built using HTML, CSS, Bootstrap, SCSS, and JavaScript. This project provides an interactive way to visualize various sorting algorithms in action, helping users understand how different algorithms work and their efficiency in sorting data.</td>
-    </tr>
-  </table>
-</details>
+[有温度团队知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
-<br>
+### 联系我们
 
-<table width="100%" align="center">
-<tr>
-<td>
-  <img width="600em" src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=mastansayyad&theme=radical" alt="Profile Summary">
-</td>
-</tr>
-</table>
+如果你对我们的开源产品、AI 产品实践或团队方向感兴趣，可以通过下面方式联系：
 
-<table width="100%" align="center">
-<tr>
-<td>
-  <img width="400em" src="https://github-readme-stats.vercel.app/api?username=mastansayyad&show_icons=true&locale=en&theme=radical" alt="GitHub Stats"/>
-</td>
-<td>
-  <img width="420em" src="https://github.com/user-attachments/assets/8029244a-c064-4699-b1fd-d6573978d5d1" alt="Streak Stats"/>
-</td>
-</tr>
-</table>
-<br>
+- Email: [pqdqqylqxx00321@gmail.com](mailto:pqdqqylqxx00321@gmail.com)
+- WeChat: `Chen18005977213`
 
+---
 
+<a id="english"></a>
+
+## English
+
+### Who We Are
+
+Warmth Team is an open-source AI product team focused on building practical AI products, automation workflows, and MVPs.
+
+We care about turning ideas into real products that people can use, test, and improve.
+
+### What We Build
+
+- **AI Products**: Useful tools built around real scenarios
+- **Open-source Projects**: Products and experiments shared with the community
+- **Automation Workflows**: Systems that reduce repetitive work with AI and engineering
+- **MVPs**: Fast product validation through shipping and iteration
+- **Knowledge Base**: Notes and frameworks about AI, product building, automation, and business experiments
+
+### Open-source Products
+
+| Product | Description | Links |
+| --- | --- | --- |
+| AI Guandan Memory Training | A mobile-first card memory training product for Guandan players, using automated games and instant memory tests. | [GitHub](https://github.com/ChenShuo2004/01-guandan) |
+| Zi Wei Dou Shu / Metis Ziwei | A Zi Wei Dou Shu charting and AI interpretation product that explores the combination of traditional knowledge and AI product experience. | [GitHub](https://github.com/ChenShuo2004/ziwei) · [Live Site](https://metisziwei.com) |
+
+### Tech Stack
+
+Next.js, React, TypeScript, Tailwind CSS, Python, AI APIs, Vercel, Cloudflare.
+
+### Knowledge Base
+
+We keep our notes, product thinking, AI experiments, and workflow practices here:
+
+[Warmth Team Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+
+### Contact
+
+- Email: [pqdqqylqxx00321@gmail.com](mailto:pqdqqylqxx00321@gmail.com)
+- WeChat: `Chen18005977213`
