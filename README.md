@@ -10,6 +10,8 @@ We build AI products, automation workflows, and practical MVPs that turn ideas i
 
 [中文](#中文) · [English](#english) · [知识库 Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [联系我们 Contact](#联系我们)
 
+<img src="./assets/readme/warmth-team-hero.svg" alt="有温度团队 Warmth Team" width="100%" />
+
 </div>
 
 ---
@@ -33,6 +35,15 @@ We build AI products, automation workflows, and practical MVPs that turn ideas i
 - **知识沉淀**：把产品、技术、AI 和商业经验整理成知识库
 
 ### 开源产品
+
+<p align="center">
+  <a href="https://github.com/ChenShuo2004/01-guandan">
+    <img src="./assets/readme/product-guandan.svg" alt="AI 掼蛋记牌" width="49%" />
+  </a>
+  <a href="https://github.com/ChenShuo2004/ziwei">
+    <img src="./assets/readme/product-ziwei.svg" alt="紫微斗数 / 紫薇算命" width="49%" />
+  </a>
+</p>
 
 | 产品 | 简介 | 入口 |
 | --- | --- | --- |
@@ -81,6 +92,15 @@ We care about turning ideas into real products that people can use, test, and im
 - **Knowledge Base**: Notes and frameworks about AI, product building, automation, and business experiments
 
 ### Open-source Products
+
+<p align="center">
+  <a href="https://github.com/ChenShuo2004/01-guandan">
+    <img src="./assets/readme/product-guandan.svg" alt="AI Guandan Memory Training" width="49%" />
+  </a>
+  <a href="https://github.com/ChenShuo2004/ziwei">
+    <img src="./assets/readme/product-ziwei.svg" alt="Zi Wei Dou Shu / Metis Ziwei" width="49%" />
+  </a>
+</p>
 
 | Product | Description | Links |
 | --- | --- | --- |
