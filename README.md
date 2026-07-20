@@ -40,7 +40,6 @@
       <p>
         <a href="https://github.com/ChenShuo2004/01-guandan">AI 掼蛋记牌</a> ·
         <a href="https://github.com/ChenShuo2004/ziwei">紫微斗数</a> ·
-        <a href="https://metisziwei.com">线上紫微</a> ·
         <a href="https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d">团队知识库</a>
       </p>
     </td>
@@ -68,7 +67,7 @@
       </a>
       <h4>紫微斗数 / 紫薇算命</h4>
       <p align="left">基于紫微斗数体系的排盘、知识库和 AI 解读产品，探索传统知识与 AI 产品体验的结合。</p>
-      <p><a href="https://github.com/ChenShuo2004/ziwei">查看 GitHub 仓库</a> · <a href="https://metisziwei.com">线上体验</a></p>
+      <p><a href="https://github.com/ChenShuo2004/ziwei">查看 GitHub 仓库</a></p>
     </td>
   </tr>
 </table>
@@ -107,7 +106,7 @@ We care about turning ideas into real products that people can use, test, and im
 | Product | Description | Links |
 | --- | --- | --- |
 | AI Guandan Memory Training | A mobile-first card memory training product for Guandan players, using automated games and instant memory tests. | [GitHub](https://github.com/ChenShuo2004/01-guandan) |
-| Zi Wei Dou Shu / Metis Ziwei | A Zi Wei Dou Shu charting and AI interpretation product that explores the combination of traditional knowledge and AI product experience. | [GitHub](https://github.com/ChenShuo2004/ziwei) · [Live Site](https://metisziwei.com) |
+| Zi Wei Dou Shu / Metis Ziwei | A Zi Wei Dou Shu charting and AI interpretation product that explores the combination of traditional knowledge and AI product experience. | [GitHub](https://github.com/ChenShuo2004/ziwei) |
 
 ### Knowledge Base
 
