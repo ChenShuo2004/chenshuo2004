@@ -1,16 +1,16 @@
 <div align="center">
 
-# 有温度团队 · Warmth Team
+# 有温度团队 | Warmth AI
 
-<img src="./assets/readme/team-hero.jpg" alt="有温度团队 Warmth Team" width="760" />
+<img src="./assets/readme/team-hero.jpg" alt="有温度团队 Warmth AI" width="760" />
 
 <br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=700&size=24&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=620&lines=%E5%BC%80%E6%BA%90+AI+%E4%BA%A7%E5%93%81;%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81;%E8%AE%A9%E6%8A%80%E6%9C%AF%E6%9B%B4%E6%9C%89%E6%B8%A9%E5%BA%A6" alt="开源 AI 产品 / 自动化工作流 / 让技术更有温度" />
+<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=700&size=24&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=620&lines=AI+%E5%8E%9F%E7%94%9F%E4%BA%A7%E5%93%81%E5%9B%A2%E9%98%9F;%E8%AE%A9%E7%9F%A5%E8%AF%86%E6%9C%89%E6%B8%A9%E5%BA%A6;%E5%88%9B%E9%80%A0%E7%9C%9F%E6%AD%A3%E5%B8%AE%E5%8A%A9%E4%BA%BA%E7%9A%84%E6%99%BA%E8%83%BD%E4%BA%A7%E5%93%81" alt="AI 原生产品团队 / 让知识有温度 / 创造真正帮助人的智能产品" />
 
-**开源 AI 产品团队 / Open-source AI Product Team**
+**AI 原生产品团队 / AI-native Product Team**
 
-我们用 AI、自动化和产品工程，把想法更快做成可使用、可验证、可持续迭代的产品。
+让 AI 有能力，让知识有温度。
 
 [中文](#中文) · [English](#english) · [知识库 Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [联系我们 Contact](#联系我们)
 
@@ -26,16 +26,18 @@
   <tr>
     <td width="58%" valign="top">
       <h3>我们是谁</h3>
-      <p>有温度团队是一个专注于 <strong>AI 产品、开源工具和自动化系统</strong> 的产品团队。</p>
-      <p>我们相信：技术不应该只停留在代码里。真正有价值的是把一个想法快速做成产品，让用户能用、团队能验证、业务能增长。</p>
-      <p><strong>我们正在构建：</strong></p>
+      <p>我们是一支 <strong>AI 原生产品团队</strong>。</p>
+      <p>我们相信：知识不应该被遗忘，经验不应该被隐藏，技术不应该只有效率。</p>
+      <p>我们通过 AI 技术，将分散的知识、经验和方法重新整理，创造真正帮助人的智能产品。</p>
+      <p><strong>我们正在探索：</strong></p>
       <ul>
-        <li>AI 产品与开源工具</li>
-        <li>自动化工作流</li>
-        <li>可快速验证的 MVP</li>
-        <li>面向真实用户的产品实验</li>
-        <li>AI、产品、商业经验知识库</li>
+        <li>AI 知识库系统</li>
+        <li>垂直领域智能助手</li>
+        <li>AI 技能训练工具</li>
+        <li>传统知识数字化</li>
+        <li>个人智能伙伴</li>
       </ul>
+      <p><strong>核心理念：</strong>让 AI 有能力，让知识有温度。</p>
       <p><strong>快速入口：</strong></p>
       <p>
         <a href="https://github.com/ChenShuo2004/01-guandan">AI 掼蛋记牌</a> ·
@@ -98,9 +100,23 @@ Next.js · React · TypeScript · Tailwind CSS · Python · AI API · Vercel · 
 
 ## English
 
-Warmth Team is an open-source AI product team focused on building practical AI products, automation workflows, and MVPs.
+Warmth AI is an AI-native product team.
 
-We care about turning ideas into real products that people can use, test, and improve.
+We believe knowledge should not be forgotten, experience should not be hidden, and technology should be more than efficiency.
+
+We use AI to reorganize scattered knowledge, experience, and methods into intelligent products that truly help people.
+
+### What We Explore
+
+- AI knowledge base systems
+- Vertical-domain intelligent assistants
+- AI skill training tools
+- Digital products for traditional knowledge
+- Personal AI companions
+
+### Core Idea
+
+Make AI capable. Make knowledge warm.
 
 ### Open-source Products
 
@@ -111,7 +127,7 @@ We care about turning ideas into real products that people can use, test, and im
 
 ### Knowledge Base
 
-[Warmth Team Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+[Warmth AI Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
 ### Contact
 
