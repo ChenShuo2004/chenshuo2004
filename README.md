@@ -2,11 +2,11 @@
 
 # 有温度团队 · Warmth Team
 
-<img src="./assets/readme/team-hero.png" alt="有温度团队 Warmth Team" width="100%" />
+<img src="./assets/readme/team-hero.jpg" alt="有温度团队 Warmth Team" width="760" />
 
 <br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=700&size=28&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=760&lines=%E5%BC%80%E6%BA%90+AI+%E4%BA%A7%E5%93%81;%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81;%E8%AE%A9%E6%8A%80%E6%9C%AF%E6%9B%B4%E6%9C%89%E6%B8%A9%E5%BA%A6" alt="开源 AI 产品 / 自动化工作流 / 让技术更有温度" />
+<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=700&size=24&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=620&lines=%E5%BC%80%E6%BA%90+AI+%E4%BA%A7%E5%93%81;%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81;%E8%AE%A9%E6%8A%80%E6%9C%AF%E6%9B%B4%E6%9C%89%E6%B8%A9%E5%BA%A6" alt="开源 AI 产品 / 自动化工作流 / 让技术更有温度" />
 
 **开源 AI 产品团队 / Open-source AI Product Team**
 
@@ -52,27 +52,26 @@
 
 ### 开源产品
 
-<a href="https://github.com/ChenShuo2004/01-guandan">
-  <img src="./assets/readme/product-guandan.png" alt="AI 掼蛋记牌工具" width="100%" />
-</a>
-
-#### AI 掼蛋记牌
-
-移动端优先的掼蛋记牌训练工具，通过自动牌局和即时记忆测试，帮助玩家训练关键牌观察与记忆能力。
-
-[查看 GitHub 仓库](https://github.com/ChenShuo2004/01-guandan)
-
-<br />
-
-<a href="https://github.com/ChenShuo2004/ziwei">
-  <img src="./assets/readme/product-ziwei.png" alt="紫微斗数 / 紫薇算命" width="100%" />
-</a>
-
-#### 紫微斗数 / 紫薇算命
-
-基于紫微斗数体系的排盘、知识库和 AI 解读产品，探索传统知识与 AI 产品体验的结合。
-
-[查看 GitHub 仓库](https://github.com/ChenShuo2004/ziwei) · [线上体验](https://metisziwei.com)
+<table>
+  <tr>
+    <td width="50%" valign="top" align="center">
+      <a href="https://github.com/ChenShuo2004/01-guandan">
+        <img src="./assets/readme/product-guandan.jpg" alt="AI 掼蛋记牌工具" width="92%" />
+      </a>
+      <h4>AI 掼蛋记牌</h4>
+      <p align="left">移动端优先的掼蛋记牌训练工具，通过自动牌局和即时记忆测试，帮助玩家训练关键牌观察与记忆能力。</p>
+      <p><a href="https://github.com/ChenShuo2004/01-guandan">查看 GitHub 仓库</a></p>
+    </td>
+    <td width="50%" valign="top" align="center">
+      <a href="https://github.com/ChenShuo2004/ziwei">
+        <img src="./assets/readme/product-ziwei.jpg" alt="紫微斗数 / 紫薇算命" width="92%" />
+      </a>
+      <h4>紫微斗数 / 紫薇算命</h4>
+      <p align="left">基于紫微斗数体系的排盘、知识库和 AI 解读产品，探索传统知识与 AI 产品体验的结合。</p>
+      <p><a href="https://github.com/ChenShuo2004/ziwei">查看 GitHub 仓库</a> · <a href="https://metisziwei.com">线上体验</a></p>
+    </td>
+  </tr>
+</table>
 
 ### 技术栈
 
