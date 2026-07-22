@@ -42,67 +42,49 @@
 
 ## Featured Projects
 
-<a href="https://github.com/ChenShuo2004/01-guandan">
-  <img src="./assets/readme/product-guandan.png" alt="AI 掼蛋记牌工具" width="100%" />
-</a>
-
-### AI 掼蛋记牌
-
-移动端优先的掼蛋记牌训练工具。通过自动牌局、关键牌追踪和即时记忆测试，帮助玩家训练观察、记忆和复盘能力。
-
-**线上地址**
-
-- [掼蛋训练场](https://guandanmaster.aiyouwendu.com/)
-- [掼蛋训练器](https://guandan.aiyouwendu.com/products/guandan-trainer)
-
-**适合谁**
-
-- 想系统提升掼蛋记牌能力的玩家
-- 想把牌局训练产品化的开发者
-- 想研究小而清晰的 AI 工具 MVP 的产品人
-
-[查看 GitHub 仓库](https://github.com/ChenShuo2004/01-guandan) · [立即体验](https://guandanmaster.aiyouwendu.com/)
-
-<br />
-
-<a href="https://github.com/ChenShuo2004/ziwei">
-  <img src="./assets/readme/product-ziwei.png" alt="紫微斗数 / 紫薇算命" width="100%" />
-</a>
-
-### 紫微斗数 / Metis Ziwei
-
-基于紫微斗数体系的排盘、知识库和 AI 解读产品。目标不是制造玄学焦虑，而是把传统知识变成更容易理解、追问和自我观察的产品体验。
-
-**包含能力**
-
-- 紫微斗数排盘
-- 命盘结构化展示
-- AI 解读与主题分析
-- 古籍、知识库与样本数据沉淀
-
-[查看 GitHub 仓库](https://github.com/ChenShuo2004/ziwei) · [线上体验](https://ziwei.aiyouwendu.com/)
-
-<br />
-
-<a href="https://lovetest.aiyouwendu.com/">
-  <img src="./assets/readme/product-lovetest.png" alt="情侣复盘测试 LOVE-test" width="100%" />
-</a>
-
-### 情侣复盘测试 / LOVE-test
-
-面向情侣关系复盘的小测试产品，用更轻量的方式帮助两个人看见关系里的表达方式、冲突模式和相处盲区。
-
-**产品入口**
-
-- [情侣复盘测试](https://lovetest.aiyouwendu.com/)
-
-<br />
-
-### 倪师经方学习助手
-
-面向经方学习场景的 AI 学习助手，帮助用户围绕倪师经方内容进行查询、学习和结构化理解。
-
-[立即体验](https://nishizy.aiyouwendu.com/products/nishizy)
+<table>
+  <tr>
+    <td width="25%" valign="top" align="center">
+      <a href="https://guandanmaster.aiyouwendu.com/">
+        <img src="./assets/readme/product-guandan.png" alt="AI 掼蛋记牌工具" width="160" />
+      </a>
+      <h3>AI 掼蛋记牌</h3>
+      <p>移动端记牌训练工具。</p>
+      <p>
+        <a href="https://guandanmaster.aiyouwendu.com/">训练场</a> ·
+        <a href="https://guandan.aiyouwendu.com/products/guandan-trainer">训练器</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <a href="https://ziwei.aiyouwendu.com/">
+        <img src="./assets/readme/product-ziwei.png" alt="紫微斗数 / 紫薇算命" width="160" />
+      </a>
+      <h3>紫微斗数</h3>
+      <p>排盘、知识库和 AI 解读。</p>
+      <p>
+        <a href="https://ziwei.aiyouwendu.com/">线上体验</a> ·
+        <a href="https://github.com/ChenShuo2004/ziwei">GitHub</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <a href="https://lovetest.aiyouwendu.com/">
+        <img src="./assets/readme/product-lovetest.png" alt="情侣复盘测试 LOVE-test" width="160" />
+      </a>
+      <h3>情侣复盘测试</h3>
+      <p>关系复盘小测试。</p>
+      <p>
+        <a href="https://lovetest.aiyouwendu.com/">立即体验</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <h3>倪师经方学习助手</h3>
+      <p>经方学习 AI 助手。</p>
+      <p>
+        <a href="https://nishizy.aiyouwendu.com/products/nishizy">立即体验</a>
+      </p>
+    </td>
+  </tr>
+</table>
 
 ---
 
