@@ -36,7 +36,7 @@
 
 **快速入口**
 
-[AI 掼蛋记牌](https://github.com/ChenShuo2004/01-guandan) · [紫微斗数](https://github.com/ChenShuo2004/ziwei) · [线上紫微](https://metisziwei.com) · [团队知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+[紫微斗数](https://ziwei.aiyouwendu.com/) · [掼蛋训练场](https://guandanmaster.aiyouwendu.com/) · [掼蛋训练器](https://guandan.aiyouwendu.com/products/guandan-trainer) · [情侣复盘测试](https://lovetest.aiyouwendu.com/) · [倪师经方学习助手](https://nishizy.aiyouwendu.com/products/nishizy)
 
 ---
 
@@ -50,13 +50,18 @@
 
 移动端优先的掼蛋记牌训练工具。通过自动牌局、关键牌追踪和即时记忆测试，帮助玩家训练观察、记忆和复盘能力。
 
+**线上地址**
+
+- [掼蛋训练场](https://guandanmaster.aiyouwendu.com/)
+- [掼蛋训练器](https://guandan.aiyouwendu.com/products/guandan-trainer)
+
 **适合谁**
 
 - 想系统提升掼蛋记牌能力的玩家
 - 想把牌局训练产品化的开发者
 - 想研究小而清晰的 AI 工具 MVP 的产品人
 
-[查看 GitHub 仓库](https://github.com/ChenShuo2004/01-guandan)
+[查看 GitHub 仓库](https://github.com/ChenShuo2004/01-guandan) · [立即体验](https://guandanmaster.aiyouwendu.com/)
 
 <br />
 
@@ -75,7 +80,29 @@
 - AI 解读与主题分析
 - 古籍、知识库与样本数据沉淀
 
-[查看 GitHub 仓库](https://github.com/ChenShuo2004/ziwei) · [线上体验](https://metisziwei.com)
+[查看 GitHub 仓库](https://github.com/ChenShuo2004/ziwei) · [线上体验](https://ziwei.aiyouwendu.com/)
+
+<br />
+
+<a href="https://lovetest.aiyouwendu.com/">
+  <img src="./assets/readme/product-lovetest.png" alt="情侣复盘测试 LOVE-test" width="100%" />
+</a>
+
+### 情侣复盘测试 / LOVE-test
+
+面向情侣关系复盘的小测试产品，用更轻量的方式帮助两个人看见关系里的表达方式、冲突模式和相处盲区。
+
+**产品入口**
+
+- [情侣复盘测试](https://lovetest.aiyouwendu.com/)
+
+<br />
+
+### 倪师经方学习助手
+
+面向经方学习场景的 AI 学习助手，帮助用户围绕倪师经方内容进行查询、学习和结构化理解。
+
+[立即体验](https://nishizy.aiyouwendu.com/products/nishizy)
 
 ---
 
@@ -116,8 +143,10 @@ We care about turning ideas into usable products that real people can test, use,
 
 | Product | Description | Links |
 | --- | --- | --- |
-| AI Guandan Memory Training | A mobile-first card memory training product for Guandan players, with automated rounds, key-card tracking, and instant recall tests. | [GitHub](https://github.com/ChenShuo2004/01-guandan) |
-| Zi Wei Dou Shu / Metis Ziwei | A Zi Wei Dou Shu charting and AI interpretation product that combines traditional knowledge with modern product experience. | [GitHub](https://github.com/ChenShuo2004/ziwei) · [Live Site](https://metisziwei.com) |
+| AI Guandan Memory Training | A mobile-first card memory training product for Guandan players, with automated rounds, key-card tracking, and instant recall tests. | [GitHub](https://github.com/ChenShuo2004/01-guandan) · [Training Field](https://guandanmaster.aiyouwendu.com/) · [Trainer](https://guandan.aiyouwendu.com/products/guandan-trainer) |
+| Zi Wei Dou Shu / Metis Ziwei | A Zi Wei Dou Shu charting and AI interpretation product that combines traditional knowledge with modern product experience. | [GitHub](https://github.com/ChenShuo2004/ziwei) · [Live Site](https://ziwei.aiyouwendu.com/) |
+| LOVE-test | A lightweight relationship review test for couples. | [Live Site](https://lovetest.aiyouwendu.com/) |
+| Ni Shi Jing Fang Learning Assistant | An AI learning assistant for structured study and query around Ni Shi Jing Fang content. | [Live Site](https://nishizy.aiyouwendu.com/products/nishizy) |
 
 ### Focus
 
