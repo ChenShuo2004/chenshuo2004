@@ -10,23 +10,19 @@
 
 **用 AI 和产品工程，把想法快速做成真正可用的产品。**
 
-[中文](#中文) · [English](#english) · [知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [联系我](#联系我)
+[中文](./README.md) · [English](./README.en.md) · [知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [联系我](#联系我)
 
 </div>
 
 ---
 
-<a id="中文"></a>
-
-## 中文
-
-### 我们是谁
+## 我们是谁
 
 我是陈硕 KAI，正在和有温度团队一起构建面向真实用户的 AI 产品、自动化工具和开源项目。
 
 我们关注的不是把技术堆得更复杂，而是把一个想法更快变成能上线、能验证、能迭代的产品。
 
-**当前方向**
+## 当前方向
 
 - AI 独立产品与 SaaS
 - 自动化工作流与效率工具
@@ -40,13 +36,13 @@
 
 ---
 
-## Featured Projects
+## 产品
 
 <table>
   <tr>
     <td width="25%" valign="top" align="center">
       <a href="https://guandanmaster.aiyouwendu.com/">
-        <img src="./assets/readme/product-guandan.png" alt="AI 掼蛋记牌工具" width="160" />
+        <img src="./assets/readme/product-guandan.png" alt="AI 掼蛋记牌工具" width="150" />
       </a>
       <h3>AI 掼蛋记牌</h3>
       <p>移动端记牌训练工具。</p>
@@ -57,7 +53,7 @@
     </td>
     <td width="25%" valign="top" align="center">
       <a href="https://ziwei.aiyouwendu.com/">
-        <img src="./assets/readme/product-ziwei.png" alt="紫微斗数 / 紫薇算命" width="160" />
+        <img src="./assets/readme/product-ziwei.png" alt="紫微斗数 / 紫薇算命" width="150" />
       </a>
       <h3>紫微斗数</h3>
       <p>排盘、知识库和 AI 解读。</p>
@@ -68,7 +64,7 @@
     </td>
     <td width="25%" valign="top" align="center">
       <a href="https://lovetest.aiyouwendu.com/">
-        <img src="./assets/readme/product-lovetest.png" alt="情侣复盘测试 LOVE-test" width="160" />
+        <img src="./assets/readme/product-lovetest.png" alt="情侣复盘测试 LOVE-test" width="150" />
       </a>
       <h3>情侣复盘测试</h3>
       <p>关系复盘小测试。</p>
@@ -77,6 +73,9 @@
       </p>
     </td>
     <td width="25%" valign="top" align="center">
+      <a href="https://nishizy.aiyouwendu.com/products/nishizy">
+        <img src="./assets/readme/product-nishizy.png" alt="倪师经方学习助手" width="150" />
+      </a>
       <h3>倪师经方学习助手</h3>
       <p>经方学习 AI 助手。</p>
       <p>
@@ -88,7 +87,7 @@
 
 ---
 
-## Tech Stack
+## 技术栈
 
 <p>
   <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,python,nodejs,postgres,supabase,vercel,cloudflare,git,github" alt="Tech Stack" />
@@ -98,7 +97,7 @@ Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase 
 
 ---
 
-## Knowledge Base
+## 知识库
 
 我会持续把 AI 产品、自动化、开源项目和商业验证中的经验沉淀到知识库：
 
@@ -107,42 +106,6 @@ Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase 
 ---
 
 ## 联系我
-
-- Email: [pqdqqylqxx00321@gmail.com](mailto:pqdqqylqxx00321@gmail.com)
-- WeChat: `Chen18005977213`
-
----
-
-<a id="english"></a>
-
-## English
-
-Warmth Team is an AI product studio led by Chen Shuo KAI, focused on practical AI products, automation workflows, open-source tools, and fast MVP validation.
-
-We care about turning ideas into usable products that real people can test, use, and improve.
-
-### Featured Projects
-
-| Product | Description | Links |
-| --- | --- | --- |
-| AI Guandan Memory Training | A mobile-first card memory training product for Guandan players, with automated rounds, key-card tracking, and instant recall tests. | [GitHub](https://github.com/ChenShuo2004/01-guandan) · [Training Field](https://guandanmaster.aiyouwendu.com/) · [Trainer](https://guandan.aiyouwendu.com/products/guandan-trainer) |
-| Zi Wei Dou Shu / Metis Ziwei | A Zi Wei Dou Shu charting and AI interpretation product that combines traditional knowledge with modern product experience. | [GitHub](https://github.com/ChenShuo2004/ziwei) · [Live Site](https://ziwei.aiyouwendu.com/) |
-| LOVE-test | A lightweight relationship review test for couples. | [Live Site](https://lovetest.aiyouwendu.com/) |
-| Ni Shi Jing Fang Learning Assistant | An AI learning assistant for structured study and query around Ni Shi Jing Fang content. | [Live Site](https://nishizy.aiyouwendu.com/products/nishizy) |
-
-### Focus
-
-- AI products and SaaS
-- Automation workflows
-- MVP validation
-- Open-source tools
-- Product and business knowledge systems
-
-### Knowledge Base
-
-[Warmth Team Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
-
-### Contact
 
 - Email: [pqdqqylqxx00321@gmail.com](mailto:pqdqqylqxx00321@gmail.com)
 - WeChat: `Chen18005977213`
