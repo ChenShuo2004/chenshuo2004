@@ -1,18 +1,16 @@
 <div align="center">
 
-# 有温度团队 | Warmth AI
+# 有温度团队 · Warmth Team
 
-<img src="./assets/readme/team-hero.jpg" alt="有温度团队 Warmth AI" width="760" />
+<img src="./assets/readme/team-hero.png" alt="有温度团队 Warmth Team" width="100%" />
 
 <br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=700&size=24&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=620&lines=AI+%E5%8E%9F%E7%94%9F%E4%BA%A7%E5%93%81%E5%9B%A2%E9%98%9F;%E8%AE%A9%E7%9F%A5%E8%AF%86%E6%9C%89%E6%B8%A9%E5%BA%A6;%E5%88%9B%E9%80%A0%E7%9C%9F%E6%AD%A3%E5%B8%AE%E5%8A%A9%E4%BA%BA%E7%9A%84%E6%99%BA%E8%83%BD%E4%BA%A7%E5%93%81" alt="AI 原生产品团队 / 让知识有温度 / 创造真正帮助人的智能产品" />
+<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=700&size=28&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=760&lines=AI+%E4%BA%A7%E5%93%81;%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7;%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81;%E5%BF%AB%E9%80%9F%E9%AA%8C%E8%AF%81+MVP" alt="AI 产品 / 开源工具 / 自动化工作流 / 快速验证 MVP" />
 
-**AI 原生产品团队 / AI-native Product Team**
+**用 AI 和产品工程，把想法快速做成真正可用的产品。**
 
-让 AI 有能力，让知识有温度。
-
-[中文](#中文) · [English](#english) · [知识库 Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [联系我们 Contact](#联系我们)
+[中文](#中文) · [English](#english) · [知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [联系我](#联系我)
 
 </div>
 
@@ -22,74 +20,84 @@
 
 ## 中文
 
-<table>
-  <tr>
-    <td width="58%" valign="top">
-      <h3>我们是谁</h3>
-      <p>我们是一支 <strong>AI 原生产品团队</strong>。</p>
-      <p>我们相信：知识不应该被遗忘，经验不应该被隐藏，技术不应该只有效率。</p>
-      <p>我们通过 AI 技术，将分散的知识、经验和方法重新整理，创造真正帮助人的智能产品。</p>
-      <p><strong>我们正在探索：</strong></p>
-      <ul>
-        <li>AI 知识库系统</li>
-        <li>垂直领域智能助手</li>
-        <li>AI 技能训练工具</li>
-        <li>传统知识数字化</li>
-        <li>个人智能伙伴</li>
-      </ul>
-      <p><strong>核心理念：</strong>让 AI 有能力，让知识有温度。</p>
-      <p><strong>快速入口：</strong></p>
-      <p>
-        <a href="https://github.com/ChenShuo2004/01-guandan">AI 掼蛋记牌</a> ·
-        <a href="https://github.com/ChenShuo2004/ziwei">紫微斗数</a> ·
-        <a href="https://ziwei.aiyouwendu.com/">线上紫微</a> ·
-        <a href="https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d">团队知识库</a>
-      </p>
-    </td>
-    <td width="42%" valign="top" align="center">
-      <img src="https://github.com/SankshipthShetty/SankshipthShetty/assets/99337968/2bd05422-3a3b-4d7c-94a1-7cdb584c09d7" alt="Typing developer animation" width="100%" />
-    </td>
-  </tr>
-</table>
+### 我们是谁
 
-### 开源产品
+我是陈硕 KAI，正在和有温度团队一起构建面向真实用户的 AI 产品、自动化工具和开源项目。
 
-<table>
-  <tr>
-    <td width="50%" valign="top" align="center">
-      <a href="https://github.com/ChenShuo2004/01-guandan">
-        <img src="./assets/readme/product-guandan.jpg" alt="AI 掼蛋记牌工具" width="92%" />
-      </a>
-      <h4>AI 掼蛋记牌</h4>
-      <p align="left">移动端优先的掼蛋记牌训练工具，通过自动牌局和即时记忆测试，帮助玩家训练关键牌观察与记忆能力。</p>
-      <p><a href="https://github.com/ChenShuo2004/01-guandan">查看 GitHub 仓库</a></p>
-    </td>
-    <td width="50%" valign="top" align="center">
-      <a href="https://github.com/ChenShuo2004/ziwei">
-        <img src="./assets/readme/product-ziwei.jpg" alt="紫微斗数 / 紫薇算命" width="92%" />
-      </a>
-      <h4>紫微斗数 / 紫薇算命</h4>
-      <p align="left">基于紫微斗数体系的排盘、知识库和 AI 解读产品，探索传统知识与 AI 产品体验的结合。</p>
-      <p><a href="https://github.com/ChenShuo2004/ziwei">查看 GitHub 仓库</a> · <a href="https://ziwei.aiyouwendu.com/">线上体验</a></p>
-    </td>
-  </tr>
-</table>
+我们关注的不是把技术堆得更复杂，而是把一个想法更快变成能上线、能验证、能迭代的产品。
 
-### 技术栈
+**当前方向**
+
+- AI 独立产品与 SaaS
+- 自动化工作流与效率工具
+- 面向真实使用场景的 MVP
+- 开源项目、知识库和产品实验
+- AI × 产品 × 商业化的方法沉淀
+
+**快速入口**
+
+[AI 掼蛋记牌](https://github.com/ChenShuo2004/01-guandan) · [紫微斗数](https://github.com/ChenShuo2004/ziwei) · [线上紫微](https://metisziwei.com) · [团队知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+
+---
+
+## Featured Projects
+
+<a href="https://github.com/ChenShuo2004/01-guandan">
+  <img src="./assets/readme/product-guandan.png" alt="AI 掼蛋记牌工具" width="100%" />
+</a>
+
+### AI 掼蛋记牌
+
+移动端优先的掼蛋记牌训练工具。通过自动牌局、关键牌追踪和即时记忆测试，帮助玩家训练观察、记忆和复盘能力。
+
+**适合谁**
+
+- 想系统提升掼蛋记牌能力的玩家
+- 想把牌局训练产品化的开发者
+- 想研究小而清晰的 AI 工具 MVP 的产品人
+
+[查看 GitHub 仓库](https://github.com/ChenShuo2004/01-guandan)
+
+<br />
+
+<a href="https://github.com/ChenShuo2004/ziwei">
+  <img src="./assets/readme/product-ziwei.png" alt="紫微斗数 / 紫薇算命" width="100%" />
+</a>
+
+### 紫微斗数 / Metis Ziwei
+
+基于紫微斗数体系的排盘、知识库和 AI 解读产品。目标不是制造玄学焦虑，而是把传统知识变成更容易理解、追问和自我观察的产品体验。
+
+**包含能力**
+
+- 紫微斗数排盘
+- 命盘结构化展示
+- AI 解读与主题分析
+- 古籍、知识库与样本数据沉淀
+
+[查看 GitHub 仓库](https://github.com/ChenShuo2004/ziwei) · [线上体验](https://metisziwei.com)
+
+---
+
+## Tech Stack
 
 <p>
   <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,python,nodejs,postgres,supabase,vercel,cloudflare,git,github" alt="Tech Stack" />
 </p>
 
-Next.js · React · TypeScript · Tailwind CSS · Python · AI API · Vercel · Cloudflare
+Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase · Postgres · Vercel · Cloudflare · OpenAI API
 
-### 知识库
+---
 
-我们会持续把团队在 AI 产品、自动化、开源项目和商业验证中的经验沉淀到知识库：
+## Knowledge Base
+
+我会持续把 AI 产品、自动化、开源项目和商业验证中的经验沉淀到知识库：
 
 [有温度团队知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
-### 联系我们
+---
+
+## 联系我
 
 - Email: [pqdqqylqxx00321@gmail.com](mailto:pqdqqylqxx00321@gmail.com)
 - WeChat: `Chen18005977213`
@@ -100,34 +108,28 @@ Next.js · React · TypeScript · Tailwind CSS · Python · AI API · Vercel · 
 
 ## English
 
-Warmth AI is an AI-native product team.
+Warmth Team is an AI product studio led by Chen Shuo KAI, focused on practical AI products, automation workflows, open-source tools, and fast MVP validation.
 
-We believe knowledge should not be forgotten, experience should not be hidden, and technology should be more than efficiency.
+We care about turning ideas into usable products that real people can test, use, and improve.
 
-We use AI to reorganize scattered knowledge, experience, and methods into intelligent products that truly help people.
-
-### What We Explore
-
-- AI knowledge base systems
-- Vertical-domain intelligent assistants
-- AI skill training tools
-- Digital products for traditional knowledge
-- Personal AI companions
-
-### Core Idea
-
-Make AI capable. Make knowledge warm.
-
-### Open-source Products
+### Featured Projects
 
 | Product | Description | Links |
 | --- | --- | --- |
-| AI Guandan Memory Training | A mobile-first card memory training product for Guandan players, using automated games and instant memory tests. | [GitHub](https://github.com/ChenShuo2004/01-guandan) |
-| Zi Wei Dou Shu / Metis Ziwei | A Zi Wei Dou Shu charting and AI interpretation product that explores the combination of traditional knowledge and AI product experience. | [GitHub](https://github.com/ChenShuo2004/ziwei) · [Live Site](https://ziwei.aiyouwendu.com/) |
+| AI Guandan Memory Training | A mobile-first card memory training product for Guandan players, with automated rounds, key-card tracking, and instant recall tests. | [GitHub](https://github.com/ChenShuo2004/01-guandan) |
+| Zi Wei Dou Shu / Metis Ziwei | A Zi Wei Dou Shu charting and AI interpretation product that combines traditional knowledge with modern product experience. | [GitHub](https://github.com/ChenShuo2004/ziwei) · [Live Site](https://metisziwei.com) |
+
+### Focus
+
+- AI products and SaaS
+- Automation workflows
+- MVP validation
+- Open-source tools
+- Product and business knowledge systems
 
 ### Knowledge Base
 
-[Warmth AI Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+[Warmth Team Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
 ### Contact
 
