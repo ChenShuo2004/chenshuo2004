@@ -1,8 +1,8 @@
 <div align="center">
 
-# 有温度团队 · Warmth Team
+# 有温度Lab · Warmth Lab
 
-<img src="./assets/readme/team-hero.png" alt="有温度团队 Warmth Team" width="100%" />
+<img src="./assets/readme/team-hero.png" alt="有温度Lab Warmth Lab" width="100%" />
 
 <br />
 
@@ -18,7 +18,7 @@
 
 ## 我们是谁
 
-我们是有温度团队正在构建面向真实用户的 AI 产品、自动化工具和开源项目。
+我们是有温度Lab正在构建面向真实用户的 AI 产品、自动化工具和开源项目。
 
 我们关注的不是把技术堆得更复杂，而是把一个想法更快变成能上线、能验证、能迭代的产品。
 
@@ -103,7 +103,7 @@ Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase 
 
 我会持续把 AI 产品、自动化、开源项目和商业验证中的经验沉淀到知识库：
 
-[有温度团队知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+[有温度Lab 知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
 ---
 

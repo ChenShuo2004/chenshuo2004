@@ -1,8 +1,8 @@
 <div align="center">
 
-# Warmth Team
+# Warmth Lab
 
-<img src="./assets/readme/team-hero.png" alt="Warmth Team" width="100%" />
+<img src="./assets/readme/team-hero.png" alt="Warmth Lab" width="100%" />
 
 <br />
 
@@ -18,7 +18,7 @@
 
 ## Who We Are
 
-Warmth Team is an AI product studio led by Chen Shuo KAI, focused on practical AI products, automation workflows, open-source tools, and fast MVP validation.
+Warmth Lab is an AI product studio led by Chen Shuo KAI, focused on practical AI products, automation workflows, open-source tools, and fast MVP validation.
 
 We care about turning ideas into usable products that real people can test, use, and improve.
 
@@ -99,7 +99,7 @@ Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase 
 
 ## Knowledge Base
 
-[Warmth Team Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+[Warmth Lab Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
 ---
 
