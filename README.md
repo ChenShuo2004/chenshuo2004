@@ -2,7 +2,7 @@
 
 # 有温度Lab · Warmth Lab
 
-<img src="./assets/readme/team-hero.png" alt="有温度Lab Warmth Lab" width="100%" />
+<img src="./assets/readme/team-hero.svg" alt="有温度Lab animated laboratory" width="100%" />
 
 <br />
 
