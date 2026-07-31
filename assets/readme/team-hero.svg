@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 500" role="img" aria-labelledby="title desc">
+<title id="title">Warmth Lab animated laboratory</title><desc id="desc">Code-generated animated AI laboratory with flowing data, a glowing experiment core, and motion graphics overlays.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050b1e"/><stop offset=".5" stop-color="#071b38"/><stop offset="1" stop-color="#020713"/></linearGradient>
+<linearGradient id="cyan"><stop stop-color="#68f3ff" stop-opacity="0"/><stop offset=".45" stop-color="#68f3ff"/><stop offset="1" stop-color="#2088ff" stop-opacity="0"/></linearGradient>
+<radialGradient id="core"><stop stop-color="#fff6b0"/><stop offset=".18" stop-color="#ffc857"/><stop offset=".45" stop-color="#ff9f43" stop-opacity=".6"/><stop offset="1" stop-color="#ff9f43" stop-opacity="0"/></radialGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="14"/></filter>
+<pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#4ba6cf" stroke-opacity=".14"/></pattern>
+<clipPath id="canvas"><rect width="1400" height="500" rx="20"/></clipPath>
+<style>
+.pulse{animation:pulse 2.8s ease-in-out infinite}.float{animation:float 5s ease-in-out infinite}.float2{animation:float 6.5s ease-in-out -2s infinite}.scan{animation:scan 4.8s linear infinite}.dash{stroke-dasharray:18 22;animation:dash 3s linear infinite}.orbit{transform-box:fill-box;transform-origin:center;animation:orbit 8s linear infinite}.orbit2{transform-box:fill-box;transform-origin:center;animation:orbit 11s linear reverse infinite}
+@keyframes pulse{0%,100%{opacity:.38}50%{opacity:1}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}@keyframes scan{0%{transform:translateY(-120px);opacity:0}18%,82%{opacity:.8}100%{transform:translateY(540px);opacity:0}}@keyframes dash{to{stroke-dashoffset:-80}}@keyframes orbit{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){.pulse,.float,.float2,.scan,.dash,.orbit,.orbit2{animation:none}}
+</style></defs>
+<g clip-path="url(#canvas)">
+<rect width="1400" height="500" fill="url(#bg)"/><rect width="1400" height="500" fill="url(#grid)"/>
+<ellipse cx="700" cy="450" rx="470" ry="110" fill="#0878c4" opacity=".12" filter="url(#soft)"/>
+<path d="M0 382Q350 344 700 382T1400 382V500H0Z" fill="#0c3157" opacity=".55"/>
+<g fill="none" stroke="#67dcff" stroke-opacity=".18"><path d="M0 382H1400"/><path d="M110 430H1290"/><path d="M280 470H1120"/><path d="M180 500L510 382M1220 500L890 382"/></g>
+<g class="float" fill="none" stroke="#65ddff" stroke-width="1.5" opacity=".85"><rect x="175" y="92" width="262" height="142" rx="9" fill="#0c2b4d" fill-opacity=".55"/><path d="M205 190C260 145 285 180 328 140S392 154 414 118" class="dash"/><circle cx="235" cy="167" r="4" fill="#65ddff"/><circle cx="328" cy="140" r="4" fill="#65ddff"/><circle cx="414" cy="118" r="4" fill="#65ddff"/><path d="M205 112H338M205 126H290" opacity=".5"/></g>
+<g class="float2" fill="none" stroke="#65ddff" stroke-width="1.5" opacity=".85"><rect x="963" y="92" width="262" height="142" rx="9" fill="#0c2b4d" fill-opacity=".55"/><path d="M993 184L1040 145L1080 172L1142 128L1192 153" class="dash"/><circle cx="1040" cy="145" r="4" fill="#65ddff"/><circle cx="1142" cy="128" r="4" fill="#65ddff"/><circle cx="1192" cy="153" r="4" fill="#65ddff"/><path d="M993 112H1125M993 126H1080" opacity=".5"/></g>
+<g fill="none" stroke="#56dfff" stroke-width="2" filter="url(#glow)" opacity=".8"><path d="M120 284C300 220 390 318 540 256S790 194 900 256S1130 306 1280 220" class="dash"/><path d="M120 303C296 257 400 340 548 278S790 230 902 278S1125 328 1280 252" opacity=".5" class="dash"/></g>
+<g class="pulse" fill="#6be9ff" filter="url(#glow)"><circle cx="120" cy="284" r="4"/><circle cx="540" cy="256" r="5"/><circle cx="900" cy="256" r="5"/><circle cx="1280" cy="220" r="4"/></g>
+<g transform="translate(700 276)"><circle r="104" fill="#13aeea" opacity=".1" filter="url(#soft)"/><circle r="72" fill="none" stroke="#4ddfff" stroke-opacity=".3" stroke-width="1" stroke-dasharray="2 10" class="orbit"/><circle r="92" fill="none" stroke="#ffc857" stroke-opacity=".25" stroke-width="1" stroke-dasharray="3 18" class="orbit2"/><g class="pulse"><circle r="44" fill="url(#core)"/><circle r="20" fill="#fff0a0" filter="url(#glow)"/><path d="M0-34L30 0L0 34L-30 0Z" fill="none" stroke="#ffd56a" stroke-width="2"/><path d="M0-20L18 0L0 20L-18 0Z" fill="none" stroke="#fff1a8"/></g><circle cx="-72" r="5" fill="#63e8ff" class="pulse"/><circle cx="72" r="5" fill="#63e8ff" class="pulse"/><circle cy="-92" r="5" fill="#63e8ff" class="pulse"/></g>
+<g fill="none" stroke="#ffc857" stroke-width="2" opacity=".75"><path d="M700 344V388"/><path d="M630 344L580 388"/><path d="M770 344L820 388"/></g>
+<path d="M0 38H1400" stroke="#5cddff" stroke-opacity=".16"/><rect x="0" y="-80" width="1400" height="2" fill="url(#cyan)" class="scan"/>
+<g class="pulse" fill="#ffc857"><circle cx="92" cy="74" r="2"/><circle cx="1315" cy="66" r="2"/><circle cx="87" cy="350" r="2"/><circle cx="1310" cy="356" r="2"/></g>
+<g fill="#9feeff" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11" letter-spacing="2" opacity=".7"><text x="70" y="62">LAB / 01</text><text x="1240" y="62">SIGNAL / ACTIVE</text><text x="70" y="456">AI PRODUCT RESEARCH</text><text x="1165" y="456">BUILD · TEST · SHIP</text></g>
+</g></svg>
