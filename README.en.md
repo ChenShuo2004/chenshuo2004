@@ -2,108 +2,106 @@
 
 # Warmth Lab
 
-<img src="./assets/readme/team-hero.png" alt="Warmth Lab" width="100%" />
+<img src="./assets/readme/team-hero.svg" alt="Warmth Lab consumer product ecosystem" width="100%" />
 
 <br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans&weight=700&size=28&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=760&lines=AI+Products;Open-source+Tools;Automation+Workflows;Fast+MVP+Validation" alt="AI Products / Open-source Tools / Automation Workflows / Fast MVP Validation" />
+**Helping people notice what they feel, make sense of complex questions, and take a small next step.**
 
-**Building useful AI products with product engineering.**
-
-[中文](./README.md) · [English](./README.en.md) · [Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [Contact](#contact)
+[Reading Room](https://lovetest.aiyouwendu.com/) · [Product Library](https://aiyouwendu.com/products) · [Knowledge Map](https://meditation-knowledge-atlas.vercel.app/) · [Download the App](https://aiyouwendu.com/download) · [Support](https://aiyouwendu.com/support)
 
 </div>
 
 ---
 
-## Who We Are
+## What We Build
 
-Warmth Lab is an AI product studio led by Chen Shuo KAI, focused on practical AI products, automation workflows, open-source tools, and fast MVP validation.
+Warmth Lab is a consumer product lab for everyday life.
 
-We care about turning ideas into usable products that real people can test, use, and improve.
+We start with real feelings, questions, and small moments of friction. Then we connect content, knowledge structures, and interactive tools into products that people can notice, understand, and use.
 
-## Current Direction
+We are building a path from awareness to action:
 
-- AI products and SaaS
-- Automation workflows and productivity tools
-- MVPs for real usage scenarios
-- Open-source projects, knowledge bases, and product experiments
-- AI × product × business methodology
+**Reading Room → Knowledge Map → Product Library**
 
-**Quick Links**
+## Three Entrances, Three Kinds of Help
 
-[Zi Wei Dou Shu](https://ziwei.aiyouwendu.com/) · [Guandan Training Field](https://guandanmaster.aiyouwendu.com/) · [Guandan Trainer](https://guandan.aiyouwendu.com/products/guandan-trainer) · [LOVE-test](https://lovetest.aiyouwendu.com/) · [Ni Shi Jing Fang Learning Assistant](https://nishizy.aiyouwendu.com/products/nishizy)
+### 01 · Reading Room: Start by noticing yourself
 
----
+People often do not lack questions. They lack a gentle way to begin expressing them.
 
-## Products
+The Reading Room offers lightweight, low-pressure experiences that start with a feeling, a relationship, or a moment in everyday life.
 
-<table>
-  <tr>
-    <td width="25%" valign="top" align="center">
-      <a href="https://guandanmaster.aiyouwendu.com/">
-        <img src="./assets/readme/product-guandan.png" alt="AI Guandan Memory Training" width="150" />
-      </a>
-      <h3>AI Guandan</h3>
-      <p>Mobile-first card memory training.</p>
-      <p>
-        <a href="https://guandanmaster.aiyouwendu.com/">Training Field</a> ·
-        <a href="https://guandan.aiyouwendu.com/products/guandan-trainer">Trainer</a>
-      </p>
-    </td>
-    <td width="25%" valign="top" align="center">
-      <a href="https://ziwei.aiyouwendu.com/">
-        <img src="./assets/readme/product-ziwei.png" alt="Zi Wei Dou Shu" width="150" />
-      </a>
-      <h3>Zi Wei Dou Shu</h3>
-      <p>Charting, knowledge base, and AI interpretation.</p>
-      <p>
-        <a href="https://ziwei.aiyouwendu.com/">Live Site</a> ·
-        <a href="https://github.com/ChenShuo2004/ziwei">GitHub</a>
-      </p>
-    </td>
-    <td width="25%" valign="top" align="center">
-      <a href="https://lovetest.aiyouwendu.com/">
-        <img src="./assets/readme/product-lovetest.png" alt="LOVE-test" width="150" />
-      </a>
-      <h3>LOVE-test</h3>
-      <p>A lightweight relationship review test.</p>
-      <p>
-        <a href="https://lovetest.aiyouwendu.com/">Live Site</a>
-      </p>
-    </td>
-    <td width="25%" valign="top" align="center">
-      <a href="https://nishizy.aiyouwendu.com/products/nishizy">
-        <img src="./assets/readme/product-nishizy.png" alt="Ni Shi Jing Fang Learning Assistant" width="150" />
-      </a>
-      <h3>Ni Shi Jing Fang</h3>
-      <p>AI assistant for Jing Fang learning.</p>
-      <p>
-        <a href="https://nishizy.aiyouwendu.com/products/nishizy">Live Site</a>
-      </p>
-    </td>
-  </tr>
-</table>
+**For:** people who do not have a clear answer yet, but want to understand what they are going through.
 
----
+**Current entrances:** [WARMTH relationship review](https://lovetest.aiyouwendu.com/) · [Inner Space three-minute meditation](https://inner-space.aiyouwendu.com/)
 
-## Tech Stack
+**What it helps with:** turning “I cannot quite explain it” into a question that can be explored.
 
-<p>
-  <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,python,nodejs,postgres,supabase,vercel,cloudflare,git,github" alt="Tech Stack" />
-</p>
+### 02 · Knowledge Map: Put the question into context
 
-Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase · Postgres · Vercel · Cloudflare · OpenAI API
+A useful answer is not always a short conclusion. People also need to know which concepts, practices, evidence, and boundaries are connected to the question.
 
----
+Knowledge Maps turn scattered information into navigable relationships, so people can start with a real question and move through the structure step by step.
 
-## Knowledge Base
+**Current map:** [Meditation Atlas](https://meditation-knowledge-atlas.vercel.app/)
 
-[Warmth Lab Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+The public version currently contains 208 knowledge pages and 755 reasoned connections.
 
----
+**What it helps with:** moving from “what is happening?” to “how can I understand it and decide what to explore next?”
 
-## Contact
+### 03 · Product Library: Turn understanding into action
 
-- Email: [pqdqqylqxx00321@gmail.com](mailto:pqdqqylqxx00321@gmail.com)
-- WeChat: `Chen18005977213`
+Understanding becomes useful when it creates a next step in everyday life.
+
+The Product Library turns knowledge, training, communication, relationships, focus, and self-exploration into products that can be opened and used directly.
+
+**Browse products:** [Warmth Product Library](https://aiyouwendu.com/products)
+
+**Download:** [Warmth App](https://aiyouwendu.com/download)
+
+**What it helps with:** turning “I want to change something” into one concrete action that can happen today.
+
+## Selected Products
+
+| Entrance | Product | What it helps people do |
+| --- | --- | --- |
+| Reading Room | [WARMTH](https://github.com/ChenShuo2004/AI-LOVE-test) | Notice differences in a relationship and find a way to continue the conversation |
+| Knowledge Map | [Meditation Atlas](https://github.com/ChenShuo2004/meditation-atlas) | Explore concepts, practices, evidence, and boundaries from a real question |
+| Product Library | [Warmth Product Library](https://aiyouwendu.com/products) | Find a next step across meditation, cognition, communication, training, and learning |
+
+## What We Believe
+
+- A good consumer product does not try to provide every answer. It helps people ask the next useful question.
+- Feelings need to be noticed, complex knowledge needs structure, and the desire to change needs a small enough starting point.
+- Every product should give people a real signal within minutes and make the next possible step clear.
+- Products can feel warm, but the experience must stay clear. Content can be open, but boundaries must stay honest.
+
+## Open Source and Methods
+
+We publish parts of our reusable knowledge structures, product experiments, and workflows:
+
+- [WARMTH · Relationship Review](https://github.com/ChenShuo2004/AI-LOVE-test): a lightweight relationship reflection experience.
+- [Meditation Atlas](https://github.com/ChenShuo2004/meditation-atlas): a meditation knowledge map with explicit evidence boundaries.
+- [Zi Wei Dou Shu](https://github.com/ChenShuo2004/ziwei): charting, knowledge base, and AI interpretation.
+- [AI Guandan Memory Training](https://github.com/ChenShuo2004/01-guandan): a feedback loop for training card-memory skills.
+- [Ni Shi Jing Fang Learning Assistant](https://github.com/ChenShuo2004/nishizy): a knowledge assistant for learning and retrieval.
+- [Shuo's Content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS): a workflow for content creation, publishing, and review.
+
+## Safety Boundaries
+
+Products involving mental health, wellness, traditional culture, and self-exploration are intended for learning, experience, communication, and self-awareness. They do not replace medical diagnosis, psychotherapy, or other professional services.
+
+Please follow the specific usage boundaries, licenses, and disclaimers in each product repository.
+
+## Feedback and Support
+
+If you encounter a problem, find an error, or have a life scenario you want us to explore:
+
+- [Online support](https://aiyouwendu.com/support)
+- [Warmth website](https://aiyouwendu.com/home)
+- [GitHub repositories](https://github.com/ChenShuo2004?tab=repositories)
+
+## Technology
+
+Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase · PostgreSQL · Vercel · Cloudflare · OpenAI API
