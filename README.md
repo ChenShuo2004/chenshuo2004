@@ -2,13 +2,15 @@
 
 # 有温度Lab · Warmth Lab
 
-<img src="./assets/readme/team-hero.svg" alt="有温度Lab consumer product ecosystem" width="100%" />
+<img src="./assets/readme/team-hero.svg" alt="有温度Lab animated laboratory" width="100%" />
 
 <br />
 
+<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=700&size=28&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=760&lines=AI+%E4%BA%A7%E5%93%81;%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7;%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81;%E5%BF%AB%E9%80%9F%E9%AA%8C%E8%AF%81+MVP" alt="AI 产品 / 开源工具 / 自动化工作流 / 快速验证 MVP" />
+
 **让人们更容易看见自己、理解问题，并开始一次具体行动。**
 
-[阅览室](https://lovetest.aiyouwendu.com/) · [产品库](https://aiyouwendu.com/products) · [知识地图](https://meditation-knowledge-atlas.vercel.app/) · [下载 App](https://aiyouwendu.com/download) · [反馈与客服](https://aiyouwendu.com/support)
+[中文](./README.md) · [English](./README.en.md) · [阅览室](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [产品库](https://aiyouwendu.com/products) · [知识地图](https://meditation-knowledge-atlas.vercel.app/) · [下载 App](https://aiyouwendu.com/download) · [反馈与客服](https://aiyouwendu.com/support)
 
 </div>
 
@@ -16,7 +18,7 @@
 
 ## 我们在做什么
 
-有温度是一家面向普通人的 TOC 产品实验室。
+有温度是一个面向普通人的 TOC 产品实验室。
 
 我们从真实生活里的感受、困惑和小问题出发，把内容、知识结构和互动工具连接起来，做成可以被看见、被理解、被使用的产品。
 
@@ -30,11 +32,11 @@
 
 很多时候，人们不是没有问题，而是不知道如何开始表达。
 
-阅览室提供轻量、低压力的体验入口，让人先从一个真实感受、一段关系或一个当下时刻开始，慢慢看见自己正在经历什么。
+阅览室提供轻量、低压力的内容和体验入口，让人先从一个真实感受、一段关系或一个当下时刻开始，慢慢看见自己正在经历什么。
 
-**适合：** 还没有清晰答案，但想开始理解自己的人。
+**主入口：** [有温度阅览室与知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
-**当前入口：** [WARMTH 关系复盘](https://lovetest.aiyouwendu.com/) · [Inner Space 三分钟冥想](https://inner-space.aiyouwendu.com/)
+**代表产品：** [WARMTH 关系复盘](https://lovetest.aiyouwendu.com/) · [Inner Space 三分钟冥想](https://inner-space.aiyouwendu.com/)
 
 **它带来的帮助：** 把“我说不清楚”变成一个可以继续探索的问题。
 
@@ -62,13 +64,64 @@
 
 **它带来的帮助：** 让“我想改变一点”变成今天就能完成的一次具体行动。
 
-## 代表产品
+<img src="./assets/readme/build-space.png" alt="一个持续生长的知识产品空间" width="100%" />
 
-| 入口 | 代表产品 | 对人的帮助 |
-| --- | --- | --- |
-| 阅览室 | [WARMTH](https://github.com/ChenShuo2004/AI-LOVE-test) | 在关系中看见差异，找到可以继续沟通的话题 |
-| 知识地图 | [Meditation Atlas](https://github.com/ChenShuo2004/meditation-atlas) | 从真实问题出发，理解概念、练习、证据与边界 |
-| 产品库 | [有温度产品库](https://aiyouwendu.com/products) | 在冥想、认知、表达、训练和知识学习中找到下一步 |
+## 快速入口
+
+[阅览室与知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [产品库](https://aiyouwendu.com/products) · [知识地图](https://meditation-knowledge-atlas.vercel.app/) · [紫微斗数](https://ziwei.aiyouwendu.com/) · [掼蛋训练场](https://guandanmaster.aiyouwendu.com/) · [掼蛋训练器](https://guandan.aiyouwendu.com/products/guandan-trainer) · [情侣复盘测试](https://lovetest.aiyouwendu.com/) · [倪师经方学习助手](https://nishizy.aiyouwendu.com/products/nishizy)
+
+---
+
+## 产品库
+
+产品库不是产品堆，而是帮助人们从一个具体场景开始行动的入口。
+
+<table>
+  <tr>
+    <td width="25%" valign="top" align="center">
+      <a href="https://guandanmaster.aiyouwendu.com/">
+        <img src="./assets/readme/product-guandan.png" alt="AI 掼蛋记牌工具" width="150" />
+      </a>
+      <h3>AI 掼蛋记牌</h3>
+      <p>移动端记牌训练工具。</p>
+      <p>
+        <a href="https://guandanmaster.aiyouwendu.com/">训练场</a> ·
+        <a href="https://guandan.aiyouwendu.com/products/guandan-trainer">训练器</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <a href="https://ziwei.aiyouwendu.com/">
+        <img src="./assets/readme/product-ziwei.png" alt="紫微斗数 / 紫薇算命" width="150" />
+      </a>
+      <h3>紫微斗数</h3>
+      <p>排盘、知识库和 AI 解读。</p>
+      <p>
+        <a href="https://ziwei.aiyouwendu.com/">线上体验</a> ·
+        <a href="https://github.com/ChenShuo2004/ziwei">GitHub</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <a href="https://lovetest.aiyouwendu.com/">
+        <img src="./assets/readme/product-lovetest.png" alt="情侣复盘测试 LOVE-test" width="150" />
+      </a>
+      <h3>情侣复盘测试</h3>
+      <p>关系复盘小测试。</p>
+      <p>
+        <a href="https://lovetest.aiyouwendu.com/">立即体验</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <a href="https://nishizy.aiyouwendu.com/products/nishizy">
+        <img src="./assets/readme/product-nishizy.png" alt="倪师经方学习助手" width="150" />
+      </a>
+      <h3>倪师经方学习助手</h3>
+      <p>经方学习 AI 助手。</p>
+      <p>
+        <a href="https://nishizy.aiyouwendu.com/products/nishizy">立即体验</a>
+      </p>
+    </td>
+  </tr>
+</table>
 
 ## 我们相信
 
@@ -88,6 +141,12 @@
 - [倪师经方学习助手](https://github.com/ChenShuo2004/nishizy)：面向学习与检索的知识库助手。
 - [Shuo's Content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS)：内容创作、发布与复盘工作流。
 
+## 知识库
+
+阅览室的内容和方法会持续沉淀到知识库：
+
+[有温度阅览室与知识库](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
+
 ## 安全边界
 
 涉及心理、健康、传统文化和自我探索的产品，均用于学习、体验、沟通和自我觉察，不替代医疗诊断、心理治疗或其他专业服务。
@@ -102,6 +161,10 @@
 - [有温度官网](https://aiyouwendu.com/home)
 - [GitHub 项目列表](https://github.com/ChenShuo2004?tab=repositories)
 
-## 技术
+## 技术栈
 
-Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase · PostgreSQL · Vercel · Cloudflare · OpenAI API
+<p>
+  <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,python,nodejs,postgres,supabase,vercel,cloudflare,git,github" alt="Tech Stack" />
+</p>
+
+Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase · Postgres · Vercel · Cloudflare · OpenAI API
