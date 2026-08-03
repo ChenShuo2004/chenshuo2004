@@ -2,13 +2,15 @@
 
 # Warmth Lab
 
-<img src="./assets/readme/team-hero.svg" alt="Warmth Lab consumer product ecosystem" width="100%" />
+<img src="./assets/readme/team-hero.svg" alt="Warmth Lab animated laboratory" width="100%" />
 
 <br />
 
+<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans&weight=700&size=28&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=760&lines=AI+Products;Open-source+Tools;Automation+Workflows;Fast+MVP+Validation" alt="AI Products / Open-source Tools / Automation Workflows / Fast MVP Validation" />
+
 **Helping people notice what they feel, make sense of complex questions, and take a small next step.**
 
-[Reading Room](https://lovetest.aiyouwendu.com/) · [Product Library](https://aiyouwendu.com/products) · [Knowledge Map](https://meditation-knowledge-atlas.vercel.app/) · [Download the App](https://aiyouwendu.com/download) · [Support](https://aiyouwendu.com/support)
+[中文](./README.md) · [English](./README.en.md) · [Reading Room](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [Product Library](https://aiyouwendu.com/products) · [Knowledge Map](https://meditation-knowledge-atlas.vercel.app/) · [Download the App](https://aiyouwendu.com/download) · [Support](https://aiyouwendu.com/support)
 
 </div>
 
@@ -30,11 +32,11 @@ We are building a path from awareness to action:
 
 People often do not lack questions. They lack a gentle way to begin expressing them.
 
-The Reading Room offers lightweight, low-pressure experiences that start with a feeling, a relationship, or a moment in everyday life.
+The Reading Room offers lightweight, low-pressure content and experiences that start with a feeling, a relationship, or a moment in everyday life.
 
-**For:** people who do not have a clear answer yet, but want to understand what they are going through.
+**Main entrance:** [Warmth Reading Room and Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
-**Current entrances:** [WARMTH relationship review](https://lovetest.aiyouwendu.com/) · [Inner Space three-minute meditation](https://inner-space.aiyouwendu.com/)
+**Representative products:** [WARMTH relationship review](https://lovetest.aiyouwendu.com/) · [Inner Space three-minute meditation](https://inner-space.aiyouwendu.com/)
 
 **What it helps with:** turning “I cannot quite explain it” into a question that can be explored.
 
@@ -62,13 +64,64 @@ The Product Library turns knowledge, training, communication, relationships, foc
 
 **What it helps with:** turning “I want to change something” into one concrete action that can happen today.
 
-## Selected Products
+<img src="./assets/readme/build-space.png" alt="A growing space for knowledge products" width="100%" />
 
-| Entrance | Product | What it helps people do |
-| --- | --- | --- |
-| Reading Room | [WARMTH](https://github.com/ChenShuo2004/AI-LOVE-test) | Notice differences in a relationship and find a way to continue the conversation |
-| Knowledge Map | [Meditation Atlas](https://github.com/ChenShuo2004/meditation-atlas) | Explore concepts, practices, evidence, and boundaries from a real question |
-| Product Library | [Warmth Product Library](https://aiyouwendu.com/products) | Find a next step across meditation, cognition, communication, training, and learning |
+## Quick Links
+
+[Reading Room and Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d) · [Product Library](https://aiyouwendu.com/products) · [Knowledge Map](https://meditation-knowledge-atlas.vercel.app/) · [Zi Wei Dou Shu](https://ziwei.aiyouwendu.com/) · [Guandan Training Field](https://guandanmaster.aiyouwendu.com/) · [Guandan Trainer](https://guandan.aiyouwendu.com/products/guandan-trainer) · [LOVE-test](https://lovetest.aiyouwendu.com/) · [Ni Shi Jing Fang Learning Assistant](https://nishizy.aiyouwendu.com/products/nishizy)
+
+---
+
+## Product Library
+
+The Product Library is not a list of isolated apps. It is a starting point for a concrete next step.
+
+<table>
+  <tr>
+    <td width="25%" valign="top" align="center">
+      <a href="https://guandanmaster.aiyouwendu.com/">
+        <img src="./assets/readme/product-guandan.png" alt="AI Guandan Memory Training" width="150" />
+      </a>
+      <h3>AI Guandan</h3>
+      <p>Mobile-first card memory training.</p>
+      <p>
+        <a href="https://guandanmaster.aiyouwendu.com/">Training Field</a> ·
+        <a href="https://guandan.aiyouwendu.com/products/guandan-trainer">Trainer</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <a href="https://ziwei.aiyouwendu.com/">
+        <img src="./assets/readme/product-ziwei.png" alt="Zi Wei Dou Shu" width="150" />
+      </a>
+      <h3>Zi Wei Dou Shu</h3>
+      <p>Charting, knowledge base, and AI interpretation.</p>
+      <p>
+        <a href="https://ziwei.aiyouwendu.com/">Live Site</a> ·
+        <a href="https://github.com/ChenShuo2004/ziwei">GitHub</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <a href="https://lovetest.aiyouwendu.com/">
+        <img src="./assets/readme/product-lovetest.png" alt="LOVE-test" width="150" />
+      </a>
+      <h3>LOVE-test</h3>
+      <p>A lightweight relationship review test.</p>
+      <p>
+        <a href="https://lovetest.aiyouwendu.com/">Live Site</a>
+      </p>
+    </td>
+    <td width="25%" valign="top" align="center">
+      <a href="https://nishizy.aiyouwendu.com/products/nishizy">
+        <img src="./assets/readme/product-nishizy.png" alt="Ni Shi Jing Fang Learning Assistant" width="150" />
+      </a>
+      <h3>Ni Shi Jing Fang</h3>
+      <p>AI assistant for Jing Fang learning.</p>
+      <p>
+        <a href="https://nishizy.aiyouwendu.com/products/nishizy">Live Site</a>
+      </p>
+    </td>
+  </tr>
+</table>
 
 ## What We Believe
 
@@ -81,12 +134,18 @@ The Product Library turns knowledge, training, communication, relationships, foc
 
 We publish parts of our reusable knowledge structures, product experiments, and workflows:
 
-- [WARMTH · Relationship Review](https://github.com/ChenShuo2004/AI-LOVE-test): a lightweight relationship reflection experience.
+- [WARMTH · Warmth Reading Room](https://github.com/ChenShuo2004/AI-LOVE-test): a lightweight relationship reflection experience.
 - [Meditation Atlas](https://github.com/ChenShuo2004/meditation-atlas): a meditation knowledge map with explicit evidence boundaries.
 - [Zi Wei Dou Shu](https://github.com/ChenShuo2004/ziwei): charting, knowledge base, and AI interpretation.
 - [AI Guandan Memory Training](https://github.com/ChenShuo2004/01-guandan): a feedback loop for training card-memory skills.
 - [Ni Shi Jing Fang Learning Assistant](https://github.com/ChenShuo2004/nishizy): a knowledge assistant for learning and retrieval.
 - [Shuo's Content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS): a workflow for content creation, publishing, and review.
+
+## Knowledge Base
+
+The Reading Room's content and methods continue to grow in the knowledge base:
+
+[Warmth Reading Room and Knowledge Base](https://flowus.cn/c712040f-ef98-44b9-b37d-dd187d92fc4d)
 
 ## Safety Boundaries
 
@@ -104,4 +163,8 @@ If you encounter a problem, find an error, or have a life scenario you want us t
 
 ## Technology
 
-Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase · PostgreSQL · Vercel · Cloudflare · OpenAI API
+<p>
+  <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,python,nodejs,postgres,supabase,vercel,cloudflare,git,github" alt="Tech Stack" />
+</p>
+
+Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase · Postgres · Vercel · Cloudflare · OpenAI API
