@@ -16,6 +16,19 @@
 
 ---
 
+## 开源与方法
+
+我们会把一部分可复用的知识结构、产品实验和工作流公开出来：
+
+- [WARMTH · 有温度阅览室](https://github.com/ChenShuo2004/AI-LOVE-test)：关系复盘与沟通体验。
+- [Meditation Atlas](https://github.com/ChenShuo2004/meditation-atlas)：重视证据边界的冥想知识地图。
+- [紫微斗数](https://github.com/ChenShuo2004/ziwei)：排盘、知识库与 AI 解读产品。
+- [AI 掼蛋记牌训练](https://github.com/ChenShuo2004/01-guandan)：把记牌能力拆成可训练的反馈闭环。
+- [倪师经方学习助手](https://github.com/ChenShuo2004/nishizy)：面向学习与检索的知识库助手。
+- [Shuo's Content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS)：内容创作、发布与复盘工作流。
+
+---
+
 ## 我们在做什么
 
 有温度是一个面向普通人的 TOC 产品实验室。
@@ -130,17 +143,6 @@
 - 每个产品都应该让用户在几分钟内获得一次真实反馈，并知道下一步可以做什么。
 - 产品可以温柔，但体验必须清楚；内容可以开放，但边界必须诚实。
 
-## 开源与方法
-
-我们会把一部分可复用的知识结构、产品实验和工作流公开出来：
-
-- [WARMTH · 有温度阅览室](https://github.com/ChenShuo2004/AI-LOVE-test)：关系复盘与沟通体验。
-- [Meditation Atlas](https://github.com/ChenShuo2004/meditation-atlas)：重视证据边界的冥想知识地图。
-- [紫微斗数](https://github.com/ChenShuo2004/ziwei)：排盘、知识库与 AI 解读产品。
-- [AI 掼蛋记牌训练](https://github.com/ChenShuo2004/01-guandan)：把记牌能力拆成可训练的反馈闭环。
-- [倪师经方学习助手](https://github.com/ChenShuo2004/nishizy)：面向学习与检索的知识库助手。
-- [Shuo's Content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS)：内容创作、发布与复盘工作流。
-
 ## 知识库
 
 阅览室的内容和方法会持续沉淀到知识库：
@@ -168,3 +170,4 @@
 </p>
 
 Next.js · React · TypeScript · Tailwind CSS · Python · Node.js · Supabase · Postgres · Vercel · Cloudflare · OpenAI API
+
