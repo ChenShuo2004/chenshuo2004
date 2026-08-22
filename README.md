@@ -16,16 +16,48 @@
 
 ---
 
-## 开源与方法
+## 热门仓库
 
-我们会把一部分可复用的知识结构、产品实验和工作流公开出来：
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <strong><a href="https://github.com/ChenShuo2004/cs-skills">cs-skills</a></strong><br />
+      陈硕的 Codex Skills 与 AI 工作流手册：把产品、内容、调研与交付沉淀为可复用的智能工作流。<br />
+      <sub>AI 工作流 · 开源工具</sub>
+    </td>
+    <td width="50%" valign="top">
+      <strong><a href="https://github.com/ChenShuo2004/cs-board">cs-board</a></strong><br />
+      将参考声音和中文文案自动生成白板动画视频的本地 AI 工具。<br />
+      <sub>视频生成 · Python</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <strong><a href="https://github.com/ChenShuo2004/ziwei">ziwei</a></strong><br />
+      基于倪海夏《天纪》体系的紫微斗数开源排盘引擎，包含排盘算法、四化系统、格局知识库与古籍阅读。<br />
+      <sub>知识库 · TypeScript</sub>
+    </td>
+    <td width="50%" valign="top">
+      <strong><a href="https://github.com/ChenShuo2004/01-guandan">01-guandan</a></strong><br />
+      移动端优先的掼蛋记牌训练工具，通过 AI 牌局、记忆检查与自适应难度训练关键牌观察能力。<br />
+      <sub>训练产品 · TypeScript</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <strong><a href="https://github.com/ChenShuo2004/guandan-handbook">guandan-handbook</a></strong><br />
+      按学习路径整理的掼蛋知识库：规则、组牌、记牌、牌权、配合、残局与复盘。<br />
+      <sub>知识库 · 掼蛋</sub>
+    </td>
+    <td width="50%" valign="top">
+      <strong><a href="https://github.com/ChenShuo2004/chenshuo2004">chenshuo2004</a></strong><br />
+      有温度 Lab 的 GitHub Profile README 与主页展示。<br />
+      <sub>主页 · 开源</sub>
+    </td>
+  </tr>
+</table>
 
-- [WARMTH · 有温度阅览室](https://github.com/ChenShuo2004/AI-LOVE-test)：关系复盘与沟通体验。
-- [Meditation Atlas](https://github.com/ChenShuo2004/meditation-atlas)：重视证据边界的冥想知识地图。
-- [紫微斗数](https://github.com/ChenShuo2004/ziwei)：排盘、知识库与 AI 解读产品。
-- [AI 掼蛋记牌训练](https://github.com/ChenShuo2004/01-guandan)：把记牌能力拆成可训练的反馈闭环。
-- [倪师经方学习助手](https://github.com/ChenShuo2004/nishizy)：面向学习与检索的知识库助手。
-- [Shuo's Content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS)：内容创作、发布与复盘工作流。
+这些仓库覆盖 AI 工作流、白板视频、紫微斗数与掼蛋训练等公开产品。
 
 ---
 
