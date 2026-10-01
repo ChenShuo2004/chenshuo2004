@@ -2,51 +2,30 @@
 
 <img src="./assets/readme/hero.svg" alt="陈硕 KAI · AI Builder" width="100%" />
 
-# 你好，我是陈硕 KAI 👋
-
-我用 AI 做产品、创作内容，也把真实项目里跑通的方法整理成可安装的 Agent Skills。
-
-**一个想法 → 一套工作流 → 一个可验证的结果。**
-
-[从 CS Skills 开始](https://github.com/ChenShuo2004/cs-skills) · [看看开源项目](#开源项目) · [在 X 上交流](https://x.com/ChenshuoAI) · [English](./README.en.md)
-
 </div>
 
-## 从 CS Skills 开始
+## 我是陈硕 KAI 👋
 
-[CS Skills](https://github.com/ChenShuo2004/cs-skills) 是我的 AI 工作流仓库。它把产品与工程、内容与视频、调研、版本管理和 GitHub 交付整理成可以单独安装的 Skill。
+你好呀，我是一名 **AI 连续创业者** + **内容创作者** + **独立开发者**：
 
-不知道该用哪个 Skill 时，从 [`$cs-run`](https://github.com/ChenShuo2004/cs-skills/tree/main/cs-run) 开始：
+- 🚀 **AI 连续创业者**，和小团队一起做面向普通人的 AI 产品，信奉「先上线，再迭代」
+- 📺 **YouTube 30 万+ 订阅**，海外内容累计斩获 **数十亿流量**，长期研究 SEO、出海与流量增长
+- 🛠 **热爱开源**，[cs-board](https://github.com/ChenShuo2004/cs-board) 等开源项目累计 **近 900 ⭐**，把真实工作流沉淀成可复用的 AI Skill
+- 🧪 **做过大量 AI 产品实验**：白板视频、数字人、AI 知识库、紫微斗数、关系复盘、记牌训练……用真实市场验证 AI 能解决什么问题
+- 🌱 **Build in public**，公开记录从想法 → 上线 → 复盘的全过程，正在搭建 AI Builder 社群
 
-```text
-一句话描述目标 → $cs-run 选择工作流 → 专项 Skill 执行 → 验证交付
-```
+## 也许你需要
 
-你可以直接对 Codex 说：
+- 🏡 **开源作品**：[cs-board](https://github.com/ChenShuo2004/cs-board) | [cs-skills](https://github.com/ChenShuo2004/cs-skills) | [cs-xiaohuang-skill](https://github.com/ChenShuo2004/cs-xiaohuang-skill) | [cs-shotcraft-skill](https://github.com/ChenShuo2004/cs-shotcraft-skill) | [ziwei](https://github.com/ChenShuo2004/ziwei) | [01-guandan](https://github.com/ChenShuo2004/01-guandan) | [求星星 ✨](https://github.com/ChenShuo2004?tab=repositories)
+- 🎬 **白板视频生成**：[cs-board](https://github.com/ChenShuo2004/cs-board) - 参考声音 + 中文文案，一键生成白板动画视频
+- 🤖 **AI 工作流手册**：[cs-skills](https://github.com/ChenShuo2004/cs-skills) - 产品、内容、调研、交付，全部沉淀成可复用的 Skill
+- 🧩 **AI 产品库**：[紫微斗数](https://ziwei.aiyouwendu.com/) | [AI 掼蛋记牌](https://guandanmaster.aiyouwendu.com/) | [冥想知识地图](https://meditation-knowledge-atlas.vercel.app/) | [关系复盘](https://lovetest.aiyouwendu.com/) | [三分钟冥想](https://inner-space.aiyouwendu.com/) | [经方学习助手](https://nishizy.aiyouwendu.com/products/nishizy) | [全部产品](https://aiyouwendu.com/products)
+- 📚 **AI 知识库**：[陈硕的知识库](https://ji2s5x6u9ag.feishu.cn/wiki/FyDGwZUldiPstLk2xQBc3b3znUg) - AI、内容、产品与创业的实践笔记
+- ⭐️ **关注我**：[X @ChenshuoAI](https://x.com/ChenshuoAI) | [个人网站](https://everlightai.top)
+- 💬 **合作交流**：聊 AI、内容，或者一起搞点事情 → [everlightai.top](https://everlightai.top)
 
-```text
-请从 https://github.com/ChenShuo2004/cs-skills 安装 cs-run 和当前任务需要的专项 Skills。
-$cs-run 我想把这个产品想法做成可用原型，帮我选择工作流并开始执行。
-```
-
-[查看全部 Skill、安装方法和示例 →](https://github.com/ChenShuo2004/cs-skills#readme)
-
-## 开源项目
-
-| 项目 | 可以用它做什么 |
-| --- | --- |
-| [CS Skills](https://github.com/ChenShuo2004/cs-skills) | 把想法、素材和已有项目交给对应的 AI 工作流，并检查交付结果。 |
-| [cs-board](https://github.com/ChenShuo2004/cs-board) | 用参考声音和中文文案生成白板动画视频。 |
-| [小黄 Skill](https://github.com/ChenShuo2004/cs-xiaohuang-skill) | 延展固定品牌角色，制作插画与内容配图。 |
-
-更多实验和产品见 [GitHub 仓库](https://github.com/ChenShuo2004?tab=repositories) 与 [产品库](https://aiyouwendu.com/products)。
-
-## 交流
-
-我在 [X @ChenshuoAI](https://x.com/ChenshuoAI) 分享 AI 工具、内容工作流和产品实践。也可以从 [个人网站](https://everlightai.top) 找到我。
+<br />
 
 <div align="center">
-
-<sub>Idea → Build → Ship → Learn → Repeat</sub>
-
+<sub>Idea → Build → Ship → Feedback → Repeat</sub>
 </div>

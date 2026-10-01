@@ -28,9 +28,9 @@
 
   <text x="70" y="168" class="sans" font-size="64" font-weight="700" fill="#F0F6FC">陈硕 <tspan fill="#58A6FF">KAI</tspan></text>
 
-  <text x="72" y="214" class="sans" font-size="22" fill="#C9D1D9">把真实项目，变成可复用的 AI 工作流。</text>
+  <text x="72" y="214" class="sans" font-size="22" fill="#C9D1D9">把想法做成产品，并公开记录整个过程。</text>
 
-  <text x="72" y="262" class="mono" font-size="15" fill="#8B949E">AI Builder · Creator · Skill Maker<tspan class="cursor" fill="#58A6FF"> ▍</tspan></text>
+  <text x="72" y="262" class="mono" font-size="15" fill="#8B949E">AI Builder · Indie Hacker · Creator<tspan class="cursor" fill="#58A6FF"> ▍</tspan></text>
 
   <g class="mono" font-size="14" fill="#8B949E">
     <rect x="818" y="196" width="310" height="84" rx="12" fill="#FFFFFF" fill-opacity="0.03" stroke="#FFFFFF" stroke-opacity="0.08"/>
