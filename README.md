@@ -1,31 +1,43 @@
 <div align="center">
 
-<img src="./assets/readme/hero.svg" alt="陈硕 KAI · AI Builder" width="100%" />
+<img src="./assets/readme/hero.svg" alt="陈硕 KAI · AI 产品构建者" width="100%" />
 
 </div>
 
-## 我是陈硕 KAI 👋
+# 陈硕 KAI
 
-你好呀，我是一名 **AI 连续创业者** + **内容创作者** + **独立开发者**：
+**AI 产品构建者 · 独立开发者 · 内容创作者**
 
-- 🚀 **AI 连续创业者**，和小团队一起做面向普通人的 AI 产品，信奉「先上线，再迭代」
-- 📺 **YouTube 30 万+ 订阅**，海外内容累计斩获 **数十亿流量**，长期研究 SEO、出海与流量增长
-- 🛠 **热爱开源**，[cs-board](https://github.com/ChenShuo2004/cs-board) 等开源项目累计 **近 900 ⭐**，把真实工作流沉淀成可复用的 AI Skill
-- 🧪 **做过大量 AI 产品实验**：白板视频、数字人、AI 知识库、紫微斗数、关系复盘、记牌训练……用真实市场验证 AI 能解决什么问题
-- 🌱 **Build in public**，公开记录从想法 → 上线 → 复盘的全过程，正在搭建 AI Builder 社群
+我把创作和业务里反复出现的问题，做成可运行的产品、内容系统与 Agent 工作流。从需求、原型到上线，持续记录真实过程。
 
-## 也许你需要
+[个人网站](https://everlightai.top) · [X @ChenshuoAI](https://x.com/ChenshuoAI) · [全部公开项目](https://github.com/ChenShuo2004?tab=repositories)
 
-- 🏡 **开源作品**：[cs-board](https://github.com/ChenShuo2004/cs-board) | [cs-skills](https://github.com/ChenShuo2004/cs-skills) | [cs-xiaohuang-skill](https://github.com/ChenShuo2004/cs-xiaohuang-skill) | [cs-shotcraft-skill](https://github.com/ChenShuo2004/cs-shotcraft-skill) | [ziwei](https://github.com/ChenShuo2004/ziwei) | [01-guandan](https://github.com/ChenShuo2004/01-guandan) | [求星星 ✨](https://github.com/ChenShuo2004?tab=repositories)
-- 🎬 **白板视频生成**：[cs-board](https://github.com/ChenShuo2004/cs-board) - 参考声音 + 中文文案，一键生成白板动画视频
-- 🤖 **AI 工作流手册**：[cs-skills](https://github.com/ChenShuo2004/cs-skills) - 产品、内容、调研、交付，全部沉淀成可复用的 Skill
-- 🧩 **AI 产品库**：[紫微斗数](https://ziwei.aiyouwendu.com/) | [AI 掼蛋记牌](https://guandanmaster.aiyouwendu.com/) | [冥想知识地图](https://meditation-knowledge-atlas.vercel.app/) | [关系复盘](https://lovetest.aiyouwendu.com/) | [三分钟冥想](https://inner-space.aiyouwendu.com/) | [经方学习助手](https://nishizy.aiyouwendu.com/products/nishizy) | [全部产品](https://aiyouwendu.com/products)
-- 📚 **AI 知识库**：[陈硕的知识库](https://ji2s5x6u9ag.feishu.cn/wiki/FyDGwZUldiPstLk2xQBc3b3znUg) - AI、内容、产品与创业的实践笔记
-- ⭐️ **关注我**：[X @ChenshuoAI](https://x.com/ChenshuoAI) | [个人网站](https://everlightai.top)
-- 💬 **合作交流**：聊 AI、内容，或者一起搞点事情 → [everlightai.top](https://everlightai.top)
+## 代表项目
 
-<br />
+| 项目 | 解决什么问题 |
+| --- | --- |
+| [cs-board](https://github.com/ChenShuo2004/cs-board) | 把参考声音和中文文案生成白板动画视频的本地 AI 工具。 |
+| [cs-skills](https://github.com/ChenShuo2004/cs-skills) | 将产品、内容、调研和交付流程沉淀为可复用的 Codex Skills。 |
+| [CS 工作台](https://github.com/ChenShuo2004/cs-workbench) | Mac 桌面工作台，管理内容项目、素材、创作流程与交付记录。 |
+| [Shuo's content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS) | 把选题、创作、发布、预测与复盘连起来的内容操作系统。 |
+| [XERJ](https://github.com/ChenShuo2004/xerj) | 面向 AI 搜索与 Agent 的代码和资料索引工具。 |
+
+[![cs-board stars](https://img.shields.io/github/stars/ChenShuo2004/cs-board?style=social)](https://github.com/ChenShuo2004/cs-board)
+[![cs-skills stars](https://img.shields.io/github/stars/ChenShuo2004/cs-skills?style=social)](https://github.com/ChenShuo2004/cs-skills)
+
+## AI 产品实验
+
+- [紫微斗数](https://ziwei.aiyouwendu.com/) · [掼蛋记牌训练](https://guandanmaster.aiyouwendu.com/) · [冥想知识地图](https://meditation-knowledge-atlas.vercel.app/) · [关系复盘](https://lovetest.aiyouwendu.com/)
+- [更多产品](https://aiyouwendu.com/products)
+
+## 我在持续探索
+
+- 把真实工作流程变成可复用的 AI 工具，而不止停留在 Demo。
+- 用 Agent 和本地软件协作完成调研、内容创作与交付。
+- 通过发布、用户反馈和复盘，检验产品假设。
+
+如果你也在做 AI 产品、内容工具或 Agent 工作流，欢迎交流：[everlightai.top](https://everlightai.top)。
 
 <div align="center">
-<sub>Idea → Build → Ship → Feedback → Repeat</sub>
+<sub>Idea → Build → Ship → Learn → Repeat</sub>
 </div>
