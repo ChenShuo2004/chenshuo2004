@@ -16,13 +16,13 @@
 
 | 项目 | 解决什么问题 |
 | --- | --- |
+| [XERJ](https://github.com/xerj-org/xerj) | 参与维护的开源 AI 搜索与 MCP 项目，支持代码、文档、日志等资料的索引与检索。 |
 | [cs-board](https://github.com/ChenShuo2004/cs-board) | 把参考声音和中文文案生成白板动画视频的本地 AI 工具。 |
 | [cs-skills](https://github.com/ChenShuo2004/cs-skills) | 将产品、内容、调研和交付流程沉淀为可复用的 Codex Skills。 |
 | [CS 工作台](https://github.com/ChenShuo2004/cs-workbench) | Mac 桌面工作台，管理内容项目、素材、创作流程与交付记录。 |
 | [Shuo's content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS) | 把选题、创作、发布、预测与复盘连起来的内容操作系统。 |
-| [XERJ](https://github.com/ChenShuo2004/xerj) | 面向 AI 搜索与 Agent 的代码和资料索引工具。 |
 
-[![cs-board stars](https://img.shields.io/github/stars/ChenShuo2004/cs-board?style=social)](https://github.com/ChenShuo2004/cs-board)
+[![XERJ stars](https://img.shields.io/github/stars/xerj-org/xerj?style=social)](https://github.com/xerj-org/xerj) [![cs-board stars](https://img.shields.io/github/stars/ChenShuo2004/cs-board?style=social)](https://github.com/ChenShuo2004/cs-board)
 [![cs-skills stars](https://img.shields.io/github/stars/ChenShuo2004/cs-skills?style=social)](https://github.com/ChenShuo2004/cs-skills)
 
 ## AI 产品实验
