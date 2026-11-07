@@ -33,7 +33,7 @@
 
 我也参与上游项目的实际维护。2026 年 11 月，针对 [xerj-org/xerj#1469](https://github.com/xerj-org/xerj/pull/1469) 的改动已合并：将 CS Skills 作为非 live candidate 登记到 hub 草稿目录，并保留人工许可证审查等晋级条件。后续会继续通过 issue、review 和 PR 留下可核对的协作记录。
 
-欢迎从 [公开仓库的 Issues](https://github.com/ChenShuo2004?tab=repositories) 或对应项目的 issue tracker 交流、反馈和协作。
+欢迎在 [CS Skills 的 Issues](https://github.com/ChenShuo2004/cs-skills/issues) 或其他项目的 issue tracker 交流、反馈和协作；也可以先浏览[全部公开项目](https://github.com/ChenShuo2004?tab=repositories)。
 
 ## AI 产品实验
 
