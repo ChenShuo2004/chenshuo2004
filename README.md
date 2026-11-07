@@ -14,16 +14,26 @@
 
 ## 代表项目
 
-| 项目 | 解决什么问题 |
-| --- | --- |
-| [XERJ](https://github.com/xerj-org/xerj) | 参与维护的开源 AI 搜索与 MCP 项目，支持代码、文档、日志等资料的索引与检索。 |
-| [cs-board](https://github.com/ChenShuo2004/cs-board) | 把参考声音和中文文案生成白板动画视频的本地 AI 工具。 |
-| [cs-skills](https://github.com/ChenShuo2004/cs-skills) | 将产品、内容、调研和交付流程沉淀为可复用的 Codex Skills。 |
-| [CS 工作台](https://github.com/ChenShuo2004/cs-workbench) | Mac 桌面工作台，管理内容项目、素材、创作流程与交付记录。 |
-| [Shuo's content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS) | 把选题、创作、发布、预测与复盘连起来的内容操作系统。 |
+| 项目 | 我在做什么 | 可验证入口 |
+| --- | --- | --- |
+| [CS Skills](https://github.com/ChenShuo2004/cs-skills) | 把产品、内容、调研和交付方法做成可复用的 Agent 工作流。 | [安装与更新](https://github.com/ChenShuo2004/cs-skills#安装与更新) · [按目标选技能](https://github.com/ChenShuo2004/cs-skills#按目标选技能) |
+| [CS Board](https://github.com/ChenShuo2004/cs-board) | 本地 AI 视频制作工作台：从文案与声音参考到动画和 MP4。 | [安装与运行](https://github.com/ChenShuo2004/cs-board#安装) · [示例成片](https://github.com/ChenShuo2004/cs-board/tree/main/examples) |
+| [Shuo's content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS) | 用命令行和模板连接选题、发布前预测与发布后复盘。 | [快速开始](https://github.com/ChenShuo2004/Shuo-s-content-OS#快速开始) · [隐私边界](https://github.com/ChenShuo2004/Shuo-s-content-OS#公开仓库安全边界) |
+| [CS 工作台 Pro](https://github.com/ChenShuo2004/cs-workbench) | macOS 本地创作项目与交付管理。 | [源码与开发说明](https://github.com/ChenShuo2004/cs-workbench) · [公开下载](https://github.com/ChenShuo2004/cs-workbench/releases/tag/v0.1.0) |
+| [XERJ](https://github.com/xerj-org/xerj) | 参与上游开源 AI 搜索与 MCP 项目的协作。 | [已合并贡献 #1469](https://github.com/xerj-org/xerj/pull/1469) |
 
-[![XERJ stars](https://img.shields.io/github/stars/xerj-org/xerj?style=social)](https://github.com/xerj-org/xerj) [![cs-board stars](https://img.shields.io/github/stars/ChenShuo2004/cs-board?style=social)](https://github.com/ChenShuo2004/cs-board)
-[![cs-skills stars](https://img.shields.io/github/stars/ChenShuo2004/cs-skills?style=social)](https://github.com/ChenShuo2004/cs-skills)
+## 从这里开始
+
+- **想把常用工作流装进 Agent：** 从 [CS Skills](https://github.com/ChenShuo2004/cs-skills) 的安装说明开始。main 当前包含 25 个任务技能和 1 个执行辅助技能；完整发布包为 v0.7.0。
+- **想看一个可运行的内容闭环：** 用 [Shuo's content OS](https://github.com/ChenShuo2004/Shuo-s-content-OS) 初始化私有工作区，再运行 status、new-script、predict、publish 和 retro 命令。
+- **想看 AI 视频制作工具：** 查看 [CS Board 的安装要求和工作台截图](https://github.com/ChenShuo2004/cs-board#界面预览)，确认本机依赖后再启动。
+- **想看桌面产品的真实发布状态：** CS 工作台 Pro 的 main 分支包含 0.7.0 源码；GitHub Release 目前仍是 v0.1.0。两者状态不同，按 [仓库说明](https://github.com/ChenShuo2004/cs-workbench) 查看对应下载与复现条件。
+
+## 开源协作
+
+我也参与上游项目的实际维护。2026 年 11 月，针对 [xerj-org/xerj#1469](https://github.com/xerj-org/xerj/pull/1469) 的改动已合并：将 CS Skills 作为非 live candidate 登记到 hub 草稿目录，并保留人工许可证审查等晋级条件。后续会继续通过 issue、review 和 PR 留下可核对的协作记录。
+
+欢迎从 [公开仓库的 Issues](https://github.com/ChenShuo2004?tab=repositories) 或对应项目的 issue tracker 交流、反馈和协作。
 
 ## AI 产品实验
 
