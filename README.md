@@ -1,3 +1,5 @@
+> **English:** Chen Shuo (KAI) builds AI products, creator tools, and reusable agent workflows from real working processes.
+
 <div align="center">
 
 <img src="./assets/readme/hero.svg" alt="陈硕 KAI · AI 产品构建者" width="100%" />
