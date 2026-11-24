@@ -304,77 +304,153 @@
     px(0, 77, PW, 3, '#121422');
     px(116, 77, 124, 1, '#4C332C');
 
-    // --- Open Notebook on left-center desk (x=64..98, y=66..75) ---
-    // Cast shadow
-    px(62, 74, 38, 2, '#161828');
-    // Book cover
-    px(64, 67, 34, 8, '#5C3135');
-    // Left page (cooler tone)
-    px(66, 67, 15, 6, '#9AA7BC');
-    px(68, 69, 10, 1, '#6C7A91');
-    px(68, 71, 11, 1, '#6C7A91');
-    // Spine
-    px(81, 67, 1, 7, '#4B5568');
-    // Right page (catches warm lamp light!)
-    px(82, 67, 15, 6, '#E2C49A');
-    px(84, 69, 10, 1, '#9E7D5E');
-    px(84, 71, 8, 1, '#9E7D5E');
+    // --- Open Notebook on far-left desk (x=42..74, y=67..75) ---
+    px(40, 74, 36, 2, '#141726');
+    px(42, 67, 32, 8, '#532D33');
+    px(44, 67, 14, 6, '#8D9BB2');
+    px(46, 69, 9, 1, '#627087');
+    px(46, 71, 10, 1, '#627087');
+    px(58, 67, 1, 7, '#434E63');
+    px(59, 67, 14, 6, '#C8AE8B');
+    px(61, 69, 9, 1, '#8A6F55');
+    px(61, 71, 7, 1, '#8A6F55');
 
-    // --- Laptop on center-right desk (x=114..158, y=47..72) ---
-    // Laptop soft cyan screen glow on desk
-    const screenGlow = p.createRadialGradient(134, 64, 2, 134, 64, 22);
-    screenGlow.addColorStop(0, 'rgba(110, 198, 255, 0.25)');
+    // --- Laptop on center-right desk (x=136..170, y=47..70) ---
+    const screenGlow = p.createRadialGradient(142, 58, 2, 142, 58, 26);
+    screenGlow.addColorStop(0, 'rgba(110, 198, 255, 0.24)');
     screenGlow.addColorStop(1, 'rgba(110, 198, 255, 0)');
     p.fillStyle = screenGlow;
-    p.fillRect(108, 58, 52, 14);
+    p.fillRect(114, 42, 56, 30);
 
     // Cast shadow under laptop
-    px(112, 71, 48, 2, '#201925');
+    px(132, 70, 40, 2, '#221A26');
 
-    // Laptop screen lid (bezel)
-    px(118, 46, 36, 21, '#1A2438');
-    px(118, 46, 36, 1, '#3B4E70');
-    px(153, 46, 1, 21, '#D6A16B'); // warm rim light from lamp on right edge!
-    // Screen inner display
-    px(120, 48, 32, 17, '#0D1729');
+    // Laptop screen lid (angled slightly toward developer on the left)
+    px(140, 46, 29, 20, '#1A2438');
+    px(140, 46, 29, 1, '#3F5478');
+    px(168, 46, 1, 20, '#E2AE72'); // warm rim light from lamp!
+    px(142, 48, 25, 16, '#0D1729');
 
     // Animated scrolling code lines on laptop screen (seamless loop)
     p.save();
     p.beginPath();
-    p.rect(121, 49, 30, 15);
+    p.rect(143, 49, 23, 14);
     p.clip();
     const codeLines = [
-      { indent: 0, segs: [[5, '#60A5FA'], [7, '#E2E8F0']] },
-      { indent: 2, segs: [[4, '#A78BFA'], [9, '#93C5FD']] },
-      { indent: 2, segs: [[6, '#34D399'], [5, '#F2C98A']] },
-      { indent: 4, segs: [[10, '#CBD5E1']] },
-      { indent: 2, segs: [[5, '#F2C98A'], [7, '#60A5FA']] },
-      { indent: 0, segs: [[8, '#94A3B8']] }
+      { indent: 0, segs: [[4, '#60A5FA'], [6, '#E2E8F0']] },
+      { indent: 2, segs: [[4, '#A78BFA'], [7, '#93C5FD']] },
+      { indent: 2, segs: [[5, '#34D399'], [5, '#F2C98A']] },
+      { indent: 4, segs: [[9, '#CBD5E1']] },
+      { indent: 2, segs: [[4, '#F2C98A'], [6, '#60A5FA']] },
+      { indent: 0, segs: [[7, '#94A3B8']] }
     ];
-    const scrollPx = Math.floor(t * 18); // 6 lines * 3px = 18px exact loop!
+    const scrollPx = Math.floor(t * 18);
     for (let repeat = 0; repeat < 2; repeat++) {
       codeLines.forEach((line, idx) => {
         const y = 50 + idx * 3 + repeat * 18 - scrollPx;
-        let cx = 122 + line.indent;
+        let cx = 144 + line.indent;
         for (const [w, col] of line.segs) {
           px(cx, y, w, 1, col);
           cx += w + 2;
         }
       });
     }
-    // Blinking cursor on bottom line
     const cursorOn = Math.floor(t * 8) % 2 === 0;
     if (cursorOn) {
-      px(124, 62, 2, 2, '#7EE787');
+      px(145, 61, 2, 2, '#7EE787');
     }
     p.restore();
 
     // Laptop keyboard base
-    px(114, 67, 44, 4, '#2A344B');
-    px(114, 67, 44, 1, '#586A8A');
-    px(142, 67, 16, 1, '#D8A26B'); // warm highlight on right of keyboard
-    px(118, 68, 36, 1, '#192133'); // keys strip
-    px(114, 70, 44, 1, '#1A1F30');
+    px(134, 66, 36, 4, '#2A344B');
+    px(134, 66, 36, 1, '#5D7092');
+    px(156, 66, 14, 1, '#DFAA6F');
+    px(137, 67, 29, 1, '#192133');
+    px(134, 69, 36, 1, '#1A1F30');
+
+    // --- Chen Shuo (KAI) sitting on ergonomic chair coding (x=90..140, y=35..80) ---
+    // Subtle breathing & typing rhythm (integer harmonic frequencies for seamless loop)
+    const breatheY = Math.sin(t * Math.PI * 2) > 0.45 ? 1 : 0;
+    const typeStep = Math.floor(t * 16); // 16 beats per loop
+    const leftHandUp = (typeStep % 4 === 0 || typeStep % 7 === 0) ? -1 : 0;
+    const rightHandUp = (typeStep % 4 === 2 || typeStep % 5 === 0) ? -1 : 0;
+    const headNod = (typeStep === 6 || typeStep === 7 || typeStep === 14) ? 1 : 0;
+
+    // Ergonomic Chair Backrest (behind developer)
+    px(91, 49, 10, 26, '#131A2C');
+    px(92, 50, 8, 24, '#1C263E');
+    px(99, 50, 2, 20, '#2B3959'); // subtle edge highlight
+    // Chair headrest
+    px(92, 43, 8, 5, '#172036');
+    px(93, 44, 6, 3, '#222F4C');
+    // Chair neck connector & seat base
+    px(95, 48, 3, 2, '#101626');
+    px(93, 74, 24, 6, '#141B2E');
+    px(95, 74, 20, 2, '#222D48');
+
+    // Hoodie / Torso (relaxed dark slate-blue hoodie with warm rim light on front)
+    const by = breatheY;
+    px(99, 50 + by, 18, 24 - by, '#1E2A42');
+    px(101, 51 + by, 14, 22 - by, '#273654');
+    // Hoodie hood folded behind neck
+    px(97, 49 + by, 9, 5, '#202D47');
+    px(98, 50 + by, 7, 3, '#314468');
+    // Warm lamp + screen rim light along chest & front shoulder
+    px(115, 51 + by, 2, 16, '#48608A');
+    px(116, 52 + by, 1, 13, '#C79668');
+
+    // Neck
+    px(106, 46 + by, 5, 4, '#B98C72');
+    px(109, 46 + by, 2, 4, '#DFB495');
+
+    // Head (side 3/4 profile facing right toward laptop)
+    const hy = by + headNod;
+    // Back & top hair (fluffy dark hair)
+    px(101, 35 + hy, 14, 6, '#121826');
+    px(100, 38 + hy, 6, 8, '#121826');
+    px(103, 34 + hy, 10, 2, '#1A2338');
+    px(112, 36 + hy, 4, 3, '#1E2A42'); // front bangs
+    // Subtle cool-blue & warm rim highlight on top hair
+    px(105, 35 + hy, 6, 1, '#314466');
+    px(113, 37 + hy, 2, 1, '#8C6E58');
+
+    // Face skin (facing right)
+    px(106, 39 + hy, 10, 8, '#D7A88A');
+    px(106, 40 + hy, 3, 7, '#B3856C'); // cheek shadow side
+    px(114, 40 + hy, 2, 6, '#F0CAA8'); // warm lit front face!
+    // Nose silhouette
+    px(116, 42 + hy, 1, 2, '#E8BE9A');
+    // Ear
+    px(105, 42 + hy, 2, 3, '#C7977B');
+
+    // Glasses (sleek dark frames + screen reflection glint)
+    px(111, 41 + hy, 5, 3, '#182032');
+    px(112, 42 + hy, 3, 1, '#88C8F2'); // lens reflection from code screen!
+    if (cursorOn) {
+      px(114, 42 + hy, 1, 1, '#E6F7FF'); // subtle animated glint
+    }
+    px(107, 42 + hy, 4, 1, '#182032'); // temple arm
+
+    // Left arm (further arm tucked naturally behind foreground arm, reaching keyboard)
+    px(115, 59 + by, 14, 4, '#1B253B');
+    px(127, 61 + leftHandUp, 8, 3, '#23314D');
+    px(133, 62 + leftHandUp, 5, 2, '#D7A88A'); // left hand typing
+
+    // Right arm (foreground arm in hoodie sleeve, natural shoulder-to-forearm curve)
+    px(103, 53 + by, 9, 9, '#2B3C5E');
+    px(105, 59 + by, 10, 5, '#2E4166');
+    px(111, 61 + by, 16, 4, '#2E4166');
+    px(112, 61 + by, 15, 1, '#6C84AB'); // upper sleeve highlight
+    px(120, 61 + by, 7, 1, '#CFA070');  // warm lamp rim on forearm!
+    // Right wrist & hand typing on keyboard
+    px(126, 62 + rightHandUp, 6, 3, '#263656');
+    px(131, 63 + rightHandUp, 5, 2, '#EBC39F'); // warm lit right hand
+    px(135, 64 + rightHandUp, 2, 1, '#FFF0D6'); // fingertip catchlight
+
+    // Chair armrest (foreground)
+    px(98, 66, 15, 2, '#1A2338');
+    px(99, 66, 13, 1, '#314161');
+    px(102, 68, 2, 7, '#131A2C');
 
     // --- Coffee Mug (x=172..183, y=58..69) ---
     // Shadow
