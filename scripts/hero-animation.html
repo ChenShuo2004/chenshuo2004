@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>陈硕 KAI · Rainy Night Pixel Desk Animation</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 960px;
+    height: 320px;
+    overflow: hidden;
+    background: transparent;
+  }
+  canvas {
+    display: block;
+    width: 960px;
+    height: 320px;
+    border-radius: 16px;
+  }
+</style>
+</head>
+<body>
+<canvas id="stage" width="960" height="320"></canvas>
+<script>
+(() => {
+  const OUT_W = 960;
+  const OUT_H = 320;
+  const PW = 240;
+  const PH = 80;
+  const SCALE = 4;
+
+  const stage = document.getElementById('stage');
+  const ctx = stage.getContext('2d');
+
+  // Offscreen pixel buffer (240x80)
+  const buf = document.createElement('canvas');
+  buf.width = PW;
+  buf.height = PH;
+  const p = buf.getContext('2d');
+
+  // Deterministic PRNG
+  function mulberry32(seed) {
+    return function() {
+      let t = seed += 0x6D2B79F5;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  const rng = mulberry32(20040917);
+
+  // Pre-generate city skyline layers inside window (x: 10..162, y: 6..61)
+  const farBuildings = [
+    { x: 10, w: 18, h: 20 }, { x: 26, w: 14, h: 27 }, { x: 38, w: 20, h: 17 },
+    { x: 56, w: 16, h: 31 }, { x: 70, w: 22, h: 22 }, { x: 90, w: 18, h: 29 },
+    { x: 106, w: 16, h: 24 }, { x: 120, w: 22, h: 33 }, { x: 140, w: 24, h: 21 }
+  ];
+
+  const midBuildings = [
+    { x: 12, w: 16, h: 15, wins: [[3,4],[9,4],[3,9],[9,9]] },
+    { x: 30, w: 20, h: 22, wins: [[4,4],[12,4],[4,9],[12,9],[8,14]] },
+    { x: 54, w: 15, h: 18, wins: [[3,5],[9,5],[3,11]] },
+    { x: 74, w: 22, h: 25, wins: [[4,4],[10,4],[16,4],[4,10],[10,10],[16,10],[10,16]] },
+    { x: 102, w: 18, h: 19, wins: [[4,5],[11,5],[4,11],[11,11]] },
+    { x: 124, w: 20, h: 26, wins: [[4,4],[12,4],[4,10],[12,10],[4,16],[12,16]] },
+    { x: 146, w: 18, h: 16, wins: [[4,5],[11,5]] }
+  ];
+
+  // Assign twinkle phases to building windows
+  const litWindows = [];
+  midBuildings.forEach((b, bi) => {
+    const baseY = 60 - b.h;
+    b.wins.forEach((w, wi) => {
+      const r = rng();
+      if (r > 0.34) {
+        litWindows.push({
+          x: b.x + w[0],
+          y: baseY + w[1],
+          w: 3,
+          h: 2,
+          warm: r > 0.55,
+          blink: r > 0.82,
+          phase: rng()
+        });
+      }
+    });
+  });
+
+  // Pre-generate falling rain streaks (seamless loop)
+  const rainStreaks = Array.from({ length: 46 }, () => ({
+    x: 10 + rng() * 154,
+    y: 6 + rng() * 56,
+    len: 4 + Math.floor(rng() * 5),
+    speed: rng() > 0.45 ? 2 : 1, // integer cycles per loop
+    alpha: 0.22 + rng() * 0.30
+  }));
+
+  // Pre-generate glass raindrops (seamless vertical slide)
+  const glassDrops = Array.from({ length: 15 }, (_, i) => ({
+    x: 14 + Math.floor(rng() * 144),
+    y0: Math.floor(rng() * 56),
+    speed: (i % 3 === 0) ? 2 : 1,
+    big: i % 4 === 0,
+    phase: rng()
+  }));
+
+  // Helper: crisp integer pixel rect
+  function px(x, y, w, h, color) {
+    p.fillStyle = color;
+    p.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h));
+  }
+
+  function drawSkyAndCity(t) {
+    // Window interior clip: x=10..162, y=6..60
+    p.save();
+    p.beginPath();
+    p.rect(10, 6, 152, 55);
+    p.clip();
+
+    // Banded pixel sky gradient (P03 vibrant rainy night blue)
+    const skyBands = [
+      [6, 11, '#1A345C'],
+      [17, 10, '#234678'],
+      [27, 9, '#2D5891'],
+      [36, 9, '#3A6CA8'],
+      [45, 8, '#4A80BC'],
+      [53, 8, '#5E93C8']
+    ];
+    for (const [y, h, c] of skyBands) {
+      px(10, y, 152, h, c);
+    }
+
+    // Subtle distant clouds
+    const cloudDrift = Math.round(t * 24);
+    p.fillStyle = 'rgba(127, 157, 175, 0.14)';
+    for (let k = -1; k <= 1; k++) {
+      const ox = (cloudDrift + k * 152) % 304;
+      p.fillRect(18 + ox, 14, 28, 3);
+      p.fillRect(24 + ox, 12, 16, 2);
+      p.fillRect(92 + ox, 20, 34, 3);
+      p.fillRect(100 + ox, 18, 18, 2);
+    }
+
+    // Far skyline (atmospheric perspective)
+    for (const b of farBuildings) {
+      px(b.x, 60 - b.h, b.w, b.h, '#24426D');
+      // subtle top rim
+      px(b.x, 60 - b.h, b.w, 1, '#365E92');
+    }
+
+    // Mid skyline
+    for (const b of midBuildings) {
+      const top = 60 - b.h;
+      px(b.x, top, b.w, b.h, '#162745');
+      px(b.x, top, 2, b.h, '#1F355B'); // left cool rim
+      // tiny roof antenna on taller buildings
+      if (b.h >= 24) {
+        px(b.x + Math.floor(b.w / 2), top - 4, 1, 4, '#243C63');
+        const blink = Math.sin(t * Math.PI * 2 + b.x) > 0.2;
+        px(b.x + Math.floor(b.w / 2), top - 5, 1, 1, blink ? '#F29F67' : '#3A5378');
+      }
+    }
+
+    // Lit city windows (warm amber & soft cyan)
+    for (const w of litWindows) {
+      let a = 0.88;
+      if (w.blink) {
+        a = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin((t + w.phase) * Math.PI * 2));
+      }
+      if (w.warm) {
+        p.fillStyle = `rgba(233, 189, 125, ${a.toFixed(2)})`;
+      } else {
+        p.fillStyle = `rgba(143, 194, 224, ${(a * 0.7).toFixed(2)})`;
+      }
+      p.fillRect(w.x, w.y, w.w, w.h);
+    }
+
+    // Foreground dark tree silhouettes along bottom of window
+    const treeProfile = [
+      [10, 6, 14], [22, 8, 16], [34, 5, 12], [46, 7, 15],
+      [60, 9, 18], [76, 6, 14], [96, 8, 16], [112, 5, 13],
+      [130, 7, 16], [146, 9, 18]
+    ];
+    for (const [tx, th, tw] of treeProfile) {
+      px(tx, 61 - th, tw, th, '#0E192E');
+      px(tx + 2, 61 - th - 2, tw - 4, 2, '#0E192E');
+    }
+
+    // Falling rain streaks (slanted pixel steps, seamless loop)
+    for (const r of rainStreaks) {
+      const span = 62;
+      const dy = (t * r.speed * span) % span;
+      const dx = dy * 0.22;
+      let ry = ((r.y - 6 + dy) % span) + 6;
+      let rx = ((r.x - 10 - dx + 152) % 152) + 10;
+      p.fillStyle = `rgba(155, 205, 240, ${r.alpha.toFixed(2)})`;
+      for (let s = 0; s < r.len; s++) {
+        p.fillRect(Math.round(rx - s * 0.25), Math.round(ry + s), 1, 1);
+      }
+    }
+
+    // Glass raindrops sliding down slowly
+    for (const d of glassDrops) {
+      const span = 58;
+      const progress = (d.y0 + t * d.speed * span) % span;
+      const dy = Math.round(5 + progress);
+      const dx = d.x;
+      // faint trail
+      p.fillStyle = 'rgba(130, 185, 225, 0.22)';
+      p.fillRect(dx, dy - 4, 1, 4);
+      // drop body
+      if (d.big) {
+        px(dx - 1, dy, 3, 4, '#1B3459');
+        px(dx, dy, 1, 3, '#6CA9D8');
+        px(dx, dy + 2, 1, 1, '#DDF2FF');
+      } else {
+        px(dx, dy, 2, 3, '#1D375D');
+        px(dx, dy + 1, 1, 2, '#9AD2F5');
+        px(dx, dy + 2, 1, 1, '#E6F7FF');
+      }
+    }
+
+    // Warm reflection cast onto lower-right window glass from the desk lamp
+    const glassGlow = p.createRadialGradient(166, 48, 4, 166, 48, 56);
+    glassGlow.addColorStop(0, 'rgba(233, 189, 125, 0.24)');
+    glassGlow.addColorStop(0.55, 'rgba(185, 128, 80, 0.08)');
+    glassGlow.addColorStop(1, 'rgba(185, 128, 80, 0)');
+    p.fillStyle = glassGlow;
+    p.fillRect(100, 12, 62, 50);
+
+    p.restore();
+  }
+
+  function drawRoomAndWindowFrame(t) {
+    // Indoor walls around window
+    px(0, 0, PW, 6, '#141B2D');       // top wall
+    px(0, 0, 10, 64, '#141B2D');      // left wall
+    px(162, 0, PW - 162, 64, '#161E31'); // right wall
+
+    // Right wall subtle warm bounce from desk lamp
+    const wallGlow = p.createRadialGradient(196, 40, 4, 196, 42, 48);
+    wallGlow.addColorStop(0, 'rgba(233, 189, 125, 0.28)');
+    wallGlow.addColorStop(0.5, 'rgba(185, 128, 80, 0.11)');
+    wallGlow.addColorStop(1, 'rgba(22, 30, 49, 0)');
+    p.fillStyle = wallGlow;
+    p.fillRect(162, 6, 78, 56);
+
+    // Minimal framed picture on far right wall
+    px(214, 10, 20, 22, '#0F1524');
+    px(215, 11, 18, 20, '#222C42');
+    px(217, 13, 14, 16, '#1A2338');
+    px(219, 18, 10, 6, '#2B3A57');
+    px(222, 16, 4, 2, '#7D6A62');
+
+    // Window outer frame
+    px(8, 4, 156, 2, '#1C2840');
+    px(8, 4, 2, 57, '#1C2840');
+    px(162, 4, 2, 57, '#283652');
+    // Warm rim light on right inner edge of window frame
+    px(161, 22, 1, 38, '#9A6C48');
+    px(161, 38, 1, 22, '#D9A568');
+
+    // Single vertical mullion dividing window (keeps left title zone completely open)
+    px(114, 6, 3, 55, '#172238');
+    px(116, 6, 1, 55, '#263858');
+    // Lower subtle warm reflection on mullion
+    px(116, 38, 1, 22, '#7B6054');
+
+    // Window sill
+    px(6, 60, 160, 3, '#22304C');
+    px(6, 60, 160, 1, '#374D73');
+    // Warm light gradient across window sill toward the right
+    px(114, 60, 52, 1, '#B88456');
+    px(138, 60, 28, 1, '#E6B97A');
+    px(122, 61, 44, 2, '#7A543E');
+
+    // Left curtain edge (foreground framing)
+    px(0, 4, 7, 60, '#121B2E');
+    px(6, 4, 2, 60, '#203152');
+    px(2, 4, 2, 60, '#1B2844');
+  }
+
+  function drawDeskAndProps(t) {
+    // Smooth warm-to-cool desk surface gradient (no hard vertical seam)
+    const deskGrad = p.createLinearGradient(20, 63, 210, 63);
+    deskGrad.addColorStop(0, '#202438');
+    deskGrad.addColorStop(0.35, '#2E2A3D');
+    deskGrad.addColorStop(0.62, '#6E493C');
+    deskGrad.addColorStop(0.84, '#C58754');
+    deskGrad.addColorStop(1, '#9E6440');
+    p.fillStyle = deskGrad;
+    p.fillRect(0, 63, PW, 17);
+
+    // Brightest warm pool directly under lamp (static so GIF diff stays tiny & razor-sharp)
+    const deskPool = p.createRadialGradient(184, 68, 4, 184, 68, 56);
+    deskPool.addColorStop(0, 'rgba(255, 232, 174, 0.88)');
+    deskPool.addColorStop(0.45, 'rgba(235, 184, 114, 0.56)');
+    deskPool.addColorStop(0.85, 'rgba(185, 120, 72, 0.18)');
+    deskPool.addColorStop(1, 'rgba(34, 38, 59, 0)');
+    p.fillStyle = deskPool;
+    p.fillRect(96, 63, 144, 17);
+
+    // Desk front edge shadow
+    px(0, 77, PW, 3, '#121422');
+    px(116, 77, 124, 1, '#4C332C');
+
+    // --- Open Notebook on left-center desk (x=64..98, y=66..75) ---
+    // Cast shadow
+    px(62, 74, 38, 2, '#161828');
+    // Book cover
+    px(64, 67, 34, 8, '#5C3135');
+    // Left page (cooler tone)
+    px(66, 67, 15, 6, '#9AA7BC');
+    px(68, 69, 10, 1, '#6C7A91');
+    px(68, 71, 11, 1, '#6C7A91');
+    // Spine
+    px(81, 67, 1, 7, '#4B5568');
+    // Right page (catches warm lamp light!)
+    px(82, 67, 15, 6, '#E2C49A');
+    px(84, 69, 10, 1, '#9E7D5E');
+    px(84, 71, 8, 1, '#9E7D5E');
+
+    // --- Laptop on center-right desk (x=114..158, y=47..72) ---
+    // Laptop soft cyan screen glow on desk
+    const screenGlow = p.createRadialGradient(134, 64, 2, 134, 64, 22);
+    screenGlow.addColorStop(0, 'rgba(110, 198, 255, 0.25)');
+    screenGlow.addColorStop(1, 'rgba(110, 198, 255, 0)');
+    p.fillStyle = screenGlow;
+    p.fillRect(108, 58, 52, 14);
+
+    // Cast shadow under laptop
+    px(112, 71, 48, 2, '#201925');
+
+    // Laptop screen lid (bezel)
+    px(118, 46, 36, 21, '#1A2438');
+    px(118, 46, 36, 1, '#3B4E70');
+    px(153, 46, 1, 21, '#D6A16B'); // warm rim light from lamp on right edge!
+    // Screen inner display
+    px(120, 48, 32, 17, '#0D1729');
+
+    // Animated scrolling code lines on laptop screen (seamless loop)
+    p.save();
+    p.beginPath();
+    p.rect(121, 49, 30, 15);
+    p.clip();
+    const codeLines = [
+      { indent: 0, segs: [[5, '#60A5FA'], [7, '#E2E8F0']] },
+      { indent: 2, segs: [[4, '#A78BFA'], [9, '#93C5FD']] },
+      { indent: 2, segs: [[6, '#34D399'], [5, '#F2C98A']] },
+      { indent: 4, segs: [[10, '#CBD5E1']] },
+      { indent: 2, segs: [[5, '#F2C98A'], [7, '#60A5FA']] },
+      { indent: 0, segs: [[8, '#94A3B8']] }
+    ];
+    const scrollPx = Math.floor(t * 18); // 6 lines * 3px = 18px exact loop!
+    for (let repeat = 0; repeat < 2; repeat++) {
+      codeLines.forEach((line, idx) => {
+        const y = 50 + idx * 3 + repeat * 18 - scrollPx;
+        let cx = 122 + line.indent;
+        for (const [w, col] of line.segs) {
+          px(cx, y, w, 1, col);
+          cx += w + 2;
+        }
+      });
+    }
+    // Blinking cursor on bottom line
+    const cursorOn = Math.floor(t * 8) % 2 === 0;
+    if (cursorOn) {
+      px(124, 62, 2, 2, '#7EE787');
+    }
+    p.restore();
+
+    // Laptop keyboard base
+    px(114, 67, 44, 4, '#2A344B');
+    px(114, 67, 44, 1, '#586A8A');
+    px(142, 67, 16, 1, '#D8A26B'); // warm highlight on right of keyboard
+    px(118, 68, 36, 1, '#192133'); // keys strip
+    px(114, 70, 44, 1, '#1A1F30');
+
+    // --- Coffee Mug (x=172..183, y=58..69) ---
+    // Shadow
+    px(169, 68, 15, 2, '#5E3828');
+    // Mug handle
+    px(182, 60, 3, 6, '#3E2E3B');
+    px(182, 61, 2, 4, '#A86E48');
+    // Mug body
+    px(172, 59, 10, 10, '#2C374F');
+    px(177, 59, 5, 10, '#E8BA7E'); // warm lit side!
+    px(180, 60, 1, 8, '#FFF0CC');  // specular highlight
+    // Mug rim & coffee top
+    px(172, 58, 10, 2, '#D4DCE8');
+    px(174, 58, 6, 1, '#4A2B1D');
+
+    // Animated rising pixel steam (3 wisps, seamless loop)
+    for (let s = 0; s < 3; s++) {
+      const phase = (t + s / 3) % 1;
+      const sy = 56 - phase * 14;
+      const sx = 175 + s * 2 + Math.sin(phase * Math.PI * 2 + s) * 1.4;
+      const alpha = Math.sin(phase * Math.PI) * 0.65;
+      p.fillStyle = `rgba(255, 240, 210, ${alpha.toFixed(2)})`;
+      p.fillRect(Math.round(sx), Math.round(sy), 1, 2);
+      p.fillRect(Math.round(sx + 1), Math.round(sy - 2), 1, 1);
+    }
+
+    // --- Classic Articulated Desk Lamp (x=184..226, y=26..70) ---
+    // Lamp volumetric light cone (warm amber glow)
+    p.save();
+    p.beginPath();
+    p.moveTo(185, 39);
+    p.lineTo(203, 44);
+    p.lineTo(222, 74);
+    p.lineTo(148, 74);
+    p.closePath();
+    const coneGrad = p.createLinearGradient(194, 38, 184, 74);
+    coneGrad.addColorStop(0, 'rgba(255, 236, 184, 0.42)');
+    coneGrad.addColorStop(0.5, 'rgba(238, 185, 112, 0.18)');
+    coneGrad.addColorStop(1, 'rgba(238, 185, 112, 0)');
+    p.fillStyle = coneGrad;
+    p.fill();
+    p.restore();
+
+    // Lamp base
+    px(208, 68, 20, 3, '#171E30');
+    px(210, 66, 16, 2, '#2B3650');
+    px(211, 66, 7, 1, '#C49262'); // warm rim on base
+
+    // Lower arm (angled up-right)
+    for (let i = 0; i < 16; i++) {
+      const ax = 217 + Math.round(i * 0.45);
+      const ay = 66 - i;
+      px(ax, ay, 2, 2, '#1A2338');
+      px(ax, ay, 1, 1, '#41506E');
+    }
+    // Elbow joint
+    px(223, 49, 4, 4, '#2A354E');
+    px(224, 50, 2, 2, '#7D8AA8');
+
+    // Upper arm (angled up-left to shade)
+    for (let i = 0; i < 20; i++) {
+      const ax = 224 - i;
+      const ay = 50 - Math.round(i * 0.85);
+      px(ax, ay, 2, 2, '#1A2338');
+      px(ax, ay, 1, 1, '#58698A');
+    }
+    // Top joint
+    px(203, 31, 4, 4, '#2A354E');
+
+    // Lamp shade (tilted down-left)
+    px(191, 29, 13, 4, '#182136');
+    px(187, 33, 18, 4, '#1D2942');
+    px(184, 37, 21, 3, '#253452');
+    // Cool highlight on top of shade
+    px(192, 29, 8, 1, '#4C638C');
+    px(188, 33, 6, 1, '#3D5278');
+    // Glowing underside & bulb
+    px(186, 40, 17, 2, '#E9BD7D');
+    px(189, 40, 11, 2, '#FFF5D6');
+    px(192, 42, 6, 1, '#FFFDF2');
+  }
+
+  function drawTypography(t) {
+    // Crisp high-res typography over the calm upper-left rainy sky
+    ctx.save();
+
+    // Subtle dark-blue radial scrim behind text for effortless readability
+    const scrim = ctx.createRadialGradient(220, 105, 16, 220, 105, 250);
+    scrim.addColorStop(0, 'rgba(16, 29, 52, 0.56)');
+    scrim.addColorStop(1, 'rgba(16, 29, 52, 0)');
+    ctx.fillStyle = scrim;
+    ctx.fillRect(40, 24, 420, 160);
+
+    // Status pill with breathing warm dot
+    const pulse = 0.55 + 0.45 * Math.sin(t * Math.PI * 2);
+    ctx.fillStyle = `rgba(233, 189, 125, ${pulse.toFixed(2)})`;
+    ctx.beginPath();
+    ctx.arc(74, 54, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.font = '500 11.5px "SF Mono", Menlo, ui-monospace, monospace';
+    ctx.fillStyle = 'rgba(210, 226, 244, 0.9)';
+    ctx.letterSpacing = '1.6px';
+    ctx.fillText('BUILDING IN PUBLIC', 86, 58);
+
+    // Main title: 陈硕 KAI
+    ctx.letterSpacing = '0px';
+    ctx.shadowColor = 'rgba(10, 18, 34, 0.75)';
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetY = 2;
+
+    ctx.font = '700 44px "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillStyle = '#F6F2EA';
+    ctx.fillText('陈硕', 68, 112);
+
+    ctx.fillStyle = '#F2C98A';
+    ctx.fillText('KAI', 170, 112);
+
+    // Subtitle
+    ctx.shadowBlur = 6;
+    ctx.font = '500 15.5px "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillStyle = '#D3E3F4';
+    ctx.fillText('AI 产品构建者 · 独立开发者 · 内容创作者', 70, 144);
+
+    // Bottom mono tagline
+    ctx.shadowBlur = 4;
+    ctx.font = '400 12px "SF Mono", Menlo, ui-monospace, monospace';
+    ctx.fillStyle = 'rgba(169, 198, 226, 0.88)';
+    ctx.fillText('idea → prototype → agent workflow → ship', 70, 170);
+
+    ctx.restore();
+  }
+
+  function render(t) {
+    // Normalize t to [0, 1)
+    t = ((t % 1) + 1) % 1;
+
+    p.clearRect(0, 0, PW, PH);
+    drawSkyAndCity(t);
+    drawRoomAndWindowFrame(t);
+    drawDeskAndProps(t);
+
+    // Blit pixel buffer to 960x320 with crisp nearest-neighbor scaling & rounded corners
+    ctx.save();
+    ctx.clearRect(0, 0, OUT_W, OUT_H);
+    ctx.beginPath();
+    ctx.roundRect(0, 0, OUT_W, OUT_H, 16);
+    ctx.clip();
+
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(buf, 0, 0, PW, PH, 0, 0, OUT_W, OUT_H);
+
+    // Crisp typography layer
+    drawTypography(t);
+
+    // Subtle inner border
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.10)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(1, 1, OUT_W - 2, OUT_H - 2, 15);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  window.render = render;
+
+  // Live preview loop when opened directly in browser
+  if (!window.__MANUAL_RENDER__) {
+    const start = performance.now();
+    const DURATION = 4000;
+    function tick(now) {
+      if (window.__MANUAL_RENDER__) return;
+      render(((now - start) % DURATION) / DURATION);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+})();
+</script>
+</body>
+</html>

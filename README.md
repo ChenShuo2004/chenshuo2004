@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="./assets/readme/hero.svg" alt="陈硕 KAI · AI 产品构建者" width="100%" />
+<img src="./assets/readme/hero.gif" alt="陈硕 KAI · AI 产品构建者" width="100%" />
 
 </div>
 
