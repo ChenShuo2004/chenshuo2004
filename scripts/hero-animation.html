@@ -2,41 +2,31 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
-<title>陈硕 KAI · Rainy Night Pixel Desk Animation</title>
+<title>陈硕 KAI · Cinematic Rainy Night Coding</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
-    width: 960px;
-    height: 320px;
+    width: 1440px;
+    height: 480px;
     overflow: hidden;
     background: transparent;
   }
   canvas {
     display: block;
-    width: 960px;
-    height: 320px;
-    border-radius: 16px;
+    width: 1440px;
+    height: 480px;
+    border-radius: 20px;
   }
 </style>
 </head>
 <body>
-<canvas id="stage" width="960" height="320"></canvas>
+<canvas id="stage" width="1440" height="480"></canvas>
 <script>
 (() => {
-  const OUT_W = 960;
-  const OUT_H = 320;
-  const PW = 240;
-  const PH = 80;
-  const SCALE = 4;
-
-  const stage = document.getElementById('stage');
-  const ctx = stage.getContext('2d');
-
-  // Offscreen pixel buffer (240x80)
-  const buf = document.createElement('canvas');
-  buf.width = PW;
-  buf.height = PH;
-  const p = buf.getContext('2d');
+  const W = 1440;
+  const H = 480;
+  const canvas = document.getElementById('stage');
+  const ctx = canvas.getContext('2d');
 
   // Deterministic PRNG
   function mulberry32(seed) {
@@ -47,580 +37,1093 @@
       return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
   }
-  const rng = mulberry32(20040917);
+  const rng = mulberry32(20261124);
 
-  // Pre-generate city skyline layers inside window (x: 10..162, y: 6..61)
-  const farBuildings = [
-    { x: 10, w: 18, h: 20 }, { x: 26, w: 14, h: 27 }, { x: 38, w: 20, h: 17 },
-    { x: 56, w: 16, h: 31 }, { x: 70, w: 22, h: 22 }, { x: 90, w: 18, h: 29 },
-    { x: 106, w: 16, h: 24 }, { x: 120, w: 22, h: 33 }, { x: 140, w: 24, h: 21 }
+  // --- Pre-generated scene data ---
+  // Skyline layers inside window (x: 42..985, y: 26..372)
+  const farTowers = [
+    { x: 40, w: 72, h: 118 }, { x: 105, w: 58, h: 158 }, { x: 158, w: 86, h: 106 },
+    { x: 236, w: 68, h: 196, spire: true }, { x: 298, w: 94, h: 132 },
+    { x: 386, w: 74, h: 174 }, { x: 454, w: 66, h: 144 }, { x: 514, w: 92, h: 214, spire: true },
+    { x: 600, w: 78, h: 150 }, { x: 672, w: 88, h: 186 }, { x: 754, w: 74, h: 142 },
+    { x: 822, w: 96, h: 198, spire: true }, { x: 912, w: 84, h: 130 }
   ];
 
-  const midBuildings = [
-    { x: 12, w: 16, h: 15, wins: [[3,4],[9,4],[3,9],[9,9]] },
-    { x: 30, w: 20, h: 22, wins: [[4,4],[12,4],[4,9],[12,9],[8,14]] },
-    { x: 54, w: 15, h: 18, wins: [[3,5],[9,5],[3,11]] },
-    { x: 74, w: 22, h: 25, wins: [[4,4],[10,4],[16,4],[4,10],[10,10],[16,10],[10,16]] },
-    { x: 102, w: 18, h: 19, wins: [[4,5],[11,5],[4,11],[11,11]] },
-    { x: 124, w: 20, h: 26, wins: [[4,4],[12,4],[4,10],[12,10],[4,16],[12,16]] },
-    { x: 146, w: 18, h: 16, wins: [[4,5],[11,5]] }
+  const midTowers = [
+    { x: 52, w: 84, h: 98, cols: 4, rows: 4 },
+    { x: 148, w: 96, h: 134, cols: 5, rows: 6 },
+    { x: 262, w: 78, h: 112, cols: 4, rows: 5 },
+    { x: 356, w: 110, h: 156, cols: 5, rows: 7 },
+    { x: 488, w: 88, h: 122, cols: 4, rows: 5 },
+    { x: 594, w: 104, h: 168, cols: 5, rows: 7 },
+    { x: 718, w: 92, h: 128, cols: 4, rows: 5 },
+    { x: 826, w: 118, h: 148, cols: 5, rows: 6 }
   ];
 
-  // Assign twinkle phases to building windows
-  const litWindows = [];
-  midBuildings.forEach((b, bi) => {
-    const baseY = 60 - b.h;
-    b.wins.forEach((w, wi) => {
-      const r = rng();
-      if (r > 0.34) {
-        litWindows.push({
-          x: b.x + w[0],
-          y: baseY + w[1],
-          w: 3,
-          h: 2,
-          warm: r > 0.55,
-          blink: r > 0.82,
-          phase: rng()
-        });
+  const cityWindows = [];
+  midTowers.forEach((b) => {
+    const topY = 372 - b.h;
+    const padX = 12;
+    const padY = 14;
+    const cellW = (b.w - padX * 2) / b.cols;
+    const cellH = (b.h - padY * 2) / b.rows;
+    for (let r = 0; r < b.rows; r++) {
+      for (let c = 0; c < b.cols; c++) {
+        const v = rng();
+        if (v > 0.56) {
+          cityWindows.push({
+            x: b.x + padX + c * cellW,
+            y: topY + padY + r * cellH,
+            w: Math.max(5, cellW * 0.52),
+            h: Math.max(4, cellH * 0.42),
+            warm: v > 0.68,
+            blink: v > 0.89,
+            phase: rng(),
+            alpha: 0.45 + rng() * 0.5
+          });
+        }
       }
-    });
+    }
   });
 
-  // Pre-generate falling rain streaks (seamless loop)
-  const rainStreaks = Array.from({ length: 46 }, () => ({
-    x: 10 + rng() * 154,
-    y: 6 + rng() * 56,
-    len: 4 + Math.floor(rng() * 5),
-    speed: rng() > 0.45 ? 2 : 1, // integer cycles per loop
-    alpha: 0.22 + rng() * 0.30
-  }));
-
-  // Pre-generate glass raindrops (seamless vertical slide)
-  const glassDrops = Array.from({ length: 15 }, (_, i) => ({
-    x: 14 + Math.floor(rng() * 144),
-    y0: Math.floor(rng() * 56),
-    speed: (i % 3 === 0) ? 2 : 1,
-    big: i % 4 === 0,
+  // Distant soft bokeh lights
+  const bokehs = Array.from({ length: 24 }, () => ({
+    x: 60 + rng() * 900,
+    y: 245 + rng() * 115,
+    r: 3 + rng() * 7,
+    warm: rng() > 0.32,
+    alpha: 0.10 + rng() * 0.18,
     phase: rng()
   }));
 
-  // Helper: crisp integer pixel rect
-  function px(x, y, w, h, color) {
-    p.fillStyle = color;
-    p.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h));
+  // Falling rain streaks (two depth layers, integer speeds for seamless loop)
+  const rainFar = Array.from({ length: 70 }, () => ({
+    x: 42 + rng() * 945,
+    y: 26 + rng() * 348,
+    len: 18 + rng() * 24,
+    speed: 2,
+    alpha: 0.10 + rng() * 0.14
+  }));
+  const rainNear = Array.from({ length: 48 }, () => ({
+    x: 42 + rng() * 945,
+    y: 26 + rng() * 348,
+    len: 28 + rng() * 36,
+    speed: 3,
+    alpha: 0.18 + rng() * 0.22
+  }));
+
+  // Realistic glass raindrops sliding down
+  const glassDrops = Array.from({ length: 22 }, (_, i) => ({
+    x: 64 + rng() * 900,
+    y0: rng() * 348,
+    r: 2.2 + (i % 4) * 0.85,
+    speed: (i % 3 === 0) ? 2 : 1,
+    alpha: 0.55 + rng() * 0.35
+  }));
+
+  // Floating warm dust motes inside desk lamp beam
+  const dustMotes = Array.from({ length: 16 }, () => ({
+    x0: 1030 + rng() * 240,
+    y0: 215 + rng() * 165,
+    r: 1.0 + rng() * 1.4,
+    ampX: 6 + rng() * 12,
+    ampY: 5 + rng() * 10,
+    phase: rng()
+  }));
+
+  function roundRectPath(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, r);
   }
 
-  function drawSkyAndCity(t) {
-    // Window interior clip: x=10..162, y=6..60
-    p.save();
-    p.beginPath();
-    p.rect(10, 6, 152, 55);
-    p.clip();
+  function drawWindowExterior(t) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(42, 26, 944, 346);
+    ctx.clip();
 
-    // Banded pixel sky gradient (P03 vibrant rainy night blue)
-    const skyBands = [
-      [6, 11, '#1A345C'],
-      [17, 10, '#234678'],
-      [27, 9, '#2D5891'],
-      [36, 9, '#3A6CA8'],
-      [45, 8, '#4A80BC'],
-      [53, 8, '#5E93C8']
-    ];
-    for (const [y, h, c] of skyBands) {
-      px(10, y, 152, h, c);
-    }
+    // Rich cinematic rainy night sky gradient (P03 Rainy Blue)
+    const sky = ctx.createLinearGradient(0, 26, 0, 372);
+    sky.addColorStop(0, '#0E1E38');
+    sky.addColorStop(0.32, '#173157');
+    sky.addColorStop(0.68, '#264E80');
+    sky.addColorStop(1, '#3D6FA6');
+    ctx.fillStyle = sky;
+    ctx.fillRect(42, 26, 944, 346);
 
-    // Subtle distant clouds
-    const cloudDrift = Math.round(t * 24);
-    p.fillStyle = 'rgba(127, 157, 175, 0.14)';
-    for (let k = -1; k <= 1; k++) {
-      const ox = (cloudDrift + k * 152) % 304;
-      p.fillRect(18 + ox, 14, 28, 3);
-      p.fillRect(24 + ox, 12, 16, 2);
-      p.fillRect(92 + ox, 20, 34, 3);
-      p.fillRect(100 + ox, 18, 18, 2);
-    }
+    // Subtle atmospheric horizon mist glow
+    const horizonMist = ctx.createRadialGradient(540, 372, 40, 540, 372, 520);
+    horizonMist.addColorStop(0, 'rgba(115, 168, 218, 0.26)');
+    horizonMist.addColorStop(0.6, 'rgba(65, 115, 168, 0.10)');
+    horizonMist.addColorStop(1, 'rgba(14, 30, 56, 0)');
+    ctx.fillStyle = horizonMist;
+    ctx.fillRect(42, 120, 944, 252);
 
-    // Far skyline (atmospheric perspective)
-    for (const b of farBuildings) {
-      px(b.x, 60 - b.h, b.w, b.h, '#24426D');
-      // subtle top rim
-      px(b.x, 60 - b.h, b.w, 1, '#365E92');
+    // Far skyline (soft misty silhouettes)
+    for (const b of farTowers) {
+      const top = 372 - b.h;
+      const g = ctx.createLinearGradient(0, top, 0, 372);
+      g.addColorStop(0, '#1D3A63');
+      g.addColorStop(1, '#122440');
+      ctx.fillStyle = g;
+      ctx.fillRect(b.x, top, b.w, b.h);
+      ctx.fillStyle = 'rgba(130, 178, 224, 0.16)';
+      ctx.fillRect(b.x, top, b.w, 1.5);
+      if (b.spire) {
+        const sx = b.x + b.w * 0.5;
+        ctx.fillStyle = '#294A78';
+        ctx.fillRect(sx - 1, top - 24, 2, 24);
+        const blink = 0.4 + 0.6 * (0.5 + 0.5 * Math.sin(t * Math.PI * 2 + b.x));
+        ctx.fillStyle = `rgba(245, 158, 102, ${blink.toFixed(2)})`;
+        ctx.beginPath();
+        ctx.arc(sx, top - 26, 2.2, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
 
     // Mid skyline
-    for (const b of midBuildings) {
-      const top = 60 - b.h;
-      px(b.x, top, b.w, b.h, '#162745');
-      px(b.x, top, 2, b.h, '#1F355B'); // left cool rim
-      // tiny roof antenna on taller buildings
-      if (b.h >= 24) {
-        px(b.x + Math.floor(b.w / 2), top - 4, 1, 4, '#243C63');
-        const blink = Math.sin(t * Math.PI * 2 + b.x) > 0.2;
-        px(b.x + Math.floor(b.w / 2), top - 5, 1, 1, blink ? '#F29F67' : '#3A5378');
-      }
+    for (const b of midTowers) {
+      const top = 372 - b.h;
+      const g = ctx.createLinearGradient(b.x, top, b.x + b.w, 372);
+      g.addColorStop(0, '#12223C');
+      g.addColorStop(1, '#0C172B');
+      ctx.fillStyle = g;
+      ctx.fillRect(b.x, top, b.w, b.h);
+      // Cool moonlit left edge
+      ctx.fillStyle = 'rgba(120, 170, 215, 0.14)';
+      ctx.fillRect(b.x, top, 2, b.h);
     }
 
-    // Lit city windows (warm amber & soft cyan)
-    for (const w of litWindows) {
-      let a = 0.88;
+    // Lit city windows
+    for (const w of cityWindows) {
+      let a = w.alpha;
       if (w.blink) {
-        a = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin((t + w.phase) * Math.PI * 2));
+        a *= 0.45 + 0.55 * (0.5 + 0.5 * Math.sin((t + w.phase) * Math.PI * 2));
       }
       if (w.warm) {
-        p.fillStyle = `rgba(233, 189, 125, ${a.toFixed(2)})`;
+        ctx.fillStyle = `rgba(242, 198, 128, ${a.toFixed(2)})`;
       } else {
-        p.fillStyle = `rgba(143, 194, 224, ${(a * 0.7).toFixed(2)})`;
+        ctx.fillStyle = `rgba(148, 202, 238, ${(a * 0.65).toFixed(2)})`;
       }
-      p.fillRect(w.x, w.y, w.w, w.h);
+      ctx.fillRect(w.x, w.y, w.w, w.h);
     }
 
-    // Foreground dark tree silhouettes along bottom of window
-    const treeProfile = [
-      [10, 6, 14], [22, 8, 16], [34, 5, 12], [46, 7, 15],
-      [60, 9, 18], [76, 6, 14], [96, 8, 16], [112, 5, 13],
-      [130, 7, 16], [146, 9, 18]
-    ];
-    for (const [tx, th, tw] of treeProfile) {
-      px(tx, 61 - th, tw, th, '#0E192E');
-      px(tx + 2, 61 - th - 2, tw - 4, 2, '#0E192E');
+    // Distant warm bokeh circles (cinematic depth of field)
+    for (const bk of bokehs) {
+      const pulse = 0.82 + 0.18 * Math.sin((t + bk.phase) * Math.PI * 2);
+      const a = bk.alpha * pulse;
+      const grad = ctx.createRadialGradient(bk.x, bk.y, 0, bk.x, bk.y, bk.r);
+      if (bk.warm) {
+        grad.addColorStop(0, `rgba(248, 206, 134, ${a.toFixed(2)})`);
+        grad.addColorStop(1, 'rgba(248, 206, 134, 0)');
+      } else {
+        grad.addColorStop(0, `rgba(135, 204, 248, ${a.toFixed(2)})`);
+        grad.addColorStop(1, 'rgba(135, 204, 248, 0)');
+      }
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(bk.x, bk.y, bk.r, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    // Falling rain streaks (slanted pixel steps, seamless loop)
-    for (const r of rainStreaks) {
-      const span = 62;
-      const dy = (t * r.speed * span) % span;
-      const dx = dy * 0.22;
-      let ry = ((r.y - 6 + dy) % span) + 6;
-      let rx = ((r.x - 10 - dx + 152) % 152) + 10;
-      p.fillStyle = `rgba(155, 205, 240, ${r.alpha.toFixed(2)})`;
-      for (let s = 0; s < r.len; s++) {
-        p.fillRect(Math.round(rx - s * 0.25), Math.round(ry + s), 1, 1);
+    // Falling rain (far & near layers, seamless loop)
+    function drawRainLayer(list, width) {
+      ctx.lineCap = 'round';
+      ctx.lineWidth = width;
+      const span = 380;
+      for (const r of list) {
+        const dy = (t * r.speed * span) % span;
+        const dx = dy * 0.22;
+        const ry = ((r.y - 26 + dy) % span) + 12;
+        const rx = ((r.x - 42 - dx + 960) % 960) + 42;
+        ctx.strokeStyle = `rgba(176, 218, 248, ${r.alpha.toFixed(2)})`;
+        ctx.beginPath();
+        ctx.moveTo(rx, ry);
+        ctx.lineTo(rx - r.len * 0.22, ry + r.len);
+        ctx.stroke();
       }
     }
+    drawRainLayer(rainFar, 1);
+    drawRainLayer(rainNear, 1.5);
 
-    // Glass raindrops sliding down slowly
+    // Glass raindrops with glossy highlight & water trail
     for (const d of glassDrops) {
-      const span = 58;
-      const progress = (d.y0 + t * d.speed * span) % span;
-      const dy = Math.round(5 + progress);
-      const dx = d.x;
-      // faint trail
-      p.fillStyle = 'rgba(130, 185, 225, 0.22)';
-      p.fillRect(dx, dy - 4, 1, 4);
-      // drop body
-      if (d.big) {
-        px(dx - 1, dy, 3, 4, '#1B3459');
-        px(dx, dy, 1, 3, '#6CA9D8');
-        px(dx, dy + 2, 1, 1, '#DDF2FF');
-      } else {
-        px(dx, dy, 2, 3, '#1D375D');
-        px(dx, dy + 1, 1, 2, '#9AD2F5');
-        px(dx, dy + 2, 1, 1, '#E6F7FF');
-      }
+      const span = 356;
+      const y = 20 + ((d.y0 + t * d.speed * span) % span);
+      const x = d.x;
+      // Thin water trail
+      const trail = ctx.createLinearGradient(x, y - 24, x, y);
+      trail.addColorStop(0, 'rgba(160, 210, 245, 0)');
+      trail.addColorStop(1, `rgba(180, 224, 252, ${(d.alpha * 0.28).toFixed(2)})`);
+      ctx.strokeStyle = trail;
+      ctx.lineWidth = d.r * 0.55;
+      ctx.beginPath();
+      ctx.moveTo(x, y - 24);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+
+      // Drop shadow
+      ctx.fillStyle = 'rgba(10, 22, 44, 0.45)';
+      ctx.beginPath();
+      ctx.ellipse(x + 0.8, y + 1.2, d.r * 0.9, d.r * 1.25, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Translucent drop body
+      const dg = ctx.createRadialGradient(x - d.r * 0.25, y - d.r * 0.3, 0.3, x, y, d.r * 1.3);
+      dg.addColorStop(0, `rgba(220, 244, 255, ${(d.alpha * 0.9).toFixed(2)})`);
+      dg.addColorStop(0.6, `rgba(110, 178, 226, ${(d.alpha * 0.55).toFixed(2)})`);
+      dg.addColorStop(1, `rgba(28, 58, 98, ${(d.alpha * 0.7).toFixed(2)})`);
+      ctx.fillStyle = dg;
+      ctx.beginPath();
+      ctx.ellipse(x, y, d.r * 0.85, d.r * 1.22, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Specular bottom dot
+      ctx.fillStyle = `rgba(255, 255, 255, ${(d.alpha * 0.95).toFixed(2)})`;
+      ctx.beginPath();
+      ctx.arc(x - d.r * 0.15, y + d.r * 0.45, d.r * 0.28, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    // Warm reflection cast onto lower-right window glass from the desk lamp
-    const glassGlow = p.createRadialGradient(166, 48, 4, 166, 48, 56);
-    glassGlow.addColorStop(0, 'rgba(233, 189, 125, 0.24)');
-    glassGlow.addColorStop(0.55, 'rgba(185, 128, 80, 0.08)');
-    glassGlow.addColorStop(1, 'rgba(185, 128, 80, 0)');
-    p.fillStyle = glassGlow;
-    p.fillRect(100, 12, 62, 50);
+    // Subtle warm lamp bounce reflected on lower-right glass
+    const glassWarm = ctx.createRadialGradient(990, 285, 20, 990, 285, 320);
+    glassWarm.addColorStop(0, 'rgba(242, 194, 122, 0.22)');
+    glassWarm.addColorStop(0.5, 'rgba(196, 134, 78, 0.08)');
+    glassWarm.addColorStop(1, 'rgba(196, 134, 78, 0)');
+    ctx.fillStyle = glassWarm;
+    ctx.fillRect(620, 40, 366, 332);
 
-    p.restore();
+    ctx.restore();
   }
 
-  function drawRoomAndWindowFrame(t) {
+  function drawRoomArchitecture() {
     // Indoor walls around window
-    px(0, 0, PW, 6, '#141B2D');       // top wall
-    px(0, 0, 10, 64, '#141B2D');      // left wall
-    px(162, 0, PW - 162, 64, '#161E31'); // right wall
+    ctx.fillStyle = '#0E1422';
+    ctx.fillRect(0, 0, W, 26);         // top wall
+    ctx.fillRect(0, 0, 42, 382);       // left wall
+    ctx.fillRect(986, 0, W - 986, 382);// right wall
 
-    // Right wall subtle warm bounce from desk lamp
-    const wallGlow = p.createRadialGradient(196, 40, 4, 196, 42, 48);
-    wallGlow.addColorStop(0, 'rgba(233, 189, 125, 0.28)');
-    wallGlow.addColorStop(0.5, 'rgba(185, 128, 80, 0.11)');
-    wallGlow.addColorStop(1, 'rgba(22, 30, 49, 0)');
-    p.fillStyle = wallGlow;
-    p.fillRect(162, 6, 78, 56);
+    // Right wall soft ambient warm bounce from lamp
+    const wallGlow = ctx.createRadialGradient(1170, 238, 16, 1170, 245, 290);
+    wallGlow.addColorStop(0, 'rgba(242, 192, 122, 0.28)');
+    wallGlow.addColorStop(0.45, 'rgba(186, 124, 72, 0.12)');
+    wallGlow.addColorStop(1, 'rgba(14, 20, 34, 0)');
+    ctx.fillStyle = wallGlow;
+    ctx.fillRect(986, 26, W - 986, 356);
 
-    // Minimal framed picture on far right wall
-    px(214, 10, 20, 22, '#0F1524');
-    px(215, 11, 18, 20, '#222C42');
-    px(217, 13, 14, 16, '#1A2338');
-    px(219, 18, 10, 6, '#2B3A57');
-    px(222, 16, 4, 2, '#7D6A62');
+    // Minimalist framed artwork on upper-right wall
+    ctx.save();
+    roundRectPath(1278, 56, 108, 132, 4);
+    ctx.fillStyle = '#090D18';
+    ctx.fill();
+    ctx.strokeStyle = '#1E2A40';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.fillStyle = '#162033';
+    ctx.fillRect(1290, 68, 84, 108);
+    // Abstract minimal warm-blue horizon inside frame
+    ctx.fillStyle = '#223352';
+    ctx.fillRect(1296, 74, 72, 54);
+    ctx.fillStyle = 'rgba(233, 189, 125, 0.42)';
+    ctx.beginPath();
+    ctx.arc(1332, 108, 12, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#131C2E';
+    ctx.fillRect(1296, 128, 72, 42);
+    ctx.restore();
 
-    // Window outer frame
-    px(8, 4, 156, 2, '#1C2840');
-    px(8, 4, 2, 57, '#1C2840');
-    px(162, 4, 2, 57, '#283652');
+    // Window frame & single sleek vertical mullion
+    ctx.strokeStyle = '#18243A';
+    ctx.lineWidth = 8;
+    ctx.strokeRect(42, 26, 944, 346);
+
     // Warm rim light on right inner edge of window frame
-    px(161, 22, 1, 38, '#9A6C48');
-    px(161, 38, 1, 22, '#D9A568');
+    const rimGrad = ctx.createLinearGradient(0, 120, 0, 372);
+    rimGrad.addColorStop(0, 'rgba(225, 168, 102, 0)');
+    rimGrad.addColorStop(0.5, 'rgba(225, 168, 102, 0.55)');
+    rimGrad.addColorStop(1, 'rgba(246, 202, 136, 0.92)');
+    ctx.fillStyle = rimGrad;
+    ctx.fillRect(981, 120, 3, 252);
 
-    // Single vertical mullion dividing window (keeps left title zone completely open)
-    px(114, 6, 3, 55, '#172238');
-    px(116, 6, 1, 55, '#263858');
-    // Lower subtle warm reflection on mullion
-    px(116, 38, 1, 22, '#7B6054');
+    // Vertical mullion at x=668 (leaves huge clean sky on the left for title)
+    ctx.fillStyle = '#131D30';
+    ctx.fillRect(664, 26, 12, 346);
+    ctx.fillStyle = '#243654';
+    ctx.fillRect(674, 26, 2, 346);
 
     // Window sill
-    px(6, 60, 160, 3, '#22304C');
-    px(6, 60, 160, 1, '#374D73');
-    // Warm light gradient across window sill toward the right
-    px(114, 60, 52, 1, '#B88456');
-    px(138, 60, 28, 1, '#E6B97A');
-    px(122, 61, 44, 2, '#7A543E');
+    const sillGrad = ctx.createLinearGradient(42, 372, 992, 372);
+    sillGrad.addColorStop(0, '#1B2840');
+    sillGrad.addColorStop(0.55, '#2A3954');
+    sillGrad.addColorStop(0.82, '#8F6446');
+    sillGrad.addColorStop(1, '#DDA76C');
+    ctx.fillStyle = sillGrad;
+    ctx.fillRect(36, 368, 960, 14);
+    ctx.fillStyle = 'rgba(255, 240, 210, 0.22)';
+    ctx.fillRect(660, 368, 336, 2);
 
-    // Left curtain edge (foreground framing)
-    px(0, 4, 7, 60, '#121B2E');
-    px(6, 4, 2, 60, '#203152');
-    px(2, 4, 2, 60, '#1B2844');
+    // Subtle left foreground curtain drape
+    const curtainGrad = ctx.createLinearGradient(0, 0, 52, 0);
+    curtainGrad.addColorStop(0, '#0B111E');
+    curtainGrad.addColorStop(0.7, '#141F34');
+    curtainGrad.addColorStop(1, 'rgba(24, 38, 62, 0)');
+    ctx.fillStyle = curtainGrad;
+    ctx.fillRect(0, 24, 52, 362);
   }
 
-  function drawDeskAndProps(t) {
-    // Smooth warm-to-cool desk surface gradient (no hard vertical seam)
-    const deskGrad = p.createLinearGradient(20, 63, 210, 63);
-    deskGrad.addColorStop(0, '#202438');
-    deskGrad.addColorStop(0.35, '#2E2A3D');
-    deskGrad.addColorStop(0.62, '#6E493C');
-    deskGrad.addColorStop(0.84, '#C58754');
-    deskGrad.addColorStop(1, '#9E6440');
-    p.fillStyle = deskGrad;
-    p.fillRect(0, 63, PW, 17);
+  function drawDeskSurface() {
+    // Desk surface (y: 382..480) with rich wood-and-lamp lighting
+    const deskGrad = ctx.createLinearGradient(120, 382, 1280, 382);
+    deskGrad.addColorStop(0, '#161B2B');
+    deskGrad.addColorStop(0.35, '#232436');
+    deskGrad.addColorStop(0.60, '#5A3D34');
+    deskGrad.addColorStop(0.82, '#BD824E');
+    deskGrad.addColorStop(1, '#8D5836');
+    ctx.fillStyle = deskGrad;
+    ctx.fillRect(0, 382, W, H - 382);
 
-    // Brightest warm pool directly under lamp (static so GIF diff stays tiny & razor-sharp)
-    const deskPool = p.createRadialGradient(184, 68, 4, 184, 68, 56);
-    deskPool.addColorStop(0, 'rgba(255, 232, 174, 0.88)');
-    deskPool.addColorStop(0.45, 'rgba(235, 184, 114, 0.56)');
-    deskPool.addColorStop(0.85, 'rgba(185, 120, 72, 0.18)');
-    deskPool.addColorStop(1, 'rgba(34, 38, 59, 0)');
-    p.fillStyle = deskPool;
-    p.fillRect(96, 63, 144, 17);
+    // Warm glowing pool directly beneath desk lamp
+    const pool = ctx.createRadialGradient(1125, 416, 24, 1125, 416, 360);
+    pool.addColorStop(0, 'rgba(255, 232, 174, 0.85)');
+    pool.addColorStop(0.4, 'rgba(235, 180, 108, 0.48)');
+    pool.addColorStop(0.78, 'rgba(176, 114, 66, 0.16)');
+    pool.addColorStop(1, 'rgba(22, 27, 43, 0)');
+    ctx.fillStyle = pool;
+    ctx.fillRect(580, 382, 860, H - 382);
 
-    // Desk front edge shadow
-    px(0, 77, PW, 3, '#121422');
-    px(116, 77, 124, 1, '#4C332C');
+    // Subtle top desk bevel
+    ctx.fillStyle = 'rgba(255, 232, 190, 0.14)';
+    ctx.fillRect(720, 382, 720, 1.5);
+  }
 
-    // --- Open Notebook on far-left desk (x=42..74, y=67..75) ---
-    px(40, 74, 36, 2, '#141726');
-    px(42, 67, 32, 8, '#532D33');
-    px(44, 67, 14, 6, '#8D9BB2');
-    px(46, 69, 9, 1, '#627087');
-    px(46, 71, 10, 1, '#627087');
-    px(58, 67, 1, 7, '#434E63');
-    px(59, 67, 14, 6, '#C8AE8B');
-    px(61, 69, 9, 1, '#8A6F55');
-    px(61, 71, 7, 1, '#8A6F55');
+  function drawOpenNotebook() {
+    // Sleek open sketchbook/notebook on far-left desk (x=190..365, y=402..452)
+    ctx.save();
+    ctx.fillStyle = 'rgba(8, 12, 22, 0.55)';
+    roundRectPath(184, 444, 188, 12, 6);
+    ctx.fill();
 
-    // --- Laptop on center-right desk (x=136..170, y=47..70) ---
-    const screenGlow = p.createRadialGradient(142, 58, 2, 142, 58, 26);
-    screenGlow.addColorStop(0, 'rgba(110, 198, 255, 0.24)');
-    screenGlow.addColorStop(1, 'rgba(110, 198, 255, 0)');
-    p.fillStyle = screenGlow;
-    p.fillRect(114, 42, 56, 30);
+    // Hardcover
+    ctx.fillStyle = '#4A2830';
+    roundRectPath(192, 408, 172, 40, 4);
+    ctx.fill();
 
-    // Cast shadow under laptop
-    px(132, 70, 40, 2, '#221A26');
+    // Left page (cool blue shadow)
+    ctx.fillStyle = '#8E9CB4';
+    ctx.beginPath();
+    ctx.moveTo(198, 404);
+    ctx.quadraticCurveTo(238, 398, 278, 406);
+    ctx.lineTo(278, 442);
+    ctx.quadraticCurveTo(238, 436, 198, 442);
+    ctx.closePath();
+    ctx.fill();
 
-    // Laptop screen lid (angled slightly toward developer on the left)
-    px(140, 46, 29, 20, '#1A2438');
-    px(140, 46, 29, 1, '#3F5478');
-    px(168, 46, 1, 20, '#E2AE72'); // warm rim light from lamp!
-    px(142, 48, 25, 16, '#0D1729');
+    // Right page (warm lamp catchlight)
+    ctx.fillStyle = '#D5BC99';
+    ctx.beginPath();
+    ctx.moveTo(278, 406);
+    ctx.quadraticCurveTo(318, 398, 358, 404);
+    ctx.lineTo(358, 442);
+    ctx.quadraticCurveTo(318, 436, 278, 442);
+    ctx.closePath();
+    ctx.fill();
 
-    // Animated scrolling code lines on laptop screen (seamless loop)
-    p.save();
-    p.beginPath();
-    p.rect(143, 49, 23, 14);
-    p.clip();
+    // Minimal note lines
+    ctx.strokeStyle = 'rgba(42, 54, 76, 0.35)';
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.moveTo(212, 415 + i * 9);
+      ctx.lineTo(262 - i * 6, 415 + i * 9);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(292, 415 + i * 9);
+      ctx.lineTo(342 - i * 8, 415 + i * 9);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawMacBook(t) {
+    // Sleek MacBook Pro angled on desk (x=820..1015, y=276..420)
+    ctx.save();
+
+    // Soft cool-blue screen light cast forward onto developer & desk
+    const screenGlow = ctx.createRadialGradient(845, 345, 10, 845, 345, 190);
+    screenGlow.addColorStop(0, 'rgba(96, 188, 255, 0.24)');
+    screenGlow.addColorStop(0.6, 'rgba(80, 160, 240, 0.08)');
+    screenGlow.addColorStop(1, 'rgba(80, 160, 240, 0)');
+    ctx.fillStyle = screenGlow;
+    ctx.fillRect(650, 210, 320, 230);
+
+    // Contact shadow under laptop
+    ctx.fillStyle = 'rgba(14, 12, 22, 0.6)';
+    roundRectPath(814, 416, 214, 12, 6);
+    ctx.fill();
+
+    // Laptop screen shell (3/4 perspective facing left-front)
+    roundRectPath(846, 274, 168, 126, 8);
+    ctx.fillStyle = '#182133';
+    ctx.fill();
+    ctx.strokeStyle = '#3B4E70';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Warm metallic rim light on right bezel from desk lamp
+    const rightRim = ctx.createLinearGradient(0, 276, 0, 398);
+    rightRim.addColorStop(0, '#F5CE93');
+    rightRim.addColorStop(1, '#B87D4B');
+    ctx.fillStyle = rightRim;
+    ctx.fillRect(1012, 278, 3, 118);
+
+    // Inner display panel
+    roundRectPath(854, 282, 152, 110, 4);
+    ctx.fillStyle = '#0B1323';
+    ctx.fill();
+
+    // Tiny macOS traffic dots
+    ctx.fillStyle = '#EF6B6B'; ctx.beginPath(); ctx.arc(864, 290, 2.2, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#F2C97D'; ctx.beginPath(); ctx.arc(872, 290, 2.2, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#63E2B7'; ctx.beginPath(); ctx.arc(880, 290, 2.2, 0, Math.PI * 2); ctx.fill();
+
+    // Smooth scrolling syntax-highlighted code lines
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(860, 298, 140, 88);
+    ctx.clip();
+
     const codeLines = [
-      { indent: 0, segs: [[4, '#60A5FA'], [6, '#E2E8F0']] },
-      { indent: 2, segs: [[4, '#A78BFA'], [7, '#93C5FD']] },
-      { indent: 2, segs: [[5, '#34D399'], [5, '#F2C98A']] },
-      { indent: 4, segs: [[9, '#CBD5E1']] },
-      { indent: 2, segs: [[4, '#F2C98A'], [6, '#60A5FA']] },
-      { indent: 0, segs: [[7, '#94A3B8']] }
+      { ind: 0, segs: [[26, '#60A5FA'], [38, '#E2E8F0'], [18, '#F2C98A']] },
+      { ind: 12, segs: [[22, '#A78BFA'], [44, '#93C5FD']] },
+      { ind: 12, segs: [[34, '#34D399'], [28, '#F2C98A'], [20, '#94A3B8']] },
+      { ind: 24, segs: [[54, '#CBD5E1'], [24, '#60A5FA']] },
+      { ind: 24, segs: [[30, '#F472B6'], [36, '#E2E8F0']] },
+      { ind: 12, segs: [[42, '#60A5FA'], [30, '#34D399']] },
+      { ind: 0, segs: [[20, '#94A3B8'], [34, '#F2C98A']] }
     ];
-    const scrollPx = Math.floor(t * 18);
-    for (let repeat = 0; repeat < 2; repeat++) {
+    const lineH = 14;
+    const totalH = codeLines.length * lineH; // 98px exact loop
+    const offset = (t * totalH) % totalH;
+
+    for (let rep = 0; rep < 2; rep++) {
       codeLines.forEach((line, idx) => {
-        const y = 50 + idx * 3 + repeat * 18 - scrollPx;
-        let cx = 144 + line.indent;
+        const y = 302 + idx * lineH + rep * totalH - offset;
+        let cx = 864 + line.ind;
         for (const [w, col] of line.segs) {
-          px(cx, y, w, 1, col);
-          cx += w + 2;
+          roundRectPath(cx, y, w, 4.5, 2.2);
+          ctx.fillStyle = col;
+          ctx.fill();
+          cx += w + 7;
         }
       });
     }
-    const cursorOn = Math.floor(t * 8) % 2 === 0;
-    if (cursorOn) {
-      px(145, 61, 2, 2, '#7EE787');
-    }
-    p.restore();
 
-    // Laptop keyboard base
-    px(134, 66, 36, 4, '#2A344B');
-    px(134, 66, 36, 1, '#5D7092');
-    px(156, 66, 14, 1, '#DFAA6F');
-    px(137, 67, 29, 1, '#192133');
-    px(134, 69, 36, 1, '#1A1F30');
+    // Blinking terminal cursor
+    const cursorAlpha = 0.25 + 0.75 * (Math.floor(t * 8) % 2 === 0 ? 1 : 0);
+    ctx.fillStyle = `rgba(110, 231, 183, ${cursorAlpha})`;
+    roundRectPath(866, 374, 7, 9, 1.5);
+    ctx.fill();
+    ctx.restore();
 
-    // --- Chen Shuo (KAI) sitting on ergonomic chair coding (x=90..140, y=35..80) ---
-    // Subtle breathing & typing rhythm (integer harmonic frequencies for seamless loop)
-    const breatheY = Math.sin(t * Math.PI * 2) > 0.45 ? 1 : 0;
-    const typeStep = Math.floor(t * 16); // 16 beats per loop
-    const leftHandUp = (typeStep % 4 === 0 || typeStep % 7 === 0) ? -1 : 0;
-    const rightHandUp = (typeStep % 4 === 2 || typeStep % 5 === 0) ? -1 : 0;
-    const headNod = (typeStep === 6 || typeStep === 7 || typeStep === 14) ? 1 : 0;
+    // Subtle glass sheen diagonal across screen
+    const sheen = ctx.createLinearGradient(854, 282, 950, 392);
+    sheen.addColorStop(0, 'rgba(255, 255, 255, 0.06)');
+    sheen.addColorStop(0.5, 'rgba(255, 255, 255, 0)');
+    ctx.fillStyle = sheen;
+    ctx.beginPath();
+    ctx.moveTo(854, 282);
+    ctx.lineTo(940, 282);
+    ctx.lineTo(890, 392);
+    ctx.lineTo(854, 392);
+    ctx.closePath();
+    ctx.fill();
 
-    // Ergonomic Chair Backrest (behind developer)
-    px(91, 49, 10, 26, '#131A2C');
-    px(92, 50, 8, 24, '#1C263E');
-    px(99, 50, 2, 20, '#2B3959'); // subtle edge highlight
+    // Aluminum MacBook base
+    const baseGrad = ctx.createLinearGradient(816, 400, 1024, 400);
+    baseGrad.addColorStop(0, '#3A4761');
+    baseGrad.addColorStop(0.55, '#596A8A');
+    baseGrad.addColorStop(1, '#DFAA70');
+    roundRectPath(816, 400, 208, 16, 5);
+    ctx.fillStyle = baseGrad;
+    ctx.fill();
+
+    // Recessed keyboard deck
+    roundRectPath(834, 403, 164, 5, 2);
+    ctx.fillStyle = '#182032';
+    ctx.fill();
+
+    // Bottom edge shadow
+    ctx.fillStyle = '#181E2E';
+    ctx.fillRect(820, 413, 200, 3);
+    ctx.restore();
+  }
+
+  function drawHandsomeDeveloper(t) {
+    // Anime/Editorial style handsome developer (Chen Shuo KAI) seated in ergonomic chair coding
+    // Positioned at x=540..845, y=188..480 — well clear of the upper-left typography!
+    ctx.save();
+
+    const breathe = Math.sin(t * Math.PI * 2) * 2.2;
+    const headBob = Math.sin(t * Math.PI * 2 - 0.5) * 1.4;
+    const typePhaseL = Math.sin(t * Math.PI * 12);
+    const typePhaseR = Math.sin(t * Math.PI * 12 + Math.PI * 0.85);
+    const handLY = typePhaseL > 0.35 ? -3.5 : 0;
+    const handRY = typePhaseR > 0.35 ? -3.5 : 0;
+
+    // === 1. Sleek Ergonomic Chair (behind developer) ===
     // Chair headrest
-    px(92, 43, 8, 5, '#172036');
-    px(93, 44, 6, 3, '#222F4C');
-    // Chair neck connector & seat base
-    px(95, 48, 3, 2, '#101626');
-    px(93, 74, 24, 6, '#141B2E');
-    px(95, 74, 20, 2, '#222D48');
+    roundRectPath(544, 224, 52, 34, 12);
+    ctx.fillStyle = '#141C2E';
+    ctx.fill();
+    ctx.strokeStyle = '#2A3958';
+    ctx.lineWidth = 2;
+    ctx.stroke();
 
-    // Hoodie / Torso (relaxed dark slate-blue hoodie with warm rim light on front)
-    const by = breatheY;
-    px(99, 50 + by, 18, 24 - by, '#1E2A42');
-    px(101, 51 + by, 14, 22 - by, '#273654');
-    // Hoodie hood folded behind neck
-    px(97, 49 + by, 9, 5, '#202D47');
-    px(98, 50 + by, 7, 3, '#314468');
-    // Warm lamp + screen rim light along chest & front shoulder
-    px(115, 51 + by, 2, 16, '#48608A');
-    px(116, 52 + by, 1, 13, '#C79668');
+    // Headrest stem
+    ctx.fillStyle = '#111828';
+    ctx.fillRect(564, 256, 12, 18);
 
-    // Neck
-    px(106, 46 + by, 5, 4, '#B98C72');
-    px(109, 46 + by, 2, 4, '#DFB495');
+    // Tall curved ergonomic backrest
+    ctx.beginPath();
+    ctx.moveTo(536, 272);
+    ctx.quadraticCurveTo(528, 360, 548, 456);
+    ctx.lineTo(604, 456);
+    ctx.quadraticCurveTo(612, 358, 598, 272);
+    ctx.closePath();
+    const chairGrad = ctx.createLinearGradient(530, 272, 608, 450);
+    chairGrad.addColorStop(0, '#131A2B');
+    chairGrad.addColorStop(0.75, '#1D2840');
+    chairGrad.addColorStop(1, '#2B3B5C');
+    ctx.fillStyle = chairGrad;
+    ctx.fill();
+    ctx.strokeStyle = '#2F4166';
+    ctx.lineWidth = 2;
+    ctx.stroke();
 
-    // Head (side 3/4 profile facing right toward laptop)
-    const hy = by + headNod;
-    // Back & top hair (fluffy dark hair)
-    px(101, 35 + hy, 14, 6, '#121826');
-    px(100, 38 + hy, 6, 8, '#121826');
-    px(103, 34 + hy, 10, 2, '#1A2338');
-    px(112, 36 + hy, 4, 3, '#1E2A42'); // front bangs
-    // Subtle cool-blue & warm rim highlight on top hair
-    px(105, 35 + hy, 6, 1, '#314466');
-    px(113, 37 + hy, 2, 1, '#8C6E58');
+    // Chair seat cushion
+    roundRectPath(548, 444, 146, 36, 10);
+    ctx.fillStyle = '#161F33';
+    ctx.fill();
 
-    // Face skin (facing right)
-    px(106, 39 + hy, 10, 8, '#D7A88A');
-    px(106, 40 + hy, 3, 7, '#B3856C'); // cheek shadow side
-    px(114, 40 + hy, 2, 6, '#F0CAA8'); // warm lit front face!
-    // Nose silhouette
-    px(116, 42 + hy, 1, 2, '#E8BE9A');
-    // Ear
-    px(105, 42 + hy, 2, 3, '#C7977B');
+    // === 2. Further (Left) Arm reaching toward keyboard ===
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(682, 336 + breathe);
+    ctx.quadraticCurveTo(735, 368 + breathe, 804, 386 + handLY);
+    ctx.lineTo(804, 404 + handLY);
+    ctx.quadraticCurveTo(730, 392 + breathe, 672, 364 + breathe);
+    ctx.closePath();
+    ctx.fillStyle = '#1B263D';
+    ctx.fill();
 
-    // Glasses (sleek dark frames + screen reflection glint)
-    px(111, 41 + hy, 5, 3, '#182032');
-    px(112, 42 + hy, 3, 1, '#88C8F2'); // lens reflection from code screen!
-    if (cursorOn) {
-      px(114, 42 + hy, 1, 1, '#E6F7FF'); // subtle animated glint
-    }
-    px(107, 42 + hy, 4, 1, '#182032'); // temple arm
+    // Left hand on keyboard
+    roundRectPath(800, 388 + handLY, 30, 12, 5);
+    ctx.fillStyle = '#D2A184';
+    ctx.fill();
+    ctx.restore();
 
-    // Left arm (further arm tucked naturally behind foreground arm, reaching keyboard)
-    px(115, 59 + by, 14, 4, '#1B253B');
-    px(127, 61 + leftHandUp, 8, 3, '#23314D');
-    px(133, 62 + leftHandUp, 5, 2, '#D7A88A'); // left hand typing
+    // === 3. Torso (Tailored dark-navy tech hoodie / minimalist overshirt) ===
+    ctx.beginPath();
+    ctx.moveTo(600, 294 + breathe);
+    ctx.quadraticCurveTo(648, 286 + breathe, 694, 306 + breathe); // broad athletic shoulders
+    ctx.quadraticCurveTo(718, 358 + breathe, 706, 446);
+    ctx.lineTo(596, 446);
+    ctx.quadraticCurveTo(582, 365 + breathe, 600, 294 + breathe);
+    ctx.closePath();
+    const torsoGrad = ctx.createLinearGradient(586, 294, 718, 420);
+    torsoGrad.addColorStop(0, '#1A243B');
+    torsoGrad.addColorStop(0.65, '#253452');
+    torsoGrad.addColorStop(1, '#344970');
+    ctx.fillStyle = torsoGrad;
+    ctx.fill();
 
-    // Right arm (foreground arm in hoodie sleeve, natural shoulder-to-forearm curve)
-    px(103, 53 + by, 9, 9, '#2B3C5E');
-    px(105, 59 + by, 10, 5, '#2E4166');
-    px(111, 61 + by, 16, 4, '#2E4166');
-    px(112, 61 + by, 15, 1, '#6C84AB'); // upper sleeve highlight
-    px(120, 61 + by, 7, 1, '#CFA070');  // warm lamp rim on forearm!
-    // Right wrist & hand typing on keyboard
-    px(126, 62 + rightHandUp, 6, 3, '#263656');
-    px(131, 63 + rightHandUp, 5, 2, '#EBC39F'); // warm lit right hand
-    px(135, 64 + rightHandUp, 2, 1, '#FFF0D6'); // fingertip catchlight
+    // Crisp collar / folded hood behind neck
+    ctx.beginPath();
+    ctx.moveTo(598, 292 + breathe);
+    ctx.quadraticCurveTo(626, 282 + breathe, 668, 296 + breathe);
+    ctx.quadraticCurveTo(648, 314 + breathe, 608, 314 + breathe);
+    ctx.closePath();
+    ctx.fillStyle = '#2B3D61';
+    ctx.fill();
 
-    // Chair armrest (foreground)
-    px(98, 66, 15, 2, '#1A2338');
-    px(99, 66, 13, 1, '#314161');
-    px(102, 68, 2, 7, '#131A2C');
+    // Warm golden + screen cyan rim light along chest front edge
+    ctx.strokeStyle = 'rgba(236, 190, 128, 0.72)';
+    ctx.lineWidth = 2.6;
+    ctx.beginPath();
+    ctx.moveTo(692, 306 + breathe);
+    ctx.quadraticCurveTo(714, 344 + breathe, 708, 394);
+    ctx.stroke();
 
-    // --- Coffee Mug (x=172..183, y=58..69) ---
-    // Shadow
-    px(169, 68, 15, 2, '#5E3828');
+    // === 4. Neck (slight natural forward lean toward screen) ===
+    ctx.fillStyle = '#C99679';
+    ctx.beginPath();
+    ctx.moveTo(644, 266 + breathe);
+    ctx.lineTo(667, 268 + breathe);
+    ctx.lineTo(666, 298 + breathe);
+    ctx.lineTo(635, 296 + breathe);
+    ctx.closePath();
+    ctx.fill();
+    // Soft jawline cast shadow on neck
+    ctx.fillStyle = 'rgba(58, 34, 30, 0.42)';
+    ctx.beginPath();
+    ctx.moveTo(644, 266 + breathe);
+    ctx.lineTo(667, 268 + breathe);
+    ctx.lineTo(664, 281 + breathe);
+    ctx.lineTo(640, 276 + breathe);
+    ctx.closePath();
+    ctx.fill();
+
+    // === 5. Handsome Anime-Editorial Side-Profile Head ===
+    ctx.save();
+    ctx.translate(4, breathe + headBob);
+
+    // Sculpted face profile (refined jawline, crisp nose bridge, calm focused expression)
+    ctx.beginPath();
+    ctx.moveTo(636, 214);
+    ctx.lineTo(680, 214);
+    ctx.lineTo(686, 231); // forehead
+    ctx.lineTo(694, 245); // straight nose bridge tip
+    ctx.lineTo(687, 249); // philtrum
+    ctx.lineTo(689, 255); // upper lip
+    ctx.lineTo(686, 259); // lower lip
+    ctx.lineTo(684, 267); // sculpted chin
+    ctx.quadraticCurveTo(666, 274, 646, 264); // sharp jawline
+    ctx.lineTo(634, 244);
+    ctx.closePath();
+    const faceGrad = ctx.createLinearGradient(634, 236, 695, 250);
+    faceGrad.addColorStop(0, '#B5846B');
+    faceGrad.addColorStop(0.55, '#DFB193');
+    faceGrad.addColorStop(1, '#F8D7B8');
+    ctx.fillStyle = faceGrad;
+    ctx.fill();
+
+    // Subtle composed mouth line
+    ctx.strokeStyle = 'rgba(128, 78, 62, 0.55)';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.moveTo(681, 256.5);
+    ctx.lineTo(687, 256.5);
+    ctx.stroke();
+
+    // Subtle ear
+    ctx.fillStyle = '#CE9B7E';
+    ctx.beginPath();
+    ctx.ellipse(638, 242, 5, 8.5, -0.15, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Focused calm eye & sharp eyebrow
+    ctx.fillStyle = '#162033';
+    ctx.beginPath();
+    ctx.ellipse(675, 238.5, 3.4, 2.0, -0.05, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(170, 224, 255, 0.85)';
+    ctx.beginPath();
+    ctx.arc(676.8, 238, 0.9, 0, Math.PI * 2);
+    ctx.fill();
+    // Sharp confident eyebrow
+    ctx.strokeStyle = '#151E30';
+    ctx.lineWidth = 2.4;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(666, 230.5);
+    ctx.lineTo(683, 231.5);
+    ctx.stroke();
+
+    // Sleek thin metallic glasses (modern narrow frame)
+    ctx.strokeStyle = '#1A2438';
+    ctx.lineWidth = 2.0;
+    roundRectPath(666, 233.5, 22, 10.5, 2.5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(666, 238.5);
+    ctx.lineTo(639, 239.5);
+    ctx.stroke();
+    // Subtle cyan code-screen reflection on lens
+    const lensGlow = ctx.createLinearGradient(668, 235, 686, 243);
+    lensGlow.addColorStop(0, 'rgba(130, 212, 255, 0.42)');
+    lensGlow.addColorStop(1, 'rgba(246, 210, 148, 0.24)');
+    ctx.fillStyle = lensGlow;
+    roundRectPath(667.5, 235, 19, 7.5, 1.8);
+    ctx.fill();
+    const glintX = 670 + ((t * 2) % 1) * 13;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
+    ctx.fillRect(glintX, 236, 2.2, 5.5);
+
+    // Stylish textured anime-style layered short hair (sharp strands, airy volume)
+    ctx.beginPath();
+    ctx.moveTo(634, 258); // clean nape
+    ctx.lineTo(623, 253); // lower hair tuft
+    ctx.quadraticCurveTo(612, 240, 616, 224);
+    ctx.lineTo(610, 218); // subtle dynamic back tuft
+    ctx.quadraticCurveTo(615, 194, 646, 184); // crown curve
+    ctx.lineTo(656, 180); // airy top lock
+    ctx.quadraticCurveTo(684, 182, 698, 206); // swept front bangs
+    ctx.quadraticCurveTo(704, 218, 694, 231); // long front lock tip
+    ctx.lineTo(686, 221);
+    ctx.lineTo(689, 232); // second airy bang strand
+    ctx.lineTo(676, 219);
+    ctx.lineTo(674, 228); // third subtle strand
+    ctx.quadraticCurveTo(660, 215, 648, 224);
+    ctx.lineTo(646, 242); // sharp sideburn
+    ctx.lineTo(640, 233);
+    ctx.lineTo(636, 248);
+    ctx.closePath();
+    const hairGrad = ctx.createLinearGradient(612, 182, 700, 254);
+    hairGrad.addColorStop(0, '#0E1422');
+    hairGrad.addColorStop(0.6, '#182238');
+    hairGrad.addColorStop(1, '#263656');
+    ctx.fillStyle = hairGrad;
+    ctx.fill();
+
+    // Cool moonlight highlight on crown + warm golden rim highlight on front bangs
+    ctx.strokeStyle = 'rgba(128, 178, 230, 0.45)';
+    ctx.lineWidth = 2.0;
+    ctx.beginPath();
+    ctx.moveTo(630, 194);
+    ctx.quadraticCurveTo(656, 184, 680, 193);
+    ctx.stroke();
+
+    ctx.strokeStyle = 'rgba(246, 204, 138, 0.72)';
+    ctx.lineWidth = 1.9;
+    ctx.beginPath();
+    ctx.moveTo(688, 198);
+    ctx.quadraticCurveTo(700, 212, 694, 229);
+    ctx.stroke();
+
+    ctx.restore(); // end head
+
+    // === 6. Foreground (Right) Arm & Typing Hand ===
+    ctx.beginPath();
+    ctx.moveTo(628, 326 + breathe);
+    ctx.quadraticCurveTo(618, 368 + breathe, 636, 396 + breathe);
+    ctx.quadraticCurveTo(706, 408 + breathe, 782, 404 + handRY);
+    ctx.lineTo(784, 384 + handRY);
+    ctx.quadraticCurveTo(718, 382 + breathe, 668, 368 + breathe);
+    ctx.quadraticCurveTo(664, 344 + breathe, 658, 324 + breathe);
+    ctx.closePath();
+    const armGrad = ctx.createLinearGradient(620, 326, 784, 396);
+    armGrad.addColorStop(0, '#23324F');
+    armGrad.addColorStop(0.6, '#2E4266');
+    armGrad.addColorStop(1, '#3D547E');
+    ctx.fillStyle = armGrad;
+    ctx.fill();
+
+    // Crisp warm highlight along top of forearm sleeve
+    ctx.strokeStyle = 'rgba(232, 184, 120, 0.72)';
+    ctx.lineWidth = 2.4;
+    ctx.beginPath();
+    ctx.moveTo(672, 368 + breathe);
+    ctx.quadraticCurveTo(726, 382 + breathe, 782, 384 + handRY);
+    ctx.stroke();
+
+    // Right wrist & sculpted typing hand
+    ctx.fillStyle = '#EAC09B';
+    ctx.beginPath();
+    ctx.moveTo(780, 386 + handRY);
+    ctx.lineTo(806, 387 + handRY);
+    ctx.quadraticCurveTo(816, 391 + handRY, 814, 398 + handRY);
+    ctx.lineTo(780, 401 + handRY);
+    ctx.closePath();
+    ctx.fill();
+    // Warm highlight on knuckles
+    ctx.fillStyle = '#FFE8C8';
+    ctx.fillRect(794, 388 + handRY, 14, 2.5);
+
+    // === 7. Foreground Chair Armrest ===
+    roundRectPath(580, 398, 92, 12, 6);
+    ctx.fillStyle = '#182236';
+    ctx.fill();
+    ctx.fillStyle = '#324569';
+    ctx.fillRect(586, 399, 80, 2.5);
+    ctx.fillStyle = '#12192A';
+    ctx.fillRect(606, 410, 14, 42);
+
+    ctx.restore();
+  }
+
+  function drawCoffeeAndLamp(t) {
+    // === Ceramic Coffee Mug (x=1046..1110, y=344..414) ===
+    ctx.save();
+    // Contact shadow
+    ctx.fillStyle = 'rgba(64, 36, 22, 0.55)';
+    ctx.beginPath();
+    ctx.ellipse(1078, 414, 38, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+
     // Mug handle
-    px(182, 60, 3, 6, '#3E2E3B');
-    px(182, 61, 2, 4, '#A86E48');
-    // Mug body
-    px(172, 59, 10, 10, '#2C374F');
-    px(177, 59, 5, 10, '#E8BA7E'); // warm lit side!
-    px(180, 60, 1, 8, '#FFF0CC');  // specular highlight
-    // Mug rim & coffee top
-    px(172, 58, 10, 2, '#D4DCE8');
-    px(174, 58, 6, 1, '#4A2B1D');
+    ctx.strokeStyle = '#B57B4C';
+    ctx.lineWidth = 7;
+    ctx.beginPath();
+    ctx.arc(1108, 380, 14, -Math.PI * 0.45, Math.PI * 0.45);
+    ctx.stroke();
 
-    // Animated rising pixel steam (3 wisps, seamless loop)
+    // Mug body (cylindrical shading from cool shadow left to bright warm right)
+    const mugGrad = ctx.createLinearGradient(1048, 350, 1106, 350);
+    mugGrad.addColorStop(0, '#273248');
+    mugGrad.addColorStop(0.42, '#5D5158');
+    mugGrad.addColorStop(0.78, '#EAB97A');
+    mugGrad.addColorStop(0.94, '#FFF2D0');
+    mugGrad.addColorStop(1, '#D59C62');
+    roundRectPath(1048, 348, 58, 64, [4, 4, 12, 12]);
+    ctx.fillStyle = mugGrad;
+    ctx.fill();
+
+    // Mug rim & coffee surface
+    ctx.fillStyle = '#E6ECF5';
+    ctx.beginPath();
+    ctx.ellipse(1077, 349, 29, 6, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#4B2A1B';
+    ctx.beginPath();
+    ctx.ellipse(1077, 349, 24, 4.2, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Silky rising steam wisps (seamless loop)
     for (let s = 0; s < 3; s++) {
       const phase = (t + s / 3) % 1;
-      const sy = 56 - phase * 14;
-      const sx = 175 + s * 2 + Math.sin(phase * Math.PI * 2 + s) * 1.4;
-      const alpha = Math.sin(phase * Math.PI) * 0.65;
-      p.fillStyle = `rgba(255, 240, 210, ${alpha.toFixed(2)})`;
-      p.fillRect(Math.round(sx), Math.round(sy), 1, 2);
-      p.fillRect(Math.round(sx + 1), Math.round(sy - 2), 1, 1);
+      const alpha = Math.sin(phase * Math.PI) * 0.36;
+      const baseX = 1064 + s * 13;
+      const yBottom = 340 - phase * 62;
+      ctx.strokeStyle = `rgba(255, 240, 212, ${alpha.toFixed(2)})`;
+      ctx.lineWidth = 2.6;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(baseX + Math.sin(phase * Math.PI * 2 + s) * 6, yBottom);
+      ctx.quadraticCurveTo(
+        baseX - Math.sin(phase * Math.PI * 2 + s) * 10,
+        yBottom - 18,
+        baseX + Math.sin(phase * Math.PI * 2 + s + 1) * 7,
+        yBottom - 36
+      );
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // === Volumetric Warm Light Cone from Desk Lamp ===
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(1118, 224);
+    ctx.lineTo(1234, 254);
+    ctx.lineTo(1365, 445);
+    ctx.lineTo(920, 445);
+    ctx.closePath();
+    const coneGrad = ctx.createLinearGradient(1176, 228, 1140, 445);
+    coneGrad.addColorStop(0, 'rgba(255, 236, 184, 0.38)');
+    coneGrad.addColorStop(0.45, 'rgba(242, 188, 114, 0.16)');
+    coneGrad.addColorStop(1, 'rgba(242, 188, 114, 0)');
+    ctx.fillStyle = coneGrad;
+    ctx.fill();
+
+    // Gently drifting dust motes inside the warm lamp beam
+    for (const m of dustMotes) {
+      const angle = (t + m.phase) * Math.PI * 2;
+      const mx = m.x0 + Math.cos(angle) * m.ampX;
+      const my = m.y0 + Math.sin(angle) * m.ampY;
+      const a = 0.22 + 0.38 * (0.5 + 0.5 * Math.sin(angle * 2));
+      ctx.fillStyle = `rgba(255, 238, 198, ${a.toFixed(2)})`;
+      ctx.beginPath();
+      ctx.arc(mx, my, m.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    // === Classic Architect Desk Lamp (x=1110..1360, y=156..424) ===
+    ctx.save();
+    // Base shadow
+    ctx.fillStyle = 'rgba(20, 14, 18, 0.5)';
+    ctx.beginPath();
+    ctx.ellipse(1306, 424, 62, 10, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Weighted metal base
+    roundRectPath(1254, 408, 106, 16, 6);
+    ctx.fillStyle = '#151D30';
+    ctx.fill();
+    roundRectPath(1264, 398, 86, 12, 6);
+    ctx.fillStyle = '#25324D';
+    ctx.fill();
+    // Warm catchlight on left edge of base
+    ctx.fillStyle = 'rgba(235, 182, 114, 0.65)';
+    ctx.fillRect(1268, 399, 34, 2.5);
+
+    // Lower arm
+    ctx.strokeStyle = '#1B253A';
+    ctx.lineWidth = 10;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(1308, 400);
+    ctx.lineTo(1352, 294);
+    ctx.stroke();
+    ctx.strokeStyle = '#4B5E82';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(1305, 398);
+    ctx.lineTo(1349, 294);
+    ctx.stroke();
+
+    // Upper arm
+    ctx.strokeStyle = '#1B253A';
+    ctx.lineWidth = 10;
+    ctx.beginPath();
+    ctx.moveTo(1352, 294);
+    ctx.lineTo(1234, 188);
+    ctx.stroke();
+    ctx.strokeStyle = '#5C729C';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(1349, 292);
+    ctx.lineTo(1232, 187);
+    ctx.stroke();
+
+    // Elbow & top joints
+    for (const [jx, jy] of [[1352, 294], [1234, 188]]) {
+      ctx.fillStyle = '#2A3854';
+      ctx.beginPath();
+      ctx.arc(jx, jy, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#8FA3C7';
+      ctx.beginPath();
+      ctx.arc(jx, jy, 4, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    // --- Classic Articulated Desk Lamp (x=184..226, y=26..70) ---
-    // Lamp volumetric light cone (warm amber glow)
-    p.save();
-    p.beginPath();
-    p.moveTo(185, 39);
-    p.lineTo(203, 44);
-    p.lineTo(222, 74);
-    p.lineTo(148, 74);
-    p.closePath();
-    const coneGrad = p.createLinearGradient(194, 38, 184, 74);
-    coneGrad.addColorStop(0, 'rgba(255, 236, 184, 0.42)');
-    coneGrad.addColorStop(0.5, 'rgba(238, 185, 112, 0.18)');
-    coneGrad.addColorStop(1, 'rgba(238, 185, 112, 0)');
-    p.fillStyle = coneGrad;
-    p.fill();
-    p.restore();
+    // Sculpted metal lampshade (tilted toward desk)
+    ctx.beginPath();
+    ctx.moveTo(1162, 174);
+    ctx.quadraticCurveTo(1208, 166, 1236, 186);
+    ctx.lineTo(1240, 248);
+    ctx.lineTo(1114, 224);
+    ctx.quadraticCurveTo(1128, 186, 1162, 174);
+    ctx.closePath();
+    const shadeGrad = ctx.createLinearGradient(1114, 170, 1240, 248);
+    shadeGrad.addColorStop(0, '#2B3B59');
+    shadeGrad.addColorStop(0.5, '#19243A');
+    shadeGrad.addColorStop(1, '#111829');
+    ctx.fillStyle = shadeGrad;
+    ctx.fill();
 
-    // Lamp base
-    px(208, 68, 20, 3, '#171E30');
-    px(210, 66, 16, 2, '#2B3650');
-    px(211, 66, 7, 1, '#C49262'); // warm rim on base
+    // Specular highlight along top curve of shade
+    ctx.strokeStyle = 'rgba(130, 172, 220, 0.45)';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(1148, 182);
+    ctx.quadraticCurveTo(1188, 172, 1220, 184);
+    ctx.stroke();
 
-    // Lower arm (angled up-right)
-    for (let i = 0; i < 16; i++) {
-      const ax = 217 + Math.round(i * 0.45);
-      const ay = 66 - i;
-      px(ax, ay, 2, 2, '#1A2338');
-      px(ax, ay, 1, 1, '#41506E');
-    }
-    // Elbow joint
-    px(223, 49, 4, 4, '#2A354E');
-    px(224, 50, 2, 2, '#7D8AA8');
+    // Glowing inner shade opening & warm bulb
+    ctx.save();
+    ctx.translate(1177, 236);
+    ctx.rotate(0.19);
+    ctx.fillStyle = '#EBB976';
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 62, 12, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#FFF6DC';
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 44, 8, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#FFFFFF';
+    ctx.beginPath();
+    ctx.ellipse(0, 1, 22, 5, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
 
-    // Upper arm (angled up-left to shade)
-    for (let i = 0; i < 20; i++) {
-      const ax = 224 - i;
-      const ay = 50 - Math.round(i * 0.85);
-      px(ax, ay, 2, 2, '#1A2338');
-      px(ax, ay, 1, 1, '#58698A');
-    }
-    // Top joint
-    px(203, 31, 4, 4, '#2A354E');
-
-    // Lamp shade (tilted down-left)
-    px(191, 29, 13, 4, '#182136');
-    px(187, 33, 18, 4, '#1D2942');
-    px(184, 37, 21, 3, '#253452');
-    // Cool highlight on top of shade
-    px(192, 29, 8, 1, '#4C638C');
-    px(188, 33, 6, 1, '#3D5278');
-    // Glowing underside & bulb
-    px(186, 40, 17, 2, '#E9BD7D');
-    px(189, 40, 11, 2, '#FFF5D6');
-    px(192, 42, 6, 1, '#FFFDF2');
+    ctx.restore();
   }
 
   function drawTypography(t) {
-    // Crisp high-res typography over the calm upper-left rainy sky
     ctx.save();
 
-    // Subtle dark-blue radial scrim behind text for effortless readability
-    const scrim = ctx.createRadialGradient(220, 105, 16, 220, 105, 250);
-    scrim.addColorStop(0, 'rgba(16, 29, 52, 0.56)');
-    scrim.addColorStop(1, 'rgba(16, 29, 52, 0)');
+    // Soft dark-blue radial scrim behind title for effortless contrast
+    const scrim = ctx.createRadialGradient(290, 148, 20, 290, 148, 340);
+    scrim.addColorStop(0, 'rgba(10, 22, 42, 0.62)');
+    scrim.addColorStop(1, 'rgba(10, 22, 42, 0)');
     ctx.fillStyle = scrim;
-    ctx.fillRect(40, 24, 420, 160);
+    ctx.fillRect(42, 26, 560, 240);
 
-    // Status pill with breathing warm dot
+    // Status pill
     const pulse = 0.55 + 0.45 * Math.sin(t * Math.PI * 2);
-    ctx.fillStyle = `rgba(233, 189, 125, ${pulse.toFixed(2)})`;
+    ctx.fillStyle = `rgba(242, 198, 128, ${pulse.toFixed(2)})`;
     ctx.beginPath();
-    ctx.arc(74, 54, 3.5, 0, Math.PI * 2);
+    ctx.arc(98, 82, 4.5, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.font = '500 11.5px "SF Mono", Menlo, ui-monospace, monospace';
-    ctx.fillStyle = 'rgba(210, 226, 244, 0.9)';
-    ctx.letterSpacing = '1.6px';
-    ctx.fillText('BUILDING IN PUBLIC', 86, 58);
+    ctx.font = '500 15px "SF Mono", Menlo, ui-monospace, monospace';
+    ctx.fillStyle = 'rgba(208, 226, 244, 0.90)';
+    ctx.letterSpacing = '2.4px';
+    ctx.fillText('BUILDING IN PUBLIC', 114, 87);
 
-    // Main title: 陈硕 KAI
+    // Main Title: 陈硕 KAI
     ctx.letterSpacing = '0px';
-    ctx.shadowColor = 'rgba(10, 18, 34, 0.75)';
-    ctx.shadowBlur = 12;
-    ctx.shadowOffsetY = 2;
+    ctx.shadowColor = 'rgba(8, 16, 32, 0.72)';
+    ctx.shadowBlur = 18;
+    ctx.shadowOffsetY = 3;
 
-    ctx.font = '700 44px "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif';
-    ctx.fillStyle = '#F6F2EA';
-    ctx.fillText('陈硕', 68, 112);
+    ctx.font = '700 66px "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillStyle = '#F7F4EC';
+    ctx.fillText('陈硕', 90, 166);
 
-    ctx.fillStyle = '#F2C98A';
-    ctx.fillText('KAI', 170, 112);
+    const kaiGrad = ctx.createLinearGradient(242, 114, 370, 168);
+    kaiGrad.addColorStop(0, '#FAD9A1');
+    kaiGrad.addColorStop(1, '#E5A860');
+    ctx.fillStyle = kaiGrad;
+    ctx.fillText('KAI', 242, 166);
 
     // Subtitle
-    ctx.shadowBlur = 6;
-    ctx.font = '500 15.5px "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif';
-    ctx.fillStyle = '#D3E3F4';
-    ctx.fillText('AI 产品构建者 · 独立开发者 · 内容创作者', 70, 144);
+    ctx.shadowBlur = 10;
+    ctx.font = '500 22px "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillStyle = '#D9E8F6';
+    ctx.fillText('AI 产品构建者 · 独立开发者 · 内容创作者', 94, 212);
 
-    // Bottom mono tagline
-    ctx.shadowBlur = 4;
-    ctx.font = '400 12px "SF Mono", Menlo, ui-monospace, monospace';
-    ctx.fillStyle = 'rgba(169, 198, 226, 0.88)';
-    ctx.fillText('idea → prototype → agent workflow → ship', 70, 170);
+    // Subtle accent divider + tagline
+    ctx.shadowBlur = 0;
+    const divGrad = ctx.createLinearGradient(94, 232, 340, 232);
+    divGrad.addColorStop(0, 'rgba(242, 198, 128, 0.7)');
+    divGrad.addColorStop(1, 'rgba(242, 198, 128, 0)');
+    ctx.fillStyle = divGrad;
+    ctx.fillRect(94, 230, 246, 1.5);
+
+    ctx.shadowColor = 'rgba(8, 16, 32, 0.65)';
+    ctx.shadowBlur = 6;
+    ctx.font = '400 15.5px "SF Mono", Menlo, ui-monospace, monospace';
+    ctx.fillStyle = 'rgba(176, 206, 234, 0.90)';
+    ctx.fillText('idea → prototype → agent workflow → ship', 94, 258);
 
     ctx.restore();
   }
 
   function render(t) {
-    // Normalize t to [0, 1)
     t = ((t % 1) + 1) % 1;
 
-    p.clearRect(0, 0, PW, PH);
-    drawSkyAndCity(t);
-    drawRoomAndWindowFrame(t);
-    drawDeskAndProps(t);
-
-    // Blit pixel buffer to 960x320 with crisp nearest-neighbor scaling & rounded corners
     ctx.save();
-    ctx.clearRect(0, 0, OUT_W, OUT_H);
-    ctx.beginPath();
-    ctx.roundRect(0, 0, OUT_W, OUT_H, 16);
+    ctx.clearRect(0, 0, W, H);
+    roundRectPath(0, 0, W, H, 20);
     ctx.clip();
 
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(buf, 0, 0, PW, PH, 0, 0, OUT_W, OUT_H);
-
-    // Crisp typography layer
+    drawWindowExterior(t);
+    drawRoomArchitecture();
+    drawDeskSurface();
+    drawOpenNotebook();
+    drawMacBook(t);
+    drawHandsomeDeveloper(t);
+    drawCoffeeAndLamp(t);
     drawTypography(t);
 
-    // Subtle inner border
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.10)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.roundRect(1, 1, OUT_W - 2, OUT_H - 2, 15);
+    // Crisp subtle glass border
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+    ctx.lineWidth = 2.5;
+    roundRectPath(1.25, 1.25, W - 2.5, H - 2.5, 19);
     ctx.stroke();
+
     ctx.restore();
   }
 
   window.render = render;
 
-  // Live preview loop when opened directly in browser
   if (!window.__MANUAL_RENDER__) {
     const start = performance.now();
-    const DURATION = 4000;
+    const DURATION = 3600;
     function tick(now) {
       if (window.__MANUAL_RENDER__) return;
       render(((now - start) % DURATION) / DURATION);

@@ -6,12 +6,14 @@ import os from 'node:os';
 const CHROME_PATH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const ROOT = path.resolve(import.meta.dirname, '..');
 const HTML_PATH = path.join(ROOT, 'scripts', 'hero-animation.html');
-const FRAMES_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'hero-frames-'));
-const OUT_WEBP = path.join(ROOT, 'assets', 'readme', 'hero.webp');
+const FRAMES_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'hero-hd-frames-'));
 const OUT_GIF = path.join(ROOT, 'assets', 'readme', 'hero.gif');
 
-const TOTAL_FRAMES = 48; // 3.2s @ 15fps seamless loop
-const FPS = 15;
+const WIDTH = 1440;
+const HEIGHT = 480;
+const OUT_WIDTH = 1200; // Supersampled from 1440x480 -> ultra-sharp 1200x400 (< 4.5MB for GitHub Camo)
+const TOTAL_FRAMES = 32; // 2.67s @ 12fps seamless loop
+const FPS = 12;
 const PORT = 9222 + Math.floor(Math.random() * 500);
 
 function sleep(ms) {
@@ -84,7 +86,7 @@ async function main() {
       '--headless=new',
       `--remote-debugging-port=${PORT}`,
       `--user-data-dir=${userDataDir}`,
-      '--window-size=960,320',
+      `--window-size=${WIDTH},${HEIGHT}`,
       '--hide-scrollbars',
       '--disable-gpu',
       '--no-first-run',
@@ -100,8 +102,8 @@ async function main() {
 
     await cdp.send('Page.enable');
     await cdp.send('Emulation.setDeviceMetricsOverride', {
-      width: 960,
-      height: 320,
+      width: WIDTH,
+      height: HEIGHT,
       deviceScaleFactor: 1,
       mobile: false,
     });
@@ -116,7 +118,7 @@ async function main() {
       expression: 'window.__MANUAL_RENDER__ = true;',
     });
 
-    console.log(`Rendering ${TOTAL_FRAMES} frames...`);
+    console.log(`Rendering ${TOTAL_FRAMES} HD frames (${WIDTH}x${HEIGHT})...`);
     for (let i = 0; i < TOTAL_FRAMES; i++) {
       const t = i / TOTAL_FRAMES;
       await cdp.send('Runtime.evaluate', {
@@ -131,19 +133,19 @@ async function main() {
     }
 
     cdp.close();
-    console.log('Encoding high-quality looping GIF...');
+    console.log('Encoding supersampled HD looping GIF...');
     const palettePath = path.join(FRAMES_DIR, 'palette.png');
     await runFfmpeg([
       '-framerate', String(FPS),
       '-i', path.join(FRAMES_DIR, 'frame_%04d.png'),
-      '-vf', 'palettegen=max_colors=160:reserve_transparent=1:stats_mode=diff',
+      '-vf', `scale=${OUT_WIDTH}:-1:flags=lanczos,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff`,
       palettePath,
     ]);
     await runFfmpeg([
       '-framerate', String(FPS),
       '-i', path.join(FRAMES_DIR, 'frame_%04d.png'),
       '-i', palettePath,
-      '-lavfi', 'paletteuse=dither=none:diff_mode=rectangle',
+      '-lavfi', `scale=${OUT_WIDTH}:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=none:diff_mode=rectangle`,
       '-loop', '0',
       OUT_GIF,
     ]);
@@ -151,10 +153,10 @@ async function main() {
     const gifSize = (fs.statSync(OUT_GIF).size / 1024).toFixed(1);
     console.log(`Done! ${OUT_GIF} (${gifSize} KB)`);
 
-    // Save 3 keyframes for visual inspection
-    const inspectDir = path.join(os.tmpdir(), 'hero-inspect');
+    // Save keyframes for visual inspection
+    const inspectDir = path.join(os.tmpdir(), 'hero-hd-inspect');
     fs.mkdirSync(inspectDir, { recursive: true });
-    for (const idx of [0, 16, 32]) {
+    for (const idx of [0, 12, 24]) {
       fs.copyFileSync(
         path.join(FRAMES_DIR, `frame_${String(idx).padStart(4, '0')}.png`),
         path.join(inspectDir, `keyframe_${idx}.png`)
